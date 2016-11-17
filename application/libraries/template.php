@@ -231,13 +231,8 @@ class Template
 						<div class="row">
 							<div class="col-lg-12">
 								<h1 class="page-header">
-									'. $TEXTTITLE.'
+									<i class="fa fa-dashboard"></i>'. $TEXTTITLE.'
 								</h1>
-								<ol class="breadcrumb">
-									<li class="active">
-										<i class="fa fa-dashboard"></i> Dashboard
-									</li>
-								</ol>
 							</div>
 						</div>
 						<!-- /.row -->
@@ -246,6 +241,16 @@ class Template
 					public function getFooter($base_url)
 					{
 						return '
+						<!-- Footer -->
+						<footer>
+							<div class="row">
+								<div class="col-lg-12">
+									<p class="pull-right">Copyright &copy; Webdeveloper By Mr.Chaiwat Homsang</p>
+								</div>
+							</div>
+							<!-- /.row -->
+						</footer>
+						<!-- /. end footer -->
 
 					</div>
 					<!-- /.container-fluid -->
