@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ctl_dashboard extends CI_Controller {
+class Ctl_document extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-
+		//Do your magic here
 	}
 
 	public function index()
 	{
-		$TEXTTITLE = "<i class=\"fa fa-fw fa-book\"></i>ทั่วไป";
-		$PAGE = 'index';
+		$TEXTTITLE = "<i class=\"fa fa-fw fa-folder-o\"></i>ระบบจัดเก็บเอกสาร";
+		$PAGE = 'document/indexDoc';
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}
@@ -23,7 +23,8 @@ class Ctl_dashboard extends CI_Controller {
 		$this->data['footer'] = $this->template->getFooter(base_url());
 	}
 
+
 }
 
-/* End of file Ctl_dashboard.php */
-/* Location: ./application/controllers/Ctl_dashboard.php */
+/* End of file Ctl_document.php */
+/* Location: ./application/controllers/Ctl_document.php */
