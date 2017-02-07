@@ -63,9 +63,9 @@ class Template
 			</script>
 		</head>
 
-		<body>
+		<body style ="height:100%;">
 
-			<div id="wrapper" style="height:100%;">
+			<div id="wrapper" >
 
 				<!-- Navigation -->
 				<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -206,7 +206,7 @@ class Template
 					{
 						return '
 						<!-- Footer -->
-						<footer >
+						<footer style="clear: both;bottom:0px;right:0px;" >
 							<div class="row">
 								<div class="col-lg-12" >
 									<p class="pull-right" >Copyright &copy; Webdeveloper By Mr.Chaiwat Homsang</p>
