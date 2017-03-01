@@ -61,7 +61,7 @@
 <!--  -->
 <a href="#">
 	<div class="col-sm-4 col-md-3">
-		<div class="thumbnail text-center " style="background-color: #F5F6CE;">
+		<div class="thumbnail text-center " style="background-color: #A9E2F3;">
 			<!-- <i class="fa fa fa-bullhorn fa-5x"> --></i><i class="fa fa-newspaper-o fa-5x" aria-hidden="true"></i>
 			<div class="caption">
 				<p>ประกาศ<br> ข่าว</p>
@@ -73,7 +73,7 @@
 <!--  -->
 <a href="#">
 	<div class="col-sm-4 col-md-3">
-		<div class="thumbnail text-center " style="background-color: #F5F6CE;">
+		<div class="thumbnail text-center " style="background-color: #F6D8CE;">
 			<!-- <i class="fa fa fa-bullhorn fa-5x"> --></i><i class="fa fa-money fa-5x" aria-hidden="true"></i>
 			<div class="caption">
 				<p>ประกาศ<br> แหล่งทุน</p>
