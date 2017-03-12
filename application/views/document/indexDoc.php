@@ -6,7 +6,7 @@
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">ชื่อ </label>
 			<div class="col-sm-3">
-				<input type="text" name='name' class="form-control " id="name" placeholder="ขยัน">
+				<input type="text" name='name' class="form-control " id="name" placeholder="ขยัน" autofocus="">
 			</div>
 			<label for="lastname" class="col-sm-1 control-label">นามสกุล </label>
 			<div class="col-sm-3">
