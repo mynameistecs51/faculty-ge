@@ -27,16 +27,16 @@ class Template
 			<title>สำนักวิชาศึกษาทั่วไป</title>
 
 			<!-- Bootstrap Core CSS -->
-			<link href="'.$base_url.'/assets/css/bootstrap.min.css" rel="stylesheet">
+			<link href="'.$base_url.'assets/css/bootstrap.min.css" rel="stylesheet">
 
 			<!-- Custom CSS -->
-			<link href="'.$base_url.'/assets/css/sb-admin.css" rel="stylesheet">
+			<link href="'.$base_url.'assets/css/sb-admin.css" rel="stylesheet">
 
 			<!-- Morris Charts CSS -->
-			<link href="'.$base_url.'/assets/css/plugins/morris.css" rel="stylesheet">
+			<link href="'.$base_url.'assets/css/plugins/morris.css" rel="stylesheet">
 
 			<!-- Custom Fonts -->
-			<link href="'.$base_url.'/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+			<link href="'.$base_url.'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 			<!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
@@ -46,7 +46,7 @@ class Template
 			<![endif]-->
 
 			<!-- jQuery -->
-			<script src="'.$base_url.'/assets/js/jquery.js"></script>
+			<script src="'.$base_url.'assets/js/jquery.js"></script>
 
 			<script type="text/javascript">
 				$( document ).ready(function() {
@@ -226,7 +226,7 @@ class Template
 			<!-- /#wrapper -->
 
 			<!-- Bootstrap Core JavaScript -->
-			<script src="'.$base_url.'/assets/js/bootstrap.min.js"></script>
+			<script src="'.$base_url.'assets/js/bootstrap.min.js"></script>
 		</body>
 
 		</html>

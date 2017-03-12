@@ -47,12 +47,12 @@
 </a>
 
 <!--  -->
-<a href="#">
+<a href="Activity">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #F5F6CE;">
 			<i class="fa fa fa-image fa-5x"></i>
 			<div class="caption">
-				<p>อัพโหลด<br>รูปภาพ</p>
+				<p>อัพโหลด<br>กิจกรรม/รูปภาพ</p>
 			</div>
 		</div>
 	</div>
