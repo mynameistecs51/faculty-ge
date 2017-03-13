@@ -13,7 +13,7 @@
 			<thead>
 				<tr  style="text-align:center;">
 					<th class="col-sm-1">#</th>
-					<th   style="text-align:center;" >หัวข้อข่าว</th>
+					<th   style="text-align:center;" >หัวข้อกิจกรรม</th>
 					<th style="text-align:center;">ภาพ</th>
 					<th style="text-align:center;">อัพเดทเมื่อ</th>
 					<th style="text-align:center;">รายละเอียด</th>
@@ -65,7 +65,7 @@
 	function modal_form(n,screenname)
 	{
 		var div='';
-		div+='<form name="main" role="form" data-toggle="validator" id="form" method="post">';
+		div+='<form  role="form" data-toggle="validator" id="form" method="post" enctype="multipart/form-data">';
 		div+='<!-- Modal -->';
 		div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
 		div+='<div class="modal-dialog" style="width:90%;">';
