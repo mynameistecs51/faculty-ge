@@ -77,7 +77,7 @@ class Template
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-							<a class="navbar-brand" href="ctl_dashboard">สำนักวิชาศึกษาทั่วไป <br> มหาวิทยาลัยราชภัฏอุดรธานี</a>
+						<a class="navbar-brand" href="ctl_dashboard">สำนักวิชาศึกษาทั่วไป <br> มหาวิทยาลัยราชภัฏอุดรธานี</a>
 					</div>
 					<!-- Top Menu Items -->
 					<ul class="nav navbar-right top-nav">
@@ -242,13 +242,16 @@ class Template
 				<a href="Ctl_dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
 			</li>
 			<li>
-			<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
+				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
 			</li>
 			<li>
 				<a href="Ctl_document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a>
+			</li>
+			<li>
+				<a href="http://rdi.udru.ac.th/" target="_blank"><i class="fa fa-fw fa-money"></i> สถาบันวิจัย มรภ.อุดรธานี</a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>

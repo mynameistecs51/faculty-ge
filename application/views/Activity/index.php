@@ -35,6 +35,9 @@
 <?php echo $footer; ?>
 <!-- Bootstrap DataTable JS -->
 <script src="<?php echo base_url();?>/assets/dataTable/js/jquery.dataTables.min.js"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#example').DataTable({
@@ -46,6 +49,7 @@
 		// add activity
 		add();
 	} );
+
 	function add(){
 		$('#add').click(function(){
 			var screenname="เพิ่มข้อมูล :: กิจกรรม ::";
@@ -86,4 +90,6 @@
 		div+='</form>';
 		$('.div_modal').html(div);
 	}
+
+
 </script>

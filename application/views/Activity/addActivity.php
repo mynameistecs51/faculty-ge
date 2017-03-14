@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!--  <!DOCTYPE html>
  <html>
  <head>
 
  </head>
- <body>
+ <body> -->
 
  	<div class="row">
 
@@ -34,37 +34,41 @@
 
  		function saveData()
  		{
- 			$('form#form').on('submit', function (e) {
- 				if (e.isDefaultPrevented()) {
- 					alert("ผิดพลาด : กรุณาตรวจสอบข้อมูลให้ถูกต้อง !");
-              // handle the invalid form...
-            } else {
-              // everything looks good!
-              e.preventDefault();
-             // var form = $('#form').serialize();
-             $.ajax(
-             {
-             	url: '<?php echo base_url().$controller."/saveadd/"; ?>',
-             	type: 'POST',
-	                data: {title: $('#input_title').val(), detail: $('#input_detail').val(), picture: $('#images').attr('files'),}, //your form datas to post
-	                cache: false,
-	                success: function(rs)
-	                {
-	                	// $('.modal').modal('hide');
-	                	// location.reload();
-	                	// alert("#บันทึกข้อมูล เรียบร้อย !");
-	                	console.log(rs);
-	                },
-	                error: function()
-	                {
-	                	alert("#เกิดข้อผิดพลาด");
-	                }
-	              });
-           }
-         });
+ 			$("#form").validate({
+ 				submitHandler: function (form){
+
+ 					$('#form button#save').prop("disabled",true);
+ 					startloading();
+
+ 					var dataForm = new FormData();
+ 					for (var i = 0, len = window.storedFiles_files.length; i < len; i++) {
+ 						dataForm.append('fiels[]', window.storedFiles_files[i]);
+ 					}
+ 					var form = $('#form').serializeArray();
+ 					$.each(form,function(key,input){
+ 						dataForm.append(input.name,input.value);
+ 					});
+ 					$.ajax(
+ 					{
+ 						type: 'POST',
+ 						url: '<?php echo base_url().$controller."/saveadd/"; ?>',
+ 						data: dataForm,
+ 						contentType: false,
+ 						processData: false,
+ 						success: function(rs)
+ 						{
+ 							stoploading();
+ 						},
+ 						error: function()
+ 						{
+ 							bootbox.alert("#เกิดข้อผิดพลาด");
+ 						}
+ 					});
+ 				}
+ 			});
  		}
 
  	</script>
-
+<!--
  </body>
- </html>
+ </html> -->
