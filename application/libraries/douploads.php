@@ -75,7 +75,8 @@ public function postFiles($files,$ctl,$tranCode)
 	$newfile = $this->MakeFileName($files,$path,$tranCode);
 
 	 	    // Define file rules
-	$this->CI->myupload->initialize(array(
+	$this->CI->myupload->initialize(
+		array(
 		"upload_path"       =>  $path,
 		"allowed_types"     =>  "gif|jpg|png|pdf",
 		"max_size"          =>  '',

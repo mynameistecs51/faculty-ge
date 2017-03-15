@@ -42,22 +42,26 @@ class Activity extends CI_Controller {
 
 	public function saveadd()
 	{
+		$this->load->library('douploads');
+		$upload = $this->douploads->postFiles($_FILES['images[]'],$this->ctl,'0');
 		// if($_POST):
 		// 	parse_str($_POST['form'], $post);
 		// //$code= $this->getCode();
 		$data = array(
 			'ac_id' => '',
-			'ac_title'   => $this->input->post('title'),
-			'ac_detail'  => str_replace("\n", "<br>",$this->input->post('detail')),
-			'ac_pict' => $this->input->post('picture')
+			'ac_title'   => $this->input->post('input_title'),
+			'ac_detail'  => str_replace("\n", "<br>",$this->input->post('input_detail')),
+			'ac_pict' => $upload['file_name'],
 			// $detail =  str_replace("\n", "<br>\n",$post['input_detail']),
 			// $picture = $_FILES['images'] //implode(',', $_FILES['images']['name'])
 			);
-		$this->db->insert('activity',$data);
 		echo json_encode($data);
+		$this->db->insert('activity',$data);
 		// endif;
-	}
 
+		// print_r($upload);
+		// exit;
+	}
 
 	function GetClientMac(){
 		echo "<pre>";

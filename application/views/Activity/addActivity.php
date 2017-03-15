@@ -21,7 +21,7 @@
  			<label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
  			<div class="col-sm-8">
  				<img id="show_pic" name="show_pic" src="<?php echo base_url().'assets/images/no-image.jpg';?>" alt=""  /><br/><br/>
- 				<input type="file" id="images" class="form-control" name="images[]" size="20" multiple  />
+ 				<input type="file" id="images[]" class="form-control" name="images[]" size="20" multiple  />
 
  			</div>
  		</div>
@@ -40,14 +40,17 @@
  					$('#form button#save').prop("disabled",true);
  					startloading();
 
+
  					var dataForm = new FormData();
  					for (var i = 0, len = window.storedFiles_files.length; i < len; i++) {
- 						dataForm.append('fiels[]', window.storedFiles_files[i]);
+ 						dataForm.append('images[]', window.storedFiles_files[i]);
  					}
+
  					var form = $('#form').serializeArray();
  					$.each(form,function(key,input){
  						dataForm.append(input.name,input.value);
  					});
+
  					$.ajax(
  					{
  						type: 'POST',
@@ -57,6 +60,7 @@
  						processData: false,
  						success: function(rs)
  						{
+ 							// console.log(rs);
  							stoploading();
  						},
  						error: function()
