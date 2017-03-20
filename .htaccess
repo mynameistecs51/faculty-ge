@@ -1,7 +1,7 @@
 RewriteEngine On
 RewriteBase /faculty-ge/
 
-RewriteCond $1 !^(index\.php|css|font-awesome-4.1.0|fonts|images|js|robots\.txt)
+RewriteCond $1 !^(index\.php|css|assest|images|js|robots\.txt)
 RewriteCond %{REQUEST_URI} ^system.*
 RewriteRule ^(.*)$ index.php?/$1 [L]
 
