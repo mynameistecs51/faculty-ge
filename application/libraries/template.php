@@ -171,7 +171,7 @@ class Template
 									<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 								</li>
 								<li>
-									<a href="Management"><i class="fa fa-fw fa-gear"></i> Settings</a>
+									 <a href="'.base_url().'Management"><i class="fa fa-fw fa-gear"></i> Settings</a>
 								</li>
 								<li class="divider"></li>
 								<li>
@@ -239,13 +239,14 @@ class Template
 		return '
 		<ul class="nav navbar-nav side-nav ">
 			<li >
-				<a href="Ctl_dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
+				 <a href="'.base_url().'Ctl_dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
+
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
 			</li>
 			<li>
-				<a href="Ctl_document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
+				 <a href="'.base_url().'Ctl_document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a>

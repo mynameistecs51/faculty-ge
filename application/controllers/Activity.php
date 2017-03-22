@@ -43,82 +43,46 @@ class Activity extends CI_Controller {
 	public function saveadd()
 	{
 		echo "<pre>";
-		$config['upload_path']   = './file_upload/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']      = 0;
-		//$file_name =$_FILES['images']['name'];
+		$filed      = 'images';
+		$date = date("d_m_y_H_i");
+		$name_array = array();
+		$count = count($_FILES[$filed]['name']);
 
-		// $rand = rand(1111,9999);
-		// $date= date("Y_m_d_H_i");
-		// $name_picture = "";
-		$this->load->library('upload',$config);
-		$this->upload->initialize($config);
+		foreach($_FILES as $key => $value){
+			for($s=0; $s < $count; $s++) {
 
-		if($_FILES['images']){
-			$files = array();
+				$_FILES[$filed]['name'] = $date.'_'.substr($value['name'][$s],-4);
+				$_FILES[$filed]['type']    = $value['type'][$s];
+				$_FILES[$filed]['tmp_name'] = $value['tmp_name'][$s];
+				$_FILES[$filed]['error']       = $value['error'][$s];
+				$_FILES[$filed]['size']    = $value['size'][$s];
 
-			foreach( $_FILES['images'] as $key => $all ){
-				foreach( $all as $i => $val ){
-					$files[$i][$key] = $val;
+				echo var_dump(is_dir(base_url().'file_uploads'));
+				$config = array();
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_width'] = 0;
+				$config['max_height'] = 0;
+				$config['max_size'] = 0;
+
+				$this->load->library('upload', $config);
+				if(!$this->upload->do_upload($filed)){
+					echo "1";
+					$data =  array('error' => $this->upload->display_errors());
+				}else{
+					echo "2";
+					$this->upload->initialize($config);
+					$data = array('upload_data' => $this->upload->data());
+					$name_array[] = $data['file_name'];
+					print_r($this->upload->data());
 				}
 			}
-
-			$files_uploaded = array();
-			for ($i=0; $i < count($files); $i++) {
-				$field = $files[$i];
-				if ($this->upload->do_upload('images'))
-					$files_uploaded[$i] = $this->upload->data($field);
-				else
-					array('error' => $this->upload->display_errors());
-					// $files_uploaded[$i] = null;
-			}
-
-		// 	$images = $this->_upload_files($_FILES['images']);
-		// 	foreach ($images as $key => $value) {
-		// 	# code...
-		// 		$name_picture .=$value['file_name'].",";		//------------./ show list name picture./---------//
-		// 	}
-			print_r($files);
-
-
-
-// Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
-
-			$data = array(
-				'ac_id' => '',
-				'ac_title'   => $this->input->post('input_title'),
-				'ac_detail'  => str_replace("\n", "<br>",$this->input->post('input_detail')),
-				// 'ac_pict' =>substr($name_picture,0,-1),
-				);
-
-			// print_r($data);
-		}else{
-			echo "NONE PICTUE";
 		}
+		$names_research = implode(',', $name_array);
+		print_r($data);
 	}
 
-	public function _upload_files($field){
-		$config['upload_path'] = './file_upload/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$this->load->library('upload',$config);
-		$this->upload->initialize($config);
+}
 
-		$files = array();
-		foreach( $field as $key => $all )
-			foreach( $all as $i => $val )
-				$files[$i][$key] = $val;
-
-			$files_uploaded = array();
-			for ($i=0; $i < count($files); $i++) {
-				$field = $files[$i];
-				if ($this->upload->do_upload($field))
-					$files_uploaded[$i] = $this->upload->data($files);
-				else
-					$files_uploaded[$i] = null;
-			}
-			return $files_uploaded;
-		}
-	}
-
-	/* End of file Activity.php */
+/* End of file Activity.php */
 /* Location: ./application/controllers/Activity.php */
