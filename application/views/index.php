@@ -1,4 +1,4 @@
-<?php echo $header; ?>
+<?php echo $header;  ?>
 <div class="row">
 	<!-- news -->
 	<div class="col-sm-6 pull-left" >
