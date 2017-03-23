@@ -13,7 +13,7 @@
  			<label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
  			<div class="col-sm-8">
  				<img id="show_pic" name="show_pic" src="<?php echo base_url().'assets/images/no-image.jpg';?>" alt=""  /><br/><br/>
- 				<input type="file" id="images[]" class="form-control" name="images[]" size="20"  multiple=""/>
+ 				<input type="file" id="images" class="form-control" name="images" size="20"  />
  			</div>
  		</div>
  	</div>

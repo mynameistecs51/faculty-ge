@@ -42,48 +42,31 @@ class Activity extends CI_Controller {
 
 	public function saveadd()
 	{
-		echo "<pre>";
-		$filed      = 'images';
-		$date = date("d_m_y_H_i");
-		$name_array = array();
-		$count = count($_FILES[$filed]['name']);
+		// echo "<pre>";
 
-		foreach($_FILES as $key => $value){
-			for($s=0; $s < $count; $s++) {
+		$config['upload_path'] = './assets/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 
-				$_FILES[$filed]['name'] = $date.'_'.substr($value['name'][$s],-4);
-				$_FILES[$filed]['type']    = $value['type'][$s];
-				$_FILES[$filed]['tmp_name'] = $value['tmp_name'][$s];
-				$_FILES[$filed]['error']       = $value['error'][$s];
-				$_FILES[$filed]['size']    = $value['size'][$s];
+		$config['max_width'] = 0;
+		$config['max_height'] = 0;
+		$config['max_size'] = 0;
 
-				echo var_dump(is_dir(base_url().'file_uploads'));
-				$config = array();
-				$config['upload_path'] = base_url().'assets/files_upload/';
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				$config['max_width'] = 0;
-				$config['max_height'] = 0;
-				$config['max_size'] = 0;
-
-				$this->load->library('upload', $config);
-				if(!$this->upload->do_upload($filed)){
-					echo "1";
-					$data =  array('error' => $this->upload->display_errors());
-				}else{
-					echo "2";
-					$this->upload->initialize($config);
-					$data = array('upload_data' => $this->upload->data());
-					$name_array[] = $data['file_name'];
-					// print_r($this->upload->data());
-				}
-			}
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		if(!$this->upload->do_upload('images')){
+			echo "1";
+			$data =  array('error' => $this->upload->display_errors());
+		}else{
+			echo "2";
+			$data = array('upload_data' => $this->upload->data());
+			$name_array[] = $data['file_name'];
+			print_r($this->upload->data());
+				// print_r($name_array);
 		}
-		$names_research = implode(',', $name_array);
 		print_r($data);
-		print_r($config['upload_path']);
 	}
-
 }
+
 
 /* End of file Activity.php */
 /* Location: ./application/controllers/Activity.php */
