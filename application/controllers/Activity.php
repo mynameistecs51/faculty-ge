@@ -59,7 +59,7 @@ class Activity extends CI_Controller {
 
 				echo var_dump(is_dir(base_url().'file_uploads'));
 				$config = array();
-				$config['upload_path'] = './uploads/';
+				$config['upload_path'] = base_url().'assets/files_upload/';
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				$config['max_width'] = 0;
 				$config['max_height'] = 0;
@@ -74,12 +74,13 @@ class Activity extends CI_Controller {
 					$this->upload->initialize($config);
 					$data = array('upload_data' => $this->upload->data());
 					$name_array[] = $data['file_name'];
-					print_r($this->upload->data());
+					// print_r($this->upload->data());
 				}
 			}
 		}
 		$names_research = implode(',', $name_array);
 		print_r($data);
+		print_r($config['upload_path']);
 	}
 
 }
