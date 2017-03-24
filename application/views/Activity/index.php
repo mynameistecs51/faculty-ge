@@ -6,6 +6,7 @@
 	<!-- add activity -->
 	<div class="col-sm-12">
 		<button type="button" id="add" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มกิจกรรม</button>
+		<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มกิจกรรม</button> -->
 	</div>
 	<div class="col-sm-12"><br></div>
 	<div class="col-sm-12">
@@ -25,7 +26,8 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+
+</div> <!-- /. end div row -->
 
 <!-- /. show modal add activity -->
 <div class="div_modal">
@@ -33,11 +35,6 @@
 <!-- ./ end show activity -->
 
 <?php echo $footer; ?>
-<!-- Bootstrap DataTable JS -->
-<script src="<?php echo base_url();?>assets/dataTable/js/jquery.dataTables.min.js"></script>
-
-<script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#example').DataTable({
@@ -55,7 +52,6 @@
 		$('#add').click(function(){
 			var screenname="เพิ่มข้อมูล :: กิจกรรม ::";
 			var url = "<?php echo $url_add; ?>";
-			// alert(url);
 			var n=0;
 			$('.div_modal').html('');
 			modal_form(n,screenname);

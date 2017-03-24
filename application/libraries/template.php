@@ -12,10 +12,8 @@ class Template
 
 	public function getHeader($base_url,$TEXTTITLE)
 	{
-		return '
-		<!DOCTYPE html>
+		return '<!DOCTYPE html>
 		<html lang="en">
-
 		<head>
 
 			<meta charset="utf-8">
@@ -47,6 +45,13 @@ class Template
 
 			<!-- jQuery -->
 			<script src="'.$base_url.'assets/js/jquery.js"></script>
+
+			<!-- Bootstrap DataTable CSS -->
+			<link href="'.$base_url.'assets/dataTable/css/jquery.dataTables.min.css" rel="stylesheet">
+			<!-- ./ End css -->
+			<!-- Bootstrap DataTable JS -->
+			<script src="'.$base_url.'assets/dataTable/js/jquery.dataTables.min.js"></script>
+			<!-- ./ End Js dataTable -->
 
 			<script type="text/javascript">
 				$( document ).ready(function() {
@@ -171,7 +176,7 @@ class Template
 									<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 								</li>
 								<li>
-									 <a href="'.base_url().'Management"><i class="fa fa-fw fa-gear"></i> Settings</a>
+									<a href="'.base_url().'Management"><i class="fa fa-fw fa-gear"></i> Settings</a>
 								</li>
 								<li class="divider"></li>
 								<li>
@@ -239,14 +244,14 @@ class Template
 		return '
 		<ul class="nav navbar-nav side-nav ">
 			<li >
-				 <a href="'.base_url().'Ctl_dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
+				<a href="'.base_url().'Ctl_dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
 
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
 			</li>
 			<li>
-				 <a href="'.base_url().'Ctl_document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
+				<a href="'.base_url().'Ctl_document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a>

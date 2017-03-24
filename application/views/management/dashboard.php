@@ -47,7 +47,7 @@
 </a>
 
 <!--  -->
-<a href="Activity">
+<a href="activity">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #F5F6CE;">
 			<i class="fa fa fa-image fa-5x"></i>
