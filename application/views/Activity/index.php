@@ -16,13 +16,24 @@
 					<th class="col-sm-1">#</th>
 					<th   style="text-align:center;" >หัวข้อกิจกรรม</th>
 					<th style="text-align:center;">ภาพ</th>
-					<th style="text-align:center;">อัพเดทเมื่อ</th>
 					<th style="text-align:center;">รายละเอียด</th>
+					<th style="text-align:center;">อัพเดทเมื่อ</th>
 					<th style="text-align:center;">แก้ไข</th>
 					<th class="col-sm-1" style="text-align:center;">ผู้โพส</th>
 				</tr>
 			</thead>
 			<tbody>
+				<?php foreach ($getAll_activity as $key => $activity) :?>
+					<tr>
+						<td>#</td>
+						<td><?php echo $activity['ac_title']; ?></td>
+						<td><?php echo 'แสดงภาพทีหลัง'; ?></td>
+						<td><?php echo $activity['ac_detail']; ?></td>
+						<td><?php echo date("d-M-Y",strtotime($activity['dt_create'])); ?></td>
+						<td><?php echo "Edit".'  '. "Delete";?></td>
+						<td><?php echo $activity['ip_create']; ?></td>
+					</tr>
+				<?php endforeach; ?>
 			</tbody>
 		</table>
 	</div>
@@ -50,19 +61,24 @@
 
 	function add(){
 		$('#add').click(function(){
-			var screenname="เพิ่มข้อมูล :: กิจกรรม ::";
-			var url = "<?php echo $url_add; ?>";
-			var n=0;
-			$('.div_modal').html('');
-			modal_form(n,screenname);
-			$('#myModal'+n+' .modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>assets/images/loader.gif"/>');
-			var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
-			modal.on('show.bs.modal', function () {
-				modalBody.load(url);
-			}).modal({backdrop: 'static',keyboard: true});
-			setInterval(function(){$('#ajaxLoaderModal').remove()},5100);
+			load_page();
 		});
 	}
+
+	function load_page(){
+		var screenname="เพิ่มข้อมูล :: กิจกรรม ::";
+		var url = "<?php echo $url_add; ?>";
+		var n=0;
+		$('.div_modal').html('');
+		modal_form(n,screenname);
+		$('#myModal'+n+' .modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>assets/images/loader.gif"/>');
+		var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
+		modal.on('show.bs.modal', function () {
+			modalBody.load(url);
+		}).modal({backdrop: 'static',keyboard: true});
+		setInterval(function(){$('#ajaxLoaderModal').remove()},5100);
+	}
+
 	function modal_form(n,screenname)
 	{
 		var div='';

@@ -5,7 +5,7 @@ class Activity extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->ctl = "activity";
+		$this->ctl = "Activity";
 		$this->load->model('mdl_activity');
 		date_default_timezone_set('Asia/Bangkok');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
@@ -18,6 +18,7 @@ class Activity extends CI_Controller {
 	{
 		$TEXTTITLE = '<i class="fa fa-link" aria-hidden="true"></i> กิจกรรม';
 		$PAGE = 'index';
+		$this->data['getAll_activity'] =  $this->getAll_activity();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('Activity/'.$PAGE,$this->data);
 	}
@@ -28,6 +29,12 @@ class Activity extends CI_Controller {
 		$this->data['footer']     = $this->template->getFooter(base_url());
 		$this->data['controller'] = $this->ctl;
 		$this->data['url_add']    = base_url().$this->ctl.'/add/';
+	}
+
+	public function getAll_activity()
+	{
+		$this->data = $this->mdl_activity->getAll_activity();
+		return $this->data;
 	}
 
 	public function add()
@@ -49,57 +56,58 @@ class Activity extends CI_Controller {
 				$name_picture .=$value['file_name'].",";
 			}
 		}
+
 		$data = array(
 			'ac_id'     => '',
 			'ac_title'  => $this->input->post('input_title'),
-				'ac_detail' => $this->input->post('input_detail'),
-					'ac_pict'   => $name_picture,
-					'dt_create' => $this->dt_now,
-					'ip_create' => $_SERVER['REMOTE_ADDR']
-					);
-					 $this->mdl_activity->insertdata($data);
+			'ac_detail' =>	str_replace("\n", "<br>",$this->input->post('input_detail')),
+			'ac_pict'   => $name_picture,
+			'dt_create' => $this->dt_now,
+			'ip_create' => $_SERVER['REMOTE_ADDR']
+			);
+		$this->mdl_activity->insertdata($data);
 
+	}
+
+	private function _upload_files($field){
+		$file_name =  date('d_m_y_H_i_s');
+		$config['upload_path'] ='./assets/files_upload/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '0';
+		$config['remove_spaces'] = TRUE;
+		$config['file_name'] = $file_name;
+
+		$this->load->library('upload');
+		$this->upload->initialize($config);
+		$files = array();
+		foreach( $_FILES[$field] as $key => $all )
+			foreach( $all as $i => $val )
+				$files[$i][$key] = $val;
+
+			$files_uploaded = array();
+			for ($i=0; $i < count($files); $i++) {
+				$_FILES[$field] = $files[$i];
+				if ($this->upload->do_upload($field)){
+					$files_uploaded[$i] = $this->upload->data();
+				}
+				else{
+					$files_uploaded[$i] = null;
 				}
 
-				private function _upload_files($field){
-					$file_name =  date('d_m_y_H_i_s');
-					$config['upload_path'] ='./assets/files_upload/';
-					$config['allowed_types'] = 'gif|jpg|png|jpeg';
-					$config['max_size']	= '0';
-					$config['remove_spaces'] = TRUE;
-					$config['file_name'] = $file_name;
+			}
+			return $files_uploaded;
+		}
 
-					$this->load->library('upload');
-					$this->upload->initialize($config);
-					$files = array();
-					foreach( $_FILES[$field] as $key => $all )
-						foreach( $all as $i => $val )
-							$files[$i][$key] = $val;
-
-						$files_uploaded = array();
-						for ($i=0; $i < count($files); $i++) {
-							$_FILES[$field] = $files[$i];
-							if ($this->upload->do_upload($field)){
-								$files_uploaded[$i] = $this->upload->data();
-							}
-							else{
-								$files_uploaded[$i] = null;
-							}
-
-						}
-						return $files_uploaded;
-					}
-
-					public function alert($massage, $url)
-					{
-						echo "<meta charset='UTF-8'>
-						<SCRIPT LANGUAGE='JavaScript'>
-							window.alert('$massage')
-							window.location.href='".site_url($url)."';
-						</SCRIPT>";
-					}
-				}
+		public function alert($massage, $url)
+		{
+			echo "<meta charset='UTF-8'>
+			<SCRIPT LANGUAGE='JavaScript'>
+				window.alert('$massage')
+				window.location.href='".site_url($url)."';
+			</SCRIPT>";
+		}
+	}
 
 
-				/* End of file Activity.php */
+	/* End of file Activity.php */
 /* Location: ./application/controllers/Activity.php */
