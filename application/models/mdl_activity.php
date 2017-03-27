@@ -18,9 +18,14 @@ class Mdl_activity extends CI_Model {
 	public function insertdata($data)
 	{
 		$this->db->insert('activity',$data);
-		$massage = "บันทึกข้อมูล เรียบร้อย !";
-		$url = "Activity";
-		$this->alert($massage,$url);
+		return true;
+	}
+
+	public function getId_activity($id)
+	{
+		$this->db->where('ac_id',$id);
+		$data  = $this->db->get('activity');
+		return $data->result_array();
 	}
 
 	public function alert($massage, $url)

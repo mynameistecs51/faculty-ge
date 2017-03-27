@@ -65,8 +65,19 @@ class Activity extends CI_Controller {
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
-		$this->mdl_activity->insertdata($data);
 
+		$insert = $this->mdl_activity->insertdata($data);
+		$massage = "บันทึกข้อมูล เรียบร้อย !";
+		$url = "Activity";
+		$this->alert($massage,$url);
+
+	}
+
+	public function readnews($numNews)
+	{
+		$data = $this->mdl_activity->getAll_activity($numNews);
+		echo "<pre>";
+		print_r($data);
 	}
 
 	private function _upload_files($field){
