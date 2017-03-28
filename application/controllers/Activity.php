@@ -18,7 +18,7 @@ class Activity extends CI_Controller {
 	{
 		$TEXTTITLE = '<i class="fa fa-link" aria-hidden="true"></i> กิจกรรม';
 		$PAGE = 'index';
-		$this->data['getAll_activity'] =  $this->getAll_activity();
+		$this->data['getAll_activity']  =  $this->getAll_activity();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('Activity/'.$PAGE,$this->data);
 	}
@@ -33,7 +33,7 @@ class Activity extends CI_Controller {
 
 	public function getAll_activity()
 	{
-		$this->data = $this->mdl_activity->getAll_activity();
+		$this->data  = $this->mdl_activity->getAll_activity();
 		return $this->data;
 	}
 
@@ -91,6 +91,11 @@ class Activity extends CI_Controller {
 		$this->data['listActivity'] = $listActivity;
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('Activity/showActivity',$this->data);
+	}
+
+	public function editActivity()
+	{
+				echo json_encode($_POST['ac_id']);
 	}
 
 	private function _upload_files($field){

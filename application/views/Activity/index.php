@@ -36,8 +36,8 @@
 							<?php echo date("d-M-Y",strtotime($activity['dt_create'])); ?>
 						</td>
 						<td style="text-align:center;">
-							<button class="btn btn-warning btn_edit" id="btnEdit[]">	แก้ไข</button>
-							<!-- <input type="hidden" id="editID<?php //echo $activity['ac_id'];?>" value="<?php //echo $activity['ac_id'];?>"> -->
+							<button class="btn btn-warning btn_edit" value="<?php echo $activity['ac_id']; ?>" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>แก้ไข</button>
+							<button class="btn btn-danger btn_edit" value="<?php echo $activity['ac_id']; ?>" title="Delete"><i class="fa fa-bitbucket" aria-hidden="true"></i>ลบ</button>
 						</td>
 						<td style="text-align:center;">
 							<?php echo $activity['ip_create']; ?>
@@ -66,16 +66,24 @@
 			scrollX: true,//2
 			responsive: true,
 		});
+
 		// add activity
 		add();
 		edit();
 	} );
 
 	function 	edit() {
-		var table = $('#example').DataTable();
-		$('#btnEdit').click(function(){
-			var row  = $(this).parents('tr');
-			console.log(table.row('tr').data()[3]);
+		$('.btn_edit').click(function(){
+			$.ajax({
+				url: '<?php echo base_url().$controller."/editActivity/";?>',
+				type: 'POST',
+				dataType: 'json',
+				data: {'ac_id': $(this).val()},
+				success: function(rs)
+				{
+					console.log(rs);
+				}
+			});
 		});
 	}
 
