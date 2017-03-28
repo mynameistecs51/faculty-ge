@@ -30,13 +30,13 @@
 							<img src="<?php echo base_url().'assets/files_upload/'.$picture_name_array[0];?>" alt="" style="width:128px;height:90px;"/>	<!-- //โชว์รูปภาพ -->
 						</td>
 						<td style="text-align:center;">
-							<?php echo anchor('Activity/readnews/'.$activity['ac_id'],'ดูข้อมูลกิจกรรม','class="btn btn-info"');?>
+							<?php echo anchor('Activity/showActivity/'.$activity['ac_id'],'ดูข้อมูลกิจกรรม','class="btn btn-info btn_view"');?>
 						</td>
 						<td style="text-align:center;">
 							<?php echo date("d-M-Y",strtotime($activity['dt_create'])); ?>
 						</td>
 						<td style="text-align:center;">
-							<button class="btn btn-warning" id="btnEdit[]">	แก้ไข</button>
+							<button class="btn btn-warning btn_edit" id="btnEdit[]">	แก้ไข</button>
 							<!-- <input type="hidden" id="editID<?php //echo $activity['ac_id'];?>" value="<?php //echo $activity['ac_id'];?>"> -->
 						</td>
 						<td style="text-align:center;">

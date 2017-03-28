@@ -73,11 +73,22 @@ class Activity extends CI_Controller {
 
 	}
 
-	public function readnews($numAct)
+	public function showActivity($numAct)
 	{
 		$TEXTTITLE = anchor('Activity', 'กลับ', 'class="fa fa-hand-o-left" aria-hidden="true"');
 		$PAGENAME = 'showActivity';
-		$this->data['showAct'] = $this->mdl_activity->getAll_activity($numAct);
+		$listActivity = array();
+		$showAct = $this->mdl_activity->getId_activity($numAct);
+		foreach ($showAct as $activity => $rowAct) {
+			$listActivity = array(
+				'ac_title' => $rowAct['ac_title'],
+				'ac_detail' => $rowAct['ac_detail'],
+				'ac_pict' => $rowAct['ac_pict'],
+				'dt_create' => $rowAct['dt_create'],
+				'ip_create' => $rowAct['ip_create']
+				);
+		}
+		$this->data['listActivity'] = $listActivity;
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('Activity/showActivity',$this->data);
 	}
