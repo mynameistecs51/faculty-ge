@@ -95,7 +95,12 @@ class Activity extends CI_Controller {
 
 	public function editActivity()
 	{
-				echo json_encode($_POST['ac_id']);
+		echo json_encode($_POST['ac_id']);
+	}
+
+	public function deleteActivity()
+	{
+		echo json_encode($_POST['ac_id']);
 	}
 
 	private function _upload_files($field){

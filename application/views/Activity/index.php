@@ -37,7 +37,7 @@
 						</td>
 						<td style="text-align:center;">
 							<button class="btn btn-warning btn_edit" value="<?php echo $activity['ac_id']; ?>" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>แก้ไข</button>
-							<button class="btn btn-danger btn_edit" value="<?php echo $activity['ac_id']; ?>" title="Delete"><i class="fa fa-bitbucket" aria-hidden="true"></i>ลบ</button>
+							<button class="btn btn-danger btn_delete" value="<?php echo $activity['ac_id']; ?>" title="Delete"><i class="fa fa-bitbucket" aria-hidden="true"></i>ลบ</button>
 						</td>
 						<td style="text-align:center;">
 							<?php echo $activity['ip_create']; ?>
@@ -69,13 +69,29 @@
 
 		// add activity
 		add();
-		edit();
+		fnedit();
+		fndelete();
 	} );
 
-	function 	edit() {
+	function 	fnedit() {
 		$('.btn_edit').click(function(){
 			$.ajax({
 				url: '<?php echo base_url().$controller."/editActivity/";?>',
+				type: 'POST',
+				dataType: 'json',
+				data: {'ac_id': $(this).val()},
+				success: function(rs)
+				{
+					console.log(rs);
+				}
+			});
+		});
+	}
+
+	function 	fndelete() {
+		$('.btn_delete').click(function(){
+			$.ajax({
+				url: '<?php echo base_url().$controller."/deleteActivity/";?>',
 				type: 'POST',
 				dataType: 'json',
 				data: {'ac_id': $(this).val()},
