@@ -12,7 +12,8 @@ class Template
 
 	public function getHeader($base_url,$TEXTTITLE)
 	{
-		return '<!DOCTYPE html>
+		return '
+		<!DOCTYPE html>
 		<html lang="en">
 		<head>
 

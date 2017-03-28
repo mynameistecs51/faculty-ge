@@ -73,11 +73,13 @@ class Activity extends CI_Controller {
 
 	}
 
-	public function readnews($numNews)
+	public function readnews($numAct)
 	{
-		$data = $this->mdl_activity->getAll_activity($numNews);
-		echo "<pre>";
-		print_r($data);
+		$TEXTTITLE = anchor('Activity', 'กลับ', 'class="fa fa-hand-o-left" aria-hidden="true"');
+		$PAGENAME = 'showActivity';
+		$this->data['showAct'] = $this->mdl_activity->getAll_activity($numAct);
+		$this->mainpage($TEXTTITLE);
+		$this->load->view('Activity/showActivity',$this->data);
 	}
 
 	private function _upload_files($field){

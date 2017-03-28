@@ -27,7 +27,7 @@
 						<td><?php echo $activity['ac_title']; ?></td>
 						<td style="text-align:center;">
 							<?php $picture_name_array = explode(',', $activity['ac_pict']);?>
-							<img src="<?php echo base_url().'assets/files_upload/'.$picture_name_array[0];?>" alt="" style="width:120px;height:90px;"/>	<!-- //โชว์รูปภาพ -->
+							<img src="<?php echo base_url().'assets/files_upload/'.$picture_name_array[0];?>" alt="" style="width:128px;height:90px;"/>	<!-- //โชว์รูปภาพ -->
 						</td>
 						<td style="text-align:center;">
 							<?php echo anchor('Activity/readnews/'.$activity['ac_id'],'ดูข้อมูลกิจกรรม','class="btn btn-info"');?>
@@ -36,7 +36,8 @@
 							<?php echo date("d-M-Y",strtotime($activity['dt_create'])); ?>
 						</td>
 						<td style="text-align:center;">
-							<?php echo "Edit".'  '. "Delete";?>
+							<button class="btn btn-warning" id="btnEdit[]">	แก้ไข</button>
+							<!-- <input type="hidden" id="editID<?php //echo $activity['ac_id'];?>" value="<?php //echo $activity['ac_id'];?>"> -->
 						</td>
 						<td style="text-align:center;">
 							<?php echo $activity['ip_create']; ?>
@@ -62,11 +63,21 @@
 				"zeroRecords": "==========> ไม่พบข้อมูลที่ต้องการ <========== "
 			},
 			"lengthMenu": [ 25,50, 100, "All"],
+			scrollX: true,//2
+			responsive: true,
 		});
 		// add activity
 		add();
-
+		edit();
 	} );
+
+	function 	edit() {
+		var table = $('#example').DataTable();
+		$('#btnEdit').click(function(){
+			var row  = $(this).parents('tr');
+			console.log(table.row('tr').data()[3]);
+		});
+	}
 
 	function add(){
 		$('#add').click(function(){
