@@ -100,13 +100,13 @@ class Activity extends CI_Controller {
 
 	public function deleteActivity()
 	{
-		echo json_encode($_POST['ac_id']);
+		$del_data = $this->mdl_activity->del_activity($this->input->post('ac_id'));
 	}
 
 	private function _upload_files($field){
 		$file_name =  date('d_m_y_H_i_s');
 		$config['upload_path'] ='./assets/files_upload/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg|';
 		$config['max_size']	= '0';
 		$config['remove_spaces'] = TRUE;
 		$config['file_name'] = $file_name;

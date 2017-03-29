@@ -245,7 +245,7 @@ class Template
 		return '
 		<ul class="nav navbar-nav side-nav ">
 			<li >
-				<a href="'.base_url().'Ctl_dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
+				<a href="'.base_url().'Dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
 
 			</li>
 			<li>

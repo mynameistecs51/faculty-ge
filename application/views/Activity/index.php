@@ -93,11 +93,15 @@
 			$.ajax({
 				url: '<?php echo base_url().$controller."/deleteActivity/";?>',
 				type: 'POST',
-				dataType: 'json',
 				data: {'ac_id': $(this).val()},
 				success: function(rs)
 				{
-					console.log(rs);
+					alert("ลบข้อมูลเสร็จเรียบร้อย.");
+					window.location.reload();
+				},
+				error:function(err){
+					alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+					window.location.reload();
 				}
 			});
 		});

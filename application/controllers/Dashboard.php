@@ -1,18 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ctl_dashboard extends CI_Controller {
+class Dashboard extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-
+		$this->load->model('mdl_activity');
 	}
 
 	public function index()
 	{
 		$TEXTTITLE = "<i class=\"fa fa-fw fa-book\"></i>ทั่วไป";
 		$PAGE = 'index';
+		$this->data['getAll_activity'] = $this->getAll_activity();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}
@@ -21,6 +22,12 @@ class Ctl_dashboard extends CI_Controller {
 	{
 		$this->data['header'] = $this->template->getHeader(base_url(),$TEXTTITLE);
 		$this->data['footer'] = $this->template->getFooter(base_url());
+	}
+
+	public function getAll_activity()
+	{
+		$this->data  = $this->mdl_activity->getAll_activity();
+		return $this->data;
 	}
 
 }
