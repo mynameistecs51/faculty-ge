@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 29, 2017 at 06:14 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Host: localhost
+-- Generation Time: Mar 30, 2017 at 03:20 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,14 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity`
 --
 
-CREATE TABLE IF NOT EXISTS `activity` (
+CREATE TABLE `activity` (
   `ac_id` int(11) NOT NULL,
   `ac_title` text COLLATE utf8_unicode_ci NOT NULL,
   `ac_detail` text COLLATE utf8_unicode_ci NOT NULL,
   `ac_pict` text COLLATE utf8_unicode_ci NOT NULL,
   `dt_create` datetime NOT NULL,
   `ip_create` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `activity`
@@ -61,7 +61,7 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
