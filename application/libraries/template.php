@@ -83,7 +83,7 @@ class Template
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="ctl_dashboard">สำนักวิชาศึกษาทั่วไป <br> มหาวิทยาลัยราชภัฏอุดรธานี</a>
+						<a class="navbar-brand" href="'.$base_url.'Dashboard">สำนักวิชาศึกษาทั่วไป <br> มหาวิทยาลัยราชภัฏอุดรธานี</a>
 					</div>
 					<!-- Top Menu Items -->
 					<ul class="nav navbar-right top-nav">

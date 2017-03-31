@@ -90,12 +90,28 @@ class Activity extends CI_Controller {
 		}
 		$this->data['listActivity'] = $listActivity;
 		$this->mainpage($TEXTTITLE);
-		$this->load->view('Activity/showActivity',$this->data);
+		$this->load->view('Activity/'.$PAGENAME,$this->data);
 	}
 
 	public function editActivity()
 	{
-		echo json_encode($_POST['ac_id']);
+		$TEXTTITLE = "แก้ไขข้อมูลกิจกรรม";
+		$PAGENAME = 'editActivity';
+		$showAct = $this->mdl_activity->getId_activity($_POST['ac_id']);
+		$listActivity = array();
+		foreach ($showAct as $activity => $rowAct) {
+			$listActivity = array(
+				'ac_title' => $rowAct['ac_title'],
+				'ac_detail' => $rowAct['ac_detail'],
+				'ac_pict' => $rowAct['ac_pict'],
+				'dt_create' => $rowAct['dt_create'],
+				'ip_create' => $rowAct['ip_create']
+				);
+		}
+		$this->data['listActivity'] = $listActivity;
+		$this->mainpage($TEXTTITLE);
+		$this->load->view('Activity/'.$PAGENAME,$this->data);
+		echo json_encode($listActivity);
 	}
 
 	public function deleteActivity()

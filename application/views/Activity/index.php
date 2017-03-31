@@ -78,11 +78,12 @@
 			$.ajax({
 				url: '<?php echo base_url().$controller."/editActivity/";?>',
 				type: 'POST',
-				dataType: 'json',
+				// dataType: 'json',
 				data: {'ac_id': $(this).val()},
 				success: function(rs)
 				{
-					console.log(rs);
+					// console.log(rs);
+					window.location.reload();
 				}
 			});
 		});
