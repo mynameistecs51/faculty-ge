@@ -76,14 +76,14 @@
 	function 	fnedit() {
 		$('.btn_edit').click(function(){
 			$.ajax({
-				url: '<?php echo base_url().$controller."/editActivity/";?>',
-				type: 'POST',
+				url: '<?php echo $url_edit;?>',
+				type: "POST",
 				// dataType: 'json',
-				data: {'ac_id': $(this).val()},
+				data: {'ac_id': $(this).val(), 'test': "ทดสอบ"},
 				success: function(rs)
 				{
+					load_page("<?php echo $url_edit;?>","แก้ไข :: ข้อมูลกิจกรรม ::","<?php echo base_url().$controller.'/saveEdit';?>");
 					// console.log(rs);
-					window.location.reload();
 				}
 			});
 		});
@@ -93,7 +93,7 @@
 		$('.btn_delete').click(function(){
 			$.ajax({
 				url: '<?php echo base_url().$controller."/deleteActivity/";?>',
-				type: 'POST',
+				type: "post",
 				data: {'ac_id': $(this).val()},
 				success: function(rs)
 				{
@@ -110,16 +110,16 @@
 
 	function add(){
 		$('#add').click(function(){
-			load_page();
+			load_page("<?php echo $url_add; ?>","เพิ่มข้อมูล :: กิจกรรม ::","<?php echo base_url().$controller.'/saveadd';?>");
 		});
 	}
 
-	function load_page(){
-		var screenname="เพิ่มข้อมูล :: กิจกรรม ::";
-		var url = "<?php echo $url_add; ?>";
+	function load_page(loadUrl,texttitle,urlsend){
+		var screenname= texttitle;
+		var url = loadUrl;
 		var n=0;
 		$('.div_modal').html('');
-		modal_form(n,screenname);
+		modal_form(n,screenname,urlsend);
 		$('#myModal'+n+' .modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>assets/images/loader.gif"/>');
 		var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
 		modal.on('show.bs.modal', function () {
@@ -128,10 +128,10 @@
 		setInterval(function(){$('#ajaxLoaderModal').remove()},5100);
 	}
 
-	function modal_form(n,screenname)
+	function modal_form(n,screenname,url)
 	{
 		var div='';
-		div+='<form action="<?php echo base_url().$controller.'/saveadd';?>"  role="form" data-toggle="validator" id="form" method="post" enctype="multipart/form-data">';
+		div+='<form action="'+url+'"  role="form" data-toggle="validator" id="form" method="post" enctype="multipart/form-data">';
 		div+='<!-- Modal -->';
 		div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
 		div+='<div class="modal-dialog" style="width:90%;">';

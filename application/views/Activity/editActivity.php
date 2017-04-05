@@ -1,9 +1,11 @@
 <div class="row">
+	<?php echo "<pre>"; ?>
+	<?php print_r($listActivity); ?>
+	<?php echo $test; ?>
 	<div class="form-group col-sm-6">
 		<label for="input_title" class="col-sm-2 control-label">หัวข้อกิจกรรม </label>
 		<div class="col-sm-10">
-			<?php echo form_error('input_title'); ?>
-			<input type="text" class="form-control" id="input_title" name="input_title" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล หัวข้อกิจกรรม')" oninput="setCustomValidity('')">
+			<input type="text" class="form-control" id="input_title" name="input_title" value="<?php echo $ac_id; ?>" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล หัวข้อกิจกรรม')" oninput="setCustomValidity('')">
 			<br>
 		</div>
 		<label for="input_detail" class="col-sm-2 control-label">รายละเอียด </label>
@@ -19,3 +21,8 @@
 		</div>
 	</div>
 </div>
+<script  type="text/javascript" charset="utf-8">
+	$(function(){
+		alert("<?php echo $ac_id; ?>");
+	});
+</script>

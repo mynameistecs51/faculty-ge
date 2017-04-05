@@ -29,6 +29,7 @@ class Activity extends CI_Controller {
 		$this->data['footer']     = $this->template->getFooter(base_url());
 		$this->data['controller'] = $this->ctl;
 		$this->data['url_add']    = base_url().$this->ctl.'/add/';
+		$this->data['url_edit']   = base_url().$this->ctl.'/edit/';
 	}
 
 	public function getAll_activity()
@@ -93,17 +94,20 @@ class Activity extends CI_Controller {
 		$this->load->view('Activity/'.$PAGENAME,$this->data);
 	}
 
-	public function editActivity()
+	public function edit()
 	{
-		$TEXTTITLE = "แก้ไขข้อมูลกิจกรรม";
-		$PAGENAME = 'editActivity';
-		$showAct = $this->mdl_activity->getId_activity($_POST['ac_id']);
-		$listActivity = array();
+		$this->data['ac_id'] = $this->input->post('ac_id');
+		$this->data['test'] = $this->input->post('test');
+print_r($_POST);
+		$TEXTTITLE           = "แก้ไขข้อมูลกิจกรรม";
+		$PAGENAME            = 'editActivity';
+		$showAct             = $this->mdl_activity->getId_activity($this->input->post('ac_id'));
+		$listActivity        = array();
 		foreach ($showAct as $activity => $rowAct) {
 			$listActivity = array(
-				'ac_title' => $rowAct['ac_title'],
+				'ac_title'  => $rowAct['ac_title'],
 				'ac_detail' => $rowAct['ac_detail'],
-				'ac_pict' => $rowAct['ac_pict'],
+				'ac_pict'   => $rowAct['ac_pict'],
 				'dt_create' => $rowAct['dt_create'],
 				'ip_create' => $rowAct['ip_create']
 				);
@@ -111,7 +115,12 @@ class Activity extends CI_Controller {
 		$this->data['listActivity'] = $listActivity;
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('Activity/'.$PAGENAME,$this->data);
-		echo json_encode($listActivity);
+		// echo json_encode($listActivity);
+	}
+
+	public function saveEdit()
+	{
+		echo $this->input->post('input_title');
 	}
 
 	public function deleteActivity()
