@@ -75,17 +75,9 @@
 
 	function 	fnedit() {
 		$('.btn_edit').click(function(){
-			$.ajax({
-				url: '<?php echo $url_edit;?>',
-				type: "POST",
-				// dataType: 'json',
-				data: {'ac_id': $(this).val(), 'test': "ทดสอบ"},
-				success: function(rs)
-				{
-					load_page("<?php echo $url_edit;?>","แก้ไข :: ข้อมูลกิจกรรม ::","<?php echo base_url().$controller.'/saveEdit';?>");
-					// console.log(rs);
-				}
-			});
+
+			load_page("<?php echo $url_edit;?>"+$(this).val(),"แก้ไข :: ข้อมูลกิจกรรม ::","<?php echo base_url().$controller.'/saveEdit';?>");
+
 		});
 	}
 

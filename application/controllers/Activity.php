@@ -94,14 +94,12 @@ class Activity extends CI_Controller {
 		$this->load->view('Activity/'.$PAGENAME,$this->data);
 	}
 
-	public function edit()
+	public function edit($id)
 	{
-		$this->data['ac_id'] = $this->input->post('ac_id');
-		$this->data['test'] = $this->input->post('test');
-print_r($_POST);
+		$this->data['ac_id'] = $id;
 		$TEXTTITLE           = "แก้ไขข้อมูลกิจกรรม";
 		$PAGENAME            = 'editActivity';
-		$showAct             = $this->mdl_activity->getId_activity($this->input->post('ac_id'));
+		$showAct             = $this->mdl_activity->getId_activity($id);
 		$listActivity        = array();
 		foreach ($showAct as $activity => $rowAct) {
 			$listActivity = array(
