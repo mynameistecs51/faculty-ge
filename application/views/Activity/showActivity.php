@@ -7,11 +7,12 @@
 			<hr>
 
 			<?php
-			$pic_name = explode(',',substr($listActivity['ac_pict'],0,-1));
+			$pic_name = explode(',',$listActivity['ac_pict']);
 			for($i=0;$i < count($pic_name) ; $i++){
+				$showPicture = ($pic_name[0] == "")?'no-image.jpg': $pic_name[$i];
 				echo '<div class="col-sm-6 col-md-3">';
 				echo '<div class="thumbnail">';
-				echo '<img src="'.base_url().'assets/files_upload/'.$pic_name[$i].'" alt="">';
+				echo '<img src="'.base_url().'assets/files_upload/'.$showPicture.'" alt="">';
 				echo '</div>';
 				echo '</div>';
 			}

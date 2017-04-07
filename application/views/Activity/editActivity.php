@@ -1,3 +1,30 @@
+<style type="text/css">
+	.delete ,.update{
+		color:red;
+		display: none;
+		top: -10px;
+		width: auto;
+		height: auto;
+		position:absolute;
+	}
+	.show_images:hover .delete{
+
+		width: auto;
+		height: auto;
+		display: inline-block;
+		top:0px;
+		left: 0px;
+	}
+	.show_images:hover .update{
+
+		width: auto;
+		height: auto;
+		top:0px;
+		right: 0px;
+		display: inline-block;
+
+	}
+</style>
 <div class="row">
 	<div class="form-group col-sm-6">
 		<label for="input_title" class="col-sm-2 control-label">หัวข้อกิจกรรม </label>
@@ -19,13 +46,47 @@
 	</div>
 	<hr>
 	<?php
-	$picture = explode(',',substr($listActivity['ac_pict'],0,-1));
+	$picture = ($listActivity['ac_pict'] == '')?'no-image.jpg':explode(',',$listActivity['ac_pict']);
+	$numpict = array();
 	for($i=0; $i < count($picture); $i++):
+		array_push($numpict,array('number'=>$i,'namePict'=>$picture[$i]));
 		?>
 	<div class="col-sm-6 col-md-3">
-		<div class="thumbnail">
-		<img  style="height: 200px; width: 100%; display: block;" src="<?php echo base_url().'assets/files_upload/'.$picture[$i];?>" alt="" data-holder-rendered="true">
+		<div class="show_images thumbnail">
+			<img  style="height: 200px; width: 100%; display: block;" src="<?php echo base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
+			<button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal">
+				update
+			</button>
+			<button type="button" class ="delete btn btn-primary btn-sm" data-id="<?php echo $listActivity['ac_id']; ?>" data-pict="<?php echo $numpict[$i]['namePict']; ?>" data-numpict="<?php echo $numpict[$i]['number']; ?>">
+				delete
+			</button>
+			<!-- <a class="delete btn btn-primary btn-sm" href="#">delate</a> -->
+			<!-- <?php echo anchor('#','delete','class ="delete btn btn-primary btn-sm"');?> -->
 		</div>
 	</div>
+	<input type="hidden" name="pictureAll" value="<?php echo $listActivity['ac_pict'] ;?>">
 <?php endfor;?>
 </div>
+<script  type="text/javascript" charset="utf-8">
+	$(function(){
+		$('.delete').click(function(){
+			// console.log($(this).data('id')+'  '+ $(this).data('pict'));
+			$.ajax({
+				url: '<?php echo base_url().$controller."/delEditpict/";?>',
+				type: "post",
+				data: {'ac_id': $(this).data('id'), 'pictureName': $(this).data('pict'), 'numPict': $(this).data('numpict')},
+				success: function(rs)
+				{
+					// console.log(rs);
+					alert("ลบข้อมูลเสร็จเรียบร้อย."+rs);
+					// window.location.reload();
+				},
+				error:function(err){
+					console.log(err);
+					// alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+					// window.location.reload();
+				}
+			});
+		});
+	});
+</script>

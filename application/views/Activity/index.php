@@ -27,7 +27,8 @@
 						<td><?php echo $activity['ac_title']; ?></td>
 						<td style="text-align:center;">
 							<?php $picture_name_array = explode(',', $activity['ac_pict']);?>
-							<img src="<?php echo base_url().'assets/files_upload/'.$picture_name_array[0];?>" alt="" style="width:128px;height:90px;"/>	<!-- //โชว์รูปภาพ -->
+							<?php  $showpic = ($picture_name_array[0] == "")?'no-image.jpg' : $picture_name_array[0]; ?>
+							<img src="<?php echo base_url().'assets/files_upload/'.$showpic;?>" alt="" style="width:128px;height:90px;"/>	<!-- //โชว์รูปภาพ -->
 						</td>
 						<td style="text-align:center;">
 							<?php echo anchor('Activity/showActivity/'.$activity['ac_id'],'ดูข้อมูลกิจกรรม','class="btn btn-info btn_view"');?>
@@ -87,7 +88,7 @@
 				url: '<?php echo base_url().$controller."/deleteActivity/";?>',
 				type: "post",
 				data: {'ac_id': $(this).val()},
-				success: function(rs)
+				success: function()
 				{
 					alert("ลบข้อมูลเสร็จเรียบร้อย.");
 					window.location.reload();

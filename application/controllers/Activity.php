@@ -62,7 +62,7 @@ class Activity extends CI_Controller {
 			'ac_id'     => '',
 			'ac_title'  => $this->input->post('input_title'),
 			'ac_detail' =>	str_replace("\n", "<br>",$this->input->post('input_detail')),
-			'ac_pict'   => $name_picture,
+			'ac_pict'   => substr($name_picture,0,-1),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
@@ -96,13 +96,13 @@ class Activity extends CI_Controller {
 
 	public function edit($id)
 	{
-		$this->data['ac_id'] = $id;
 		$TEXTTITLE           = "แก้ไขข้อมูลกิจกรรม";
 		$PAGENAME            = 'editActivity';
 		$showAct             = $this->mdl_activity->getId_activity($id);
 		$listActivity        = array();
 		foreach ($showAct as $activity => $rowAct) {
 			$listActivity = array(
+				'ac_id' => $rowAct['ac_id'],
 				'ac_title'  => $rowAct['ac_title'],
 				'ac_detail' => $rowAct['ac_detail'],
 				'ac_pict'   => $rowAct['ac_pict'],
@@ -110,15 +110,45 @@ class Activity extends CI_Controller {
 				'ip_create' => $rowAct['ip_create']
 				);
 		}
+		$this->data['ac_id'] = $id;
+		$this->data['controller'] = $this->ctl;
 		$this->data['listActivity'] = $listActivity;
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('Activity/'.$PAGENAME,$this->data);
-		// echo json_encode($listActivity);
 	}
 
 	public function saveEdit()
 	{
-		echo $this->input->post('input_title');
+		echo "<pre>";
+		echo $title  = $this->input->post('input_title');
+		echo $detail = $this->input->post('input_detail');
+		echo 	$pictureAll = $this->input->post('pictureAll');
+		for($i=0; $i < count($_FILES['images']['name']); $i++ ){
+			echo $_FILES['images']['name'][$i],',';
+		}
+	}
+
+	public function delEditpict()
+	{
+		$ac_id = $this->input->post('ac_id');
+		$pictureName =$this->input->post('pictureName');
+		$numPict = $this->input->post('numPict');
+
+		$del_picture = $this->mdl_activity->delPicture($ac_id,$pictureName,$numPict);
+	}
+
+	public function showArray()
+	{
+		$num = array();
+		$a = array(1,'a',3,4,5);
+		for($i=0;$i < count($a); $i++){
+			array_push($num,array('number' => $i,'data'=>$a[$i]));
+		}
+		echo "<pre>";
+		print_r($num[0]['data']);
+		// unset($a[2]);
+		// print_r($a);
+
 	}
 
 	public function deleteActivity()

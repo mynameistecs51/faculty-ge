@@ -42,22 +42,38 @@ class Mdl_activity extends CI_Model {
 			}
 				//@unlink('./assets/files_upload/'.$row_activity->ac_pict);	//delete file
 
-			}
-			$this->db->where('ac_id',$id);
-			$del = $this->db->delete('activity');
-			return TRUE;
 		}
-
-		public function alert($massage, $url)
-		{
-			echo "<meta charset='UTF-8'>
-			<SCRIPT LANGUAGE='JavaScript'>
-				window.alert('$massage')
-				window.location.href='".site_url($url)."';
-			</SCRIPT>";
-		}
-
+		$this->db->where('ac_id',$id);
+		$del = $this->db->delete('activity');
+		return TRUE;
 	}
 
-	/* End of file mdl_activity.php */
+	public function delPicture($ac_id,$pictureName,$numPict)
+	{
+		$query_ac = $this->getId_activity($ac_id);
+		foreach ($query_ac as $rowACT) {
+			$pic_newsEX = explode(',', $rowACT['ac_pict']);
+			@unlink('./assets/files_upload/'.$pictureName);
+			unset($pic_newsEX[$numPict]);
+
+			$update_arrPic = implode(',', $pic_newsEX);
+
+			$this->db->where('ac_id',$ac_id);
+			$this->db->update('activity',array('ac_pict'=>$update_arrPic));
+		}
+		return TRUE;
+	}
+
+	public function alert($massage, $url)
+	{
+		echo "<meta charset='UTF-8'>
+		<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$massage')
+			window.location.href='".site_url($url)."';
+		</SCRIPT>";
+	}
+
+}
+
+/* End of file mdl_activity.php */
 /* Location: ./application/models/mdl_activity.php */
