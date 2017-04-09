@@ -50,10 +50,10 @@
 	$numpict = array();
 	for($i=0; $i < count($picture); $i++):
 		array_push($numpict,array('number'=>$i,'namePict'=>$picture[$i]));
-		?>
+	?>
 	<div class="col-sm-6 col-md-3">
 		<div class="show_images thumbnail">
-			<img  style="height: 200px; width: 100%; display: block;" src="<?php echo base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
+			<img  src="<?php echo base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
 			<button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal">
 				update
 			</button>
@@ -70,7 +70,7 @@
 <script  type="text/javascript" charset="utf-8">
 	$(function(){
 		$('.delete').click(function(){
-			// console.log($(this).data('id')+'  '+ $(this).data('pict'));
+			var ac_id = $(this).data('id');
 			$.ajax({
 				url: '<?php echo base_url().$controller."/delEditpict/";?>',
 				type: "post",
@@ -78,8 +78,8 @@
 				success: function(rs)
 				{
 					// console.log(rs);
-					alert("ลบข้อมูลเสร็จเรียบร้อย."+rs);
-					// window.location.reload();
+					alert("ลบข้อมูลเสร็จเรียบร้อย.");
+					load_page("<?php echo $url_edit;?>"+ac_id,"เพิ่มข้อมูล :: กิจกรรม ::","<?php echo base_url().$controller.'/saveadd';?>");
 				},
 				error:function(err){
 					console.log(err);
@@ -89,4 +89,47 @@
 			});
 		});
 	});
+
+	function load_page(loadUrl,texttitle,urlsend){
+		var screenname= texttitle;
+		var url = loadUrl;
+		var n=0;
+		$('.div_modal').html('');
+		modal_form(n,screenname,urlsend);
+		$('#myModal'+n+' .modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>assets/images/loader.gif"/>');
+		var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
+		modal.on('show.bs.modal', function () {
+			modalBody.load(url);
+		}).modal({backdrop: 'static',keyboard: true});
+		setInterval(function(){$('#ajaxLoaderModal').remove()},5100);
+	}
+
+	function modal_form(n,screenname,url)
+	{
+		var div='';
+		div+='<form action="'+url+'"  role="form" data-toggle="validator" id="form" method="post" enctype="multipart/form-data">';
+		div+='<!-- Modal -->';
+		div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
+		div+='<div class="modal-dialog" style="width:90%;">';
+		div+='<div class="modal-content">';
+		div+='<div class="modal-header" style="background:#d9534f;color:#FFFFFF;">';
+		div+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+		div+='<h4 class="modal-title">'+screenname+'</h4>';
+		div+='</div>';
+		div+='<div class="modal-body">';
+		div+='</div>';
+		div+='<div class="modal-footer" style="text-align:center; background:#F6CECE;">';
+		div+='<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>';
+		div+='<button type="reset" onclick="reload();" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>';
+		div+='</div>';
+		div+='</div><!-- /.modal-content -->';
+		div+='</div><!-- /.modal-dialog -->';
+		div+='</div><!-- /.modal -->';
+		div+='</form>';
+		$('.div_modal').html(div);
+	}
+
+	function reload(){
+		window.location.reload();
+	}
 </script>

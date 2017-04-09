@@ -76,6 +76,7 @@ class Activity extends CI_Controller {
 
 	public function showActivity($numAct)
 	{
+	//ถ้ายังไม่ login ให้กลับไป index ถ้า login แล้วให้ ไปหน้า  /Activity/index
 		$TEXTTITLE = anchor('Activity', 'กลับ', 'class="fa fa-hand-o-left" aria-hidden="true"');
 		$PAGENAME = 'showActivity';
 		$listActivity = array();
