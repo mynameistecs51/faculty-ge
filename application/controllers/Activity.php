@@ -121,12 +121,42 @@ class Activity extends CI_Controller {
 	public function saveEdit()
 	{
 		echo "<pre>";
-		echo $title  = $this->input->post('input_title');
-		echo $detail = $this->input->post('input_detail');
-		echo 	$pictureAll = $this->input->post('pictureAll');
-		for($i=0; $i < count($_FILES['images']['name']); $i++ ){
-			echo $_FILES['images']['name'][$i],',';
+		$addPict = array();
+		// $remove_arraySpaces = array();
+		// $name_picture = '';
+		$ac_id = $this->input->post('ac_id');
+		$title  = $this->input->post('input_title');
+		$detail = $this->input->post('input_detail');
+		$pictureAll = $this->input->post('pictureAll');
+		//ถ้ามีการเพิ่มรูปภาพ
+		if($_FILES['images']){
+			$images= $this->_upload_files('images');
+			// foreach ($images as $key => $value) {
+			// 	$name_picture .= $value['file_name'].',';
+			// }
+			// print_r($images['file_name']);
+			echo count($images);
+			for($i=0; $i < count($images); $i++ ){
+				array_push($addPict,$images[$i]['file_name']);
+			}
+			array_push($addPict,$pictureAll);
 		}
+		print_r($addPict);
+		// array_push($addPict,$name_picture,$pictureAll);
+		// $remove_arraySpaces = array_filter($addPict);
+		// for($i=0; $i < count($_FILES['images']['name']); $i++ ){
+		// 	array_push($addPict,$_FILES['images']['name'][$i],$pictureAll);
+		// }
+		$data = array(
+			'ac_title'  => $title,
+			'ac_detail' => $detail,
+			'ac_pict'   => implode(',',$addPict),
+			'dt_create' => $this->dt_now,
+			'ip_create' => $_SERVER['REMOTE_ADDR']
+			);
+		$this->db->where('ac_id',$ac_id);
+		$this->db->update('activity',$data);
+
 	}
 
 	public function delEditpict()
@@ -145,8 +175,9 @@ class Activity extends CI_Controller {
 		for($i=0;$i < count($a); $i++){
 			array_push($num,array('number' => $i,'data'=>$a[$i]));
 		}
+		array_push($a,'d','c');
 		echo "<pre>";
-		print_r($num[0]['data']);
+		echo implode(',',$a);
 		// unset($a[2]);
 		// print_r($a);
 

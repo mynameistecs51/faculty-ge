@@ -76,9 +76,7 @@
 
 	function 	fnedit() {
 		$('.btn_edit').click(function(){
-
 			load_page("<?php echo $url_edit;?>"+$(this).val(),"แก้ไข :: ข้อมูลกิจกรรม ::","<?php echo base_url().$controller.'/saveEdit';?>");
-
 		});
 	}
 

@@ -13,9 +13,10 @@
 		height: auto;
 		display: inline-block;
 		top:0px;
-		left: 0px;
+		right: 0px;
+		/*left: 0px;*/
 	}
-	.show_images:hover .update{
+	/*.show_images:hover .update{
 
 		width: auto;
 		height: auto;
@@ -23,7 +24,7 @@
 		right: 0px;
 		display: inline-block;
 
-	}
+	}*/
 </style>
 <div class="row">
 	<div class="form-group col-sm-6">
@@ -54,39 +55,40 @@
 	<div class="col-sm-6 col-md-3">
 		<div class="show_images thumbnail">
 			<img  src="<?php echo base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
-			<button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal">
+			<!-- <button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal">
 				update
-			</button>
+			</button> -->
 			<button type="button" class ="delete btn btn-primary btn-sm" data-id="<?php echo $listActivity['ac_id']; ?>" data-pict="<?php echo $numpict[$i]['namePict']; ?>" data-numpict="<?php echo $numpict[$i]['number']; ?>">
-				delete
+				<i class="fa fa-trash" aria-hidden="true"></i> delete
 			</button>
-			<!-- <a class="delete btn btn-primary btn-sm" href="#">delate</a> -->
-			<!-- <?php echo anchor('#','delete','class ="delete btn btn-primary btn-sm"');?> -->
 		</div>
 	</div>
 	<input type="hidden" name="pictureAll" value="<?php echo $listActivity['ac_pict'] ;?>">
+	<input type="hidden" name="ac_id" value="<?php echo $listActivity['ac_id']; ?>">
 <?php endfor;?>
 </div>
 <script  type="text/javascript" charset="utf-8">
 	$(function(){
 		$('.delete').click(function(){
 			var ac_id = $(this).data('id');
-			$.ajax({
-				url: '<?php echo base_url().$controller."/delEditpict/";?>',
-				type: "post",
-				data: {'ac_id': $(this).data('id'), 'pictureName': $(this).data('pict'), 'numPict': $(this).data('numpict')},
-				success: function(rs)
-				{
-					// console.log(rs);
-					alert("ลบข้อมูลเสร็จเรียบร้อย.");
-					load_page("<?php echo $url_edit;?>"+ac_id,"เพิ่มข้อมูล :: กิจกรรม ::","<?php echo base_url().$controller.'/saveadd';?>");
-				},
-				error:function(err){
-					console.log(err);
-					// alert("เกิดข้อผิดพลาดในการลบข้อมูล");
-					// window.location.reload();
-				}
-			});
+			var chk =  confirm('ยืนยันการลบ ?');
+			if(chk==true){
+				$.ajax({
+					url: '<?php echo base_url().$controller."/delEditpict/";?>',
+					type: "post",
+					data: {'ac_id': $(this).data('id'), 'pictureName': $(this).data('pict'), 'numPict': $(this).data('numpict')},
+					success: function(rs)
+					{
+						// alert("ลบข้อมูลเสร็จเรียบร้อย.");
+						load_page("<?php echo $url_edit;?>"+ac_id,"แก้ไข :: ข้อมูลกิจกรรม ::","<?php echo base_url().$controller.'/saveEdit';?>");
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}else{
+				return false;
+			}
 		});
 	});
 
