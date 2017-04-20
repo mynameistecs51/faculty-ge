@@ -34,9 +34,10 @@
 					<a href= "<?php echo base_url().'Activity/showActivity/'.$activity['ac_id']; ?>">
 						<div class="thumbnail">
 							<img  style="height: 200px; width: 100%; display: block;" src="<?php echo base_url().'assets/files_upload/'.$pic_name[0];?>" alt="" data-holder-rendered="true">
-							<h5 class="pull-right"><?php echo count($pic_name)." รูป"; ?></h5>
+							<h5 class="pull-left"><?php echo count($pic_name)." รูป"; ?></h5><h5 class="pull-right"><?php echo date('d/m/'.(date('Y')+543),strtotime($activity['dt_create'])); ?></h5>
 							<div class="caption">
-								<h3><?php echo $activity['ac_title']; ?></h3>
+								<br>
+								<h4><?php echo $activity['ac_title']; ?></h4>
 								<p><?php echo $activity['ac_detail']; ?></p>
 							</div>
 						</div>

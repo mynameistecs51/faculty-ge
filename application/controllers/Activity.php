@@ -122,8 +122,6 @@ class Activity extends CI_Controller {
 	{
 		echo "<pre>";
 		$addPict = array();
-		// $remove_arraySpaces = array();
-		// $name_picture = '';
 		$ac_id = $this->input->post('ac_id');
 		$title  = $this->input->post('input_title');
 		$detail = $this->input->post('input_detail');
@@ -131,22 +129,11 @@ class Activity extends CI_Controller {
 		//ถ้ามีการเพิ่มรูปภาพ
 		if($_FILES['images']){
 			$images= $this->_upload_files('images');
-			// foreach ($images as $key => $value) {
-			// 	$name_picture .= $value['file_name'].',';
-			// }
-			// print_r($images['file_name']);
-			echo count($images);
 			for($i=0; $i < count($images); $i++ ){
 				array_push($addPict,$images[$i]['file_name']);
 			}
 			array_push($addPict,$pictureAll);
 		}
-		print_r($addPict);
-		// array_push($addPict,$name_picture,$pictureAll);
-		// $remove_arraySpaces = array_filter($addPict);
-		// for($i=0; $i < count($_FILES['images']['name']); $i++ ){
-		// 	array_push($addPict,$_FILES['images']['name'][$i],$pictureAll);
-		// }
 		$data = array(
 			'ac_title'  => $title,
 			'ac_detail' => $detail,
@@ -154,9 +141,8 @@ class Activity extends CI_Controller {
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
-		$this->db->where('ac_id',$ac_id);
-		$this->db->update('activity',$data);
-
+		$this->mdl_activity->saveEdit($ac_id,$data);
+		redirect($this->ctl.'/showActivity/'.$ac_id,'refresh');
 	}
 
 	public function delEditpict()

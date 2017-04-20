@@ -245,7 +245,7 @@ class Template
 		return '
 		<ul class="nav navbar-nav side-nav ">
 			<li >
-				<a href="'.base_url().'Dashboard" ><i class="fa fa-fw fa-book"></i> หน้าแรก</a>
+				<a href="'.base_url().'Dashboard" ><i class="fa fa-fw fa-dashboard"></i> หน้าแรก</a>
 
 			</li>
 			<li>
@@ -259,6 +259,12 @@ class Template
 			</li>
 			<li>
 				<a href="http://rdi.udru.ac.th/" target="_blank"><i class="fa fa-fw fa-money"></i> สถาบันวิจัย มรภ.อุดรธานี</a>
+			</li>
+			<li>
+				<a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WPgqDNryjIU" target="_blank"><i class="fa fa-fw fa-book"></i> วช. </a>
+			</li>
+			<li>
+				<a href="http://www.mua.go.th/" target="_blank"><i class="fa fa-fw fa-book"></i> สกอ. </a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>

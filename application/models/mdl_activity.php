@@ -64,6 +64,13 @@ class Mdl_activity extends CI_Model {
 		return TRUE;
 	}
 
+	public function saveEdit($ac_id,$data)
+	{
+		$this->db->where('ac_id',$ac_id);
+		$this->db->update('activity',$data);
+		return TRUE;
+	}
+
 	public function alert($massage, $url)
 	{
 		echo "<meta charset='UTF-8'>
