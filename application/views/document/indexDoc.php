@@ -15,34 +15,34 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="support" class="col-sm-2 control-label">รับทุนจาก</label>
+			<label for="moneySupport" class="col-sm-2 control-label">รับทุนจาก</label>
 			<div class="col-sm-3">
-				<input type="text" name="support" id="support" class="form-control">
+				<input type="text" name="moneySupport" id="moneySupport" class="form-control">
 			</div>
 			<label for="amount" class="col-sm-1 control-label">จำนวน</label>
 			<div class="col-sm-3">
 				<div class="input-group">
-					<input type="number" class="form-control" name='amount' aria-describedby="basic-addon2">
+					<input type="number" class="form-control" name='amount' id="amount" aria-describedby="basic-addon2">
 					<span class="input-group-addon" id="basic-addon2">บาท</span>
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="print" class="col-sm-2 control-label">ได้รับการตีพิมพ์ที่</label>
+			<label for="publicationWhere" class="col-sm-2 control-label">ได้รับการตีพิมพ์ที่</label>
 			<div class="col-sm-7">
-				<input type="text" name="print" id="print" class="form-control">
+				<input type="text" name="publicationWhere" id="publicationWhere" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="title" class="col-sm-2 control-label">ชื่องานวิจัย</label>
+			<label for="researchName" class="col-sm-2 control-label">ชื่องานวิจัย</label>
 			 <div class="col-sm-8">
-				<textarea class="form-control"  rows="3" id="title" name="title"></textarea>
+				<textarea class="form-control"  rows="3" id="researchName" name="researchName"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="subject" class="col-sm-2 control-label">คำจำกัดความ</label>
+			<label for="abstract" class="col-sm-2 control-label">คำจำกัดความ</label>
 			<div class="col-sm-7">
-				<textarea class="form-control"  rows="3" id="subject" name="subject"></textarea>
+				<textarea class="form-control"  rows="3" id="abstract" name="abstract"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
