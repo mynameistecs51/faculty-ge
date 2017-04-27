@@ -252,7 +252,7 @@ class Template
 				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
 			</li>
 			<li>
-				<a href="'.base_url().'Ctl_document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
+				<a href="'.base_url().'Document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a>

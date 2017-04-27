@@ -2,21 +2,22 @@
 <!-- <div class="container" > -->
 <!-- <div class="row"  > -->
 <div class='col-sm-12'  >
-	<form class="form-horizontal">
+	<!-- <form class="form-horizontal" action=""  id="form" method="post" enctype="multipart/form-data"> -->
+	<?php echo form_open_multipart('Document/createDoc','class="form-horizontal"');?>
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">ชื่อ </label>
 			<div class="col-sm-3">
-				<input type="text" name='name' class="form-control " id="name" placeholder="ขยัน" autofocus="">
+				<input type="text" name='name' class="form-control " id="name" placeholder="ขยัน" autofocus="" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล ')" oninput="setCustomValidity('')">
 			</div>
 			<label for="lastname" class="col-sm-1 control-label">นามสกุล </label>
 			<div class="col-sm-3">
-				<input type="text" name='lastname' class="form-control " id="lastname" placeholder="ทำวิจัย">
+				<input type="text" name='lastname' class="form-control " id="lastname" placeholder="ทำวิจัย" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล ')" oninput="setCustomValidity('')">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="toon" class="col-sm-2 control-label">รับทุนจาก</label>
+			<label for="support" class="col-sm-2 control-label">รับทุนจาก</label>
 			<div class="col-sm-3">
-				<input type="text" name="toon" id="toon" class="form-control">
+				<input type="text" name="support" id="support" class="form-control">
 			</div>
 			<label for="amount" class="col-sm-1 control-label">จำนวน</label>
 			<div class="col-sm-3">
@@ -54,14 +55,14 @@
 		<div class="form-group">
 			<label for="Progress" class="col-sm-2 control-label">3 บท(ความก้าวหน้า)</label>
 			<div class="col-sm-7">
-				<input type="file" class="form-control" id="Progress" placeholder="Progress">
+				<input type="file" class="form-control" id="Progress" name="Progress" placeholder="Progress">
 				<span id="Progress" class="text-danger"> อัพโหลดไฟล์ .pdf </span>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="Success" class="col-sm-2 control-label">5 บท(รูปเล่ม)</label>
 			<div class="col-sm-7">
-				<input type="file" class="form-control" id="Success" placeholder="Success">
+				<input type="file" class="form-control" id="Success" name="Success" placeholder="Success">
 				<span id="Success" class="text-danger"> อัพโหลดไฟล์ .pdf </span>
 			</div>
 		</div>
@@ -78,7 +79,8 @@
 				</button>
 			</div>
 		</div>
-	</form>
+	<!-- </form> -->
+	<?php echo form_close(); ?>
 </div>
 <!-- </div> -->
 <!-- </div> -->
