@@ -7,6 +7,7 @@ class Document extends CI_Controller {
 	{
 		parent::__construct();
 		$this->ctl = "Document";
+		$this->load->model('mdl_document');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
 		$this->datenow = $now->format('d/m/').($now->format('Y')+543);
@@ -14,8 +15,10 @@ class Document extends CI_Controller {
 
 	public function index()
 	{
-		$TEXTTITLE = "<i class=\"fa fa-fw fa-folder-o\"></i>ระบบจัดเก็บเอกสาร งานวิจัย";
-		$PAGE = 'Document/indexDoc';
+		$TEXTTITLE = "<i class=\"fa fa-fw fa-folder\"></i>ระบบจัดเก็บเอกสาร งานวิจัย";
+		// $PAGE = 'Document/indexDoc';
+		$PAGE = 'Document/index';
+		$this->data['getAllDoc'] = $this->mdl_document->getAllDoc();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}
@@ -24,6 +27,18 @@ class Document extends CI_Controller {
 	{
 		$this->data['header'] = $this->template->getHeader(base_url(),$TEXTTITLE);
 		$this->data['footer'] = $this->template->getFooter(base_url());
+		$this->data['controller'] = $this->ctl;
+		$this->data['url_add']    = base_url().$this->ctl.'/formCreate/';
+		$this->data['url_edit']   = base_url().$this->ctl.'/edit/';
+	}
+
+	public function formCreate()
+	{
+		$TEXTTITLE = "เพิ่มงานวิจัย";
+		$PAGENAME  = "formCreate";
+		$this->data["datenow"] =$this->datenow;
+		$this->mainpage($TEXTTITLE);
+		$this->load->view('/Document/'.$PAGENAME,$this->data);
 	}
 
 	public function createDoc()
@@ -47,14 +62,16 @@ class Document extends CI_Controller {
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			);
-		$this->db->insert('document',$data);
+		$this->mdl_document->insertDoc($data);
+		$this->index();
 	}
+
 
 	/*
 	*function upload files *
 	 */
 	private function _upload_files($field){
-		$file_name =  date('d_m_y_H_i_s');
+		$file_name =  date('dmy_His');
 		$config['upload_path'] ='./assets/files_document/';
 		$config['allowed_types'] = 'pdf|';
 		$config['max_size']	= '0';

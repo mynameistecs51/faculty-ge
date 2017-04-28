@@ -11,7 +11,7 @@
 </a>
 
 <!-- อัพโหลด วิจัย -->
-<a href="Ctl_document">
+<a href="Document">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #81F7F3;">
 			<i class="fa fa fa-book fa-5x"></i>

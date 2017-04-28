@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2017 at 05:36 PM
+-- Generation Time: Apr 28, 2017 at 02:19 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -52,17 +52,27 @@ CREATE TABLE IF NOT EXISTS `document` (
   `doc_id` int(11) NOT NULL,
   `doc_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'ชื่อนักวิจัย',
   `doc_lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'ชื่อสกุลนักวิจัย',
-  `doc_money` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'รับทุนจาก',
+  `doc_moneySupport` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'รับทุนจาก',
   `doc_amount` int(11) NOT NULL DEFAULT '0' COMMENT 'จำนวนเงิน',
-  `doc_publication` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'งานวิจัยได้ตีพิมพ์ที่',
-  `doc_research` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่องานวิจัย',
+  `doc_publicationWhere` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'งานวิจัยได้ตีพิมพ์ที่',
+  `doc_researchName` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่องานวิจัย',
   `doc_abstract` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'บทคัดย่อ',
   `doc_outline` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'เค้าโครงงานวิจัย',
-  `doc_progress` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'ความก้าวหน้า(3บท)',
-  `doc_filesuccess` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'รูปเล่ม',
+  `doc_progress` text COLLATE utf8_unicode_ci COMMENT 'ความก้าวหน้า(3บท)',
+  `doc_filesuccess` text COLLATE utf8_unicode_ci COMMENT 'รูปเล่ม',
   `dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'วันที่สร้าง',
   `ip_create` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'ip ที่สร้าง'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='จัดเก็บเอกสาร';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='จัดเก็บเอกสาร';
+
+--
+-- Dumping data for table `document`
+--
+
+INSERT INTO `document` (`doc_id`, `doc_name`, `doc_lastname`, `doc_moneySupport`, `doc_amount`, `doc_publicationWhere`, `doc_researchName`, `doc_abstract`, `doc_outline`, `doc_progress`, `doc_filesuccess`, `dt_create`, `ip_create`) VALUES
+(1, 'test', 'test', 'test', 1, 'test', 'test', 'test', '28_04_17_09_03_30.pdf', NULL, NULL, '2017-04-28 09:03:30', '::1'),
+(2, 'test', 'test', 'test', 1, 'test', 'test', 'test', '280417090404.pdf', NULL, NULL, '2017-04-28 09:04:04', '::1'),
+(3, 'เต้', 'ไชยวัฒน์', 'ใคร', 1, 'โรงพิมพ์', 'ยังไม่ได้คิด', 'ยังไม่มี', '280417_141620.pdf', NULL, NULL, '2017-04-28 14:16:20', '::1'),
+(6, 'เต้', 'ไชยวัฒน์', 'ใคร', 1, 'โรงพิมพ์', 'ยังไม่ได้คิด', 'ยังไม่มี', '280417_141735.pdf', NULL, NULL, '2017-04-28 14:17:35', '::1');
 
 --
 -- Indexes for dumped tables
@@ -93,7 +103,7 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
