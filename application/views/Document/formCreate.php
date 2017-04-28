@@ -1,10 +1,55 @@
+<?php echo $header; ?>
 <!-- <div class="container" > -->
 <div class="row"  >
-	<!-- <div class='col-sm-12'  > -->
-	<!-- <form class="form-horizontal" action=""  id="form" method="post" enctype="multipart/form-data"> -->
-	<?php //echo form_open_multipart('Document/createDoc','class="form-horizontal"');?>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			add();
+
+			btn_delete();
+		});
+
+		function count_btnDelete() {
+			for (var i = 0; i < $('.plus').length ;i++){
+
+				console.log(i);
+			}
+		}
+
+		function add(num) {
+			$(".btn_plus").click(function(){
+				var html = "";
+				html+='<div id="rowAdd'+num+'">';
+				html+= '<div class="form-group col-sm-12">';
+				html+= '	<label for="name" class="col-sm-2 control-label">ชื่อนักวิจัยร่วม </label>';
+				html+= '	<div class="col-sm-4">';
+				html+= '		<input type="text" name="name" class="form-control " id="name" placeholder="ขยัน" autofocus="" required oninvalid="this.setCustomValidity('+"กรุณากรอกข้อมูล"+')" oninput="setCustomValidity('+""+')" >';
+				html+= '	</div>';
+				html+= '	<label for="lastname" class="col-sm-1 control-label">นามสกุล </label>';
+				html+= '	<div class="col-sm-4">';
+				html+= '		<input type="text" name="lastname" class="form-control " id="lastname" placeholder="ทำวิจัย" required  ">';
+				html+= '	</div>';
+				html+= '	<div class="col-sm-1">';
+				html+= '		<button type="button" class="btn btn-danger delete" id="delete'+num+'" title="เพิ่มนักวิจัย">';
+				html+= '			<i class="fa fa-minus"></i>';
+				html+= '		</button>';
+				html+= '	</div>';
+				html+= '</div>';
+				$('.show_add').append(html);
+			});
+			for(var i =0 ; i < $('.plus').length ; i++){
+				console.log(i);
+			}
+		}
+		function btn_delete() {
+			$('.delete').click(function(){
+				$(this).remove();
+			});
+		}
+	</script>
 	<div class="form-group col-sm-12">
-		<label for="name" class="col-sm-2 control-label">ชื่อ </label>
+		<label for="name" class="col-sm-2 control-label">ชื่อนักวิจัย </label>
 		<div class="col-sm-4">
 			<input type="text" name='name' class="form-control " id="name" placeholder="ขยัน" autofocus="" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล ')" oninput="setCustomValidity('')">
 		</div>
@@ -12,6 +57,14 @@
 		<div class="col-sm-4">
 			<input type="text" name='lastname' class="form-control " id="lastname" placeholder="ทำวิจัย" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล ')" oninput="setCustomValidity('')">
 		</div>
+		<div class="col-sm-1">
+			<button type="button" class="btn btn-warning btn_plus" id="plus0" title="เพิ่มนักวิจัย">
+				<i class="fa fa-plus"></i>
+			</button>
+		</div>
+	</div>
+	<div class="show_add">
+		<!-- show data button plus click -->
 	</div>
 	<div class="form-group col-sm-12">
 		<label for="moneySupport" class="col-sm-2 control-label">รับทุนจาก</label>
@@ -21,7 +74,7 @@
 		<label for="amount" class="col-sm-1 control-label">จำนวน</label>
 		<div class="col-sm-4">
 			<div class="input-group col-sm-12">
-			<input type="number" class="form-control" name='amount' id="amount" aria-describedby="basic-addon2">
+				<input type="number" class="form-control" name='amount' id="amount" aria-describedby="basic-addon2">
 				<div class="input-group-addon">บาท</div>
 			</div>
 		</div>
@@ -65,21 +118,7 @@
 			<span id="Success" class="text-danger"> อัพโหลดไฟล์ .pdf </span>
 		</div>
 	</div>
-		<!-- <div class="form-group col-sm-12">
-			<div class="col-sm-12"><br><br></div>
-		</div> -->
-		<!-- <div class="form-group col-sm-12">
-			<div class="modal-footer col-sm-12" style="text-align:center; background:#A9F5F2;width: 100%;">
-				<button type="submit" id="save" class="btn btn-success " style="width: 120px;">
-					<span class="glyphicon glyphicon-floppy-saved"> บันทึก</span>
-				</button>
-				<button type="reset" class="btn btn-warning" style="width: 120px;">
-					<span class="glyphicon glyphicon-floppy-remove"> ยกเลิก</span>
-				</button>
-			</div>
-		</div> -->
-		<!-- </form> -->
-		<?php //echo form_close(); ?>
-		<!-- </div> -->
-	</div>
+
+</div>
 <!-- </div> -->
+<?php echo $footer; ?>

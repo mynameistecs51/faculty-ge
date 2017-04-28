@@ -32,6 +32,15 @@ class Document extends CI_Controller {
 		$this->data['url_edit']   = base_url().$this->ctl.'/edit/';
 	}
 
+	public function test()
+	{
+		$TEXTTITLE = "เพิ่มงานวิจัย";
+		$PAGENAME  = "formCreate";
+		$this->data["datenow"] =$this->datenow;
+		$this->mainpage($TEXTTITLE);
+		$this->load->view('/Document/'.$PAGENAME,$this->data);
+	}
+
 	public function formCreate()
 	{
 		$TEXTTITLE = "เพิ่มงานวิจัย";
@@ -63,7 +72,7 @@ class Document extends CI_Controller {
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			);
 		$this->mdl_document->insertDoc($data);
-		$this->index();
+		redirect('Document','refresh');
 	}
 
 

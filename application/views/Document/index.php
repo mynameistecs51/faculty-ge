@@ -91,7 +91,7 @@
 	function modal_form(n,screenname,url)
 	{
 		var div='';
-		div+='<form action="'+url+'"  role="form" data-toggle="validator" id="form" method="post" enctype="multipart/form-data">';
+		div+='<form action="'+url+'"  role="form" data-toggle="validator" id="form" method="post" enctype="multipart/form-data" class="form-horizontal">';
 		div+='<!-- Modal -->';
 		div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
 		div+='<div class="modal-dialog" style="width: 80%;">';
