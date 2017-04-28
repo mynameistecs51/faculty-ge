@@ -75,6 +75,11 @@ class Document extends CI_Controller {
 		redirect('Document','refresh');
 	}
 
+	public function deleteDoc()
+	{
+		$del_data = $this->mdl_document->deleteDoc($this->input->post('del_id'));
+		// echo json_encode($del_data);
+	}
 
 	/*
 	*function upload files *

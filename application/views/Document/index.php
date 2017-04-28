@@ -1,4 +1,9 @@
 <?php echo $header; ?>
+<style type="text/css">
+	tbody td, thead th{
+		font-size: 12px;
+	}
+</style>
 <!-- Bootstrap DataTable CSS -->
 <link href="<?php echo base_url();?>assets/dataTable/css/jquery.dataTables.min.css" rel="stylesheet">
 <!-- ./ End css -->
@@ -6,19 +11,19 @@
 	<!-- add activity -->
 	<div class="col-sm-12">
 		<button type="button" id="add" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มเอกสาร</button>
-		<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มกิจกรรม</button> -->
 	</div>
 	<div class="col-sm-12"><br></div>
 	<div class="col-sm-12">
-		<table id="example" class="display" cellspacing="0" width="100%">
-			<thead>
-				<tr  style="text-align:center;">
-					<th   style="text-align:center;"  class="col-sm-2">ชื่อ สกุล</th>
+		<table id="example" class="display" cellspacing="0" width="100%" >
+			<thead style="background-color:  #cccccc;">
+				<tr>
+					<th style="text-align:center;"  class="col-sm-2">ชื่อ สกุล</th>
 					<th style="text-align:center;" class="col-sm-2">ชื่องานวิจัย</th>
 					<th style="text-align:center;" class="col-sm-2">คำจำกัดความ</th>
 					<th style="text-align:center;" class="col-sm-1">เค้าโครง</th>
-					<th style="text-align:center;"  class="col-sm-1" >3 บท(ความก้าวหน้า)</th>
-					<th style="text-align:center;"  class="col-sm-1" >5 บท(รูปเล่ม)</th>
+					<th style="text-align:center;"  class="col-sm-2" >3 บท<br>(ความก้าวหน้า)</th>
+					<th style="text-align:center;"  class="col-sm-1" >5 บท <br>(รูปเล่ม)</th>
+					<th style="text-align: center;" class="col-sm-2">จัดการ</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +40,17 @@
 						</td>
 						<td  style="text-align:center;" >
 							<?php echo $Filesuccess =($rowDoc['doc_filesuccess'] != null)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-times" aria-hidden="true"></i>' ;?>
+						</td>
+						<td style="text-align: center;">
+							<button class="btn btn-danger btn_delete" data-delete="<?php echo $rowDoc['doc_id']; ?>" title="ลบ">
+								<i class="fa fa-trash" aria-hidden="true" ></i>
+							</button>
+							<button class="btn btn-success btn_update" title="อัพเดท" data-update="<?php echo $rowDoc['doc_id']; ?>">
+								<i class="fa fa-edit" aria-hidden="true"></i>
+							</button>
+							<button class="btn btn-info btn_download" title="ดาว์นโหลด" data-download="<?php echo $rowDoc['doc_id']; ?>">
+								<i class="fa fa-download" aria-hidden="true"></i>
+							</button>
 						</td>
 					</tr>
 				<?php endforeach ?>
@@ -62,15 +78,35 @@
 			responsive: true,
 		});
 
-		// add activity
 		add();
-		fnedit();
+		// fnedit();
 		fndelete();
 	} );
 
 	function add(){
 		$('#add').click(function(){
 			load_page("<?php echo $url_add; ?>","เพิ่มข้อมูล :: งานวิจัย ::","<?php echo base_url().$controller.'/createDoc/';?>");
+		});
+	}
+
+	function fndelete() {
+		$('.btn_delete').click(function(){
+			// console.log($(this).data('delete'));
+			$.ajax({
+				url: '<?php echo base_url().$controller.'/deleteDoc' ?>',
+				type: 'POST',
+				// dataType: 'json',
+				data: {'del_id': $(this).data('delete')},
+				success: function(rs)
+				{
+					alert("ลบข้อมูลเสร็จเรียบร้อย.");
+					window.location.reload();
+				},
+				error:function(err){
+					alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+					window.location.reload();
+				}
+			});
 		});
 	}
 

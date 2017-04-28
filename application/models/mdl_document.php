@@ -36,6 +36,19 @@ class Mdl_document extends CI_Model {
 		return true;
 	}
 
+	public function deleteDoc($id)
+	{
+		$this->db->where('doc_id',$id);
+		$data = $this->db->get('document')->result_array();  //getdocument
+		foreach ($data as $key => $value) {
+			unlink('./assets/files_document/'.$value['doc_outline']);	//delete file
+		}
+
+		$this->db->where('doc_id',$id);
+		$del = $this->db->delete('document');
+		return TRUE;
+	}
+
 }
 
 /* End of file mdl_document.php */
