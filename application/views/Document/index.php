@@ -18,10 +18,10 @@
 			<thead style="background-color:  #cccccc;">
 				<tr>
 					<th style="text-align:center;"  class="col-sm-2">ชื่อ สกุล</th>
-					<th style="text-align:center;" class="col-sm-2">ชื่องานวิจัย</th>
-					<th style="text-align:center;" class="col-sm-2">คำจำกัดความ</th>
+					<th style="text-align:center;" class="col-sm-3">ชื่องานวิจัย</th>
+					<!-- <th style="text-align:center;" class="col-sm-2">คำจำกัดความ</th> -->
 					<th style="text-align:center;" class="col-sm-1">เค้าโครง</th>
-					<th style="text-align:center;"  class="col-sm-2" >3 บท<br>(ความก้าวหน้า)</th>
+					<th style="text-align:center;"  class="col-sm-1" >3 บท<br>(ความก้าวหน้า)</th>
 					<th style="text-align:center;"  class="col-sm-1" >5 บท <br>(รูปเล่ม)</th>
 					<th style="text-align: center;" class="col-sm-2">จัดการ</th>
 				</tr>
@@ -31,7 +31,7 @@
 					<tr>
 						<td><?php echo $rowDoc['doc_name']." ".$rowDoc['doc_lastname']; ?></td>
 						<td><?php echo $rowDoc['doc_researchName']; ?></td>
-						<td><?php echo $rowDoc['doc_abstract']; ?></td>
+						<!-- <td><?php echo $rowDoc['doc_abstract']; ?></td> -->
 						<td  style="text-align:center;" >
 							<?php echo $Outline =($rowDoc['doc_outline'] != null)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-times" aria-hidden="true"></i>' ;?>
 						</td>
