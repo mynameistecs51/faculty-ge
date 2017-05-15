@@ -28,6 +28,7 @@ class Document extends CI_Controller {
 		$this->data['header'] = $this->template->getHeader(base_url(),$TEXTTITLE);
 		$this->data['footer'] = $this->template->getFooter(base_url());
 		$this->data['controller'] = $this->ctl;
+		$this->data["datenow"] =$this->datenow;
 		$this->data['url_add']    = base_url().$this->ctl.'/formCreate/';
 		$this->data['url_edit']   = base_url().$this->ctl.'/edit/';
 	}
@@ -36,7 +37,6 @@ class Document extends CI_Controller {
 	{
 		$TEXTTITLE = "เพิ่มงานวิจัย";
 		$PAGENAME  = "formCreate";
-		$this->data["datenow"] =$this->datenow;
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('/Document/'.$PAGENAME,$this->data);
 	}
@@ -73,6 +73,14 @@ class Document extends CI_Controller {
 			);
 		$this->mdl_document->insertDoc($data);
 		redirect('Document','refresh');
+	}
+
+	public function formUpdate()
+	{
+		$TEXTTITLE = "อัพเดทเอกสาร";
+		$PAGENAME = "formUpdate";
+		$this->mainpage($TEXTTITLE);
+		$this->load->view('/Document/'.$PAGENAME,$this->data);
 	}
 
 	public function deleteDoc()

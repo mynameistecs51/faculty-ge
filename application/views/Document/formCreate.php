@@ -1,4 +1,4 @@
-<?php echo $header; ?>
+<?php //echo $header; ?>
 <!-- <div class="container" > -->
 <div class="row"  >
 
@@ -100,7 +100,7 @@
 	<div class="form-group col-sm-12">
 		<label for="Outline" class="col-sm-2 control-label">เค้าโครง</label>
 		<div class="col-sm-8">
-			<input type="file" name="Outline" class="form-control" id="Outline" placeholder="Outline" aria-describedby="Outline">
+			<input type="file" name="Outline" class="form-control" id="Outline" placeholder="Outline" aria-describedby="Outline" required>
 			<span id="Outline" class="text-danger"> อัพโหลดไฟล์ .pdf </span>
 		</div>
 	</div>
@@ -121,4 +121,4 @@
 
 </div>
 <!-- </div> -->
-<?php echo $footer; ?>
+<?php //echo $footer; ?>

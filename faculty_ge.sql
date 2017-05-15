@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2017 at 02:19 PM
+-- Generation Time: May 15, 2017 at 05:24 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -62,17 +62,16 @@ CREATE TABLE IF NOT EXISTS `document` (
   `doc_filesuccess` text COLLATE utf8_unicode_ci COMMENT 'รูปเล่ม',
   `dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'วันที่สร้าง',
   `ip_create` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'ip ที่สร้าง'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='จัดเก็บเอกสาร';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='จัดเก็บเอกสาร';
 
 --
 -- Dumping data for table `document`
 --
 
 INSERT INTO `document` (`doc_id`, `doc_name`, `doc_lastname`, `doc_moneySupport`, `doc_amount`, `doc_publicationWhere`, `doc_researchName`, `doc_abstract`, `doc_outline`, `doc_progress`, `doc_filesuccess`, `dt_create`, `ip_create`) VALUES
-(1, 'test', 'test', 'test', 1, 'test', 'test', 'test', '28_04_17_09_03_30.pdf', NULL, NULL, '2017-04-28 09:03:30', '::1'),
-(2, 'test', 'test', 'test', 1, 'test', 'test', 'test', '280417090404.pdf', NULL, NULL, '2017-04-28 09:04:04', '::1'),
 (3, 'เต้', 'ไชยวัฒน์', 'ใคร', 1, 'โรงพิมพ์', 'ยังไม่ได้คิด', 'ยังไม่มี', '280417_141620.pdf', NULL, NULL, '2017-04-28 14:16:20', '::1'),
-(6, 'เต้', 'ไชยวัฒน์', 'ใคร', 1, 'โรงพิมพ์', 'ยังไม่ได้คิด', 'ยังไม่มี', '280417_141735.pdf', NULL, NULL, '2017-04-28 14:17:35', '::1');
+(11, 'ไชยวัฒน์', 'ไชยวัฒน์', 'ไชยวัฒน์', 1, 'ไชยวัฒน์', 'เต้', 'เต้', '280417_150750.pdf', NULL, NULL, '2017-04-28 15:07:50', '::1'),
+(15, 'test', 'test', 'test', 1, 'test', 'test', 'test', '150517_162016.PDF', '150517_1620161.PDF', '150517_1620162.PDF', '2017-05-15 16:20:16', '::1');
 
 --
 -- Indexes for dumped tables
@@ -103,7 +102,7 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

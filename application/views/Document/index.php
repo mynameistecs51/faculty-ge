@@ -42,13 +42,13 @@
 							<?php echo $Filesuccess =($rowDoc['doc_filesuccess'] != null)?'<i class="fa fa-check" aria-hidden="true"></i>':'<i class="fa fa-times" aria-hidden="true"></i>' ;?>
 						</td>
 						<td style="text-align: center;">
-							<button class="btn btn-danger btn_delete" data-delete="<?php echo $rowDoc['doc_id']; ?>" title="ลบ">
+							<button class="btn btn-danger btn_delete btn-xs" data-delete="<?php echo $rowDoc['doc_id']; ?>" title="ลบ">
 								<i class="fa fa-trash" aria-hidden="true" ></i>
 							</button>
-							<button class="btn btn-success btn_update" title="อัพเดท" data-update="<?php echo $rowDoc['doc_id']; ?>">
+							<button class="btn btn-success btn_update btn-xs" title="อัพเดท" data-update="<?php echo $rowDoc['doc_id']; ?>">
 								<i class="fa fa-edit" aria-hidden="true"></i>
 							</button>
-							<button class="btn btn-info btn_download" title="ดาว์นโหลด" data-download="<?php echo $rowDoc['doc_id']; ?>">
+							<button class="btn btn-info btn_download btn-xs" title="ดาว์นโหลด" data-download="<?php echo $rowDoc['doc_id']; ?>">
 								<i class="fa fa-download" aria-hidden="true"></i>
 							</button>
 						</td>
@@ -79,13 +79,19 @@
 		});
 
 		add();
-		// fnedit();
+		fnupdate();
 		fndelete();
 	} );
 
 	function add(){
 		$('#add').click(function(){
 			load_page("<?php echo $url_add; ?>","เพิ่มข้อมูล :: งานวิจัย ::","<?php echo base_url().$controller.'/createDoc/';?>");
+		});
+	}
+
+	function fnupdate() {
+		$('.btn_update').click(function(){
+			alert("UPDATE"+$(this).data('update'));
 		});
 	}
 
