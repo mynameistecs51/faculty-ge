@@ -30,7 +30,7 @@ class Document extends CI_Controller {
 		$this->data['controller'] = $this->ctl;
 		$this->data["datenow"] =$this->datenow;
 		$this->data['url_add']    = base_url().$this->ctl.'/formCreate/';
-		$this->data['url_edit']   = base_url().$this->ctl.'/edit/';
+		$this->data['url_update']   = base_url().$this->ctl.'/formUpdate/';
 	}
 
 	public function test()
@@ -75,12 +75,37 @@ class Document extends CI_Controller {
 		redirect('Document','refresh');
 	}
 
-	public function formUpdate()
+	public function formUpdate($idDoc)
 	{
 		$TEXTTITLE = "อัพเดทเอกสาร";
 		$PAGENAME = "formUpdate";
+		$this->data['dataDoc'] = $this->mdl_document->getDocID($idDoc);
 		$this->mainpage($TEXTTITLE);
 		$this->load->view('/Document/'.$PAGENAME,$this->data);
+	}
+
+	public function saveUpdate()
+	{
+		$Outline = ($_FILES['Outline'] != "")?$this->_upload_files('Outline'):'';
+		$Progress = ($_FILES['Progress'] != "")?$this->_upload_files('Progress'):'';
+		$Success = ($_FILES['Success'] != "")?$this->_upload_files('Success'):'';
+
+		$data = array(
+			'doc_name' => $this->input->post('name'),
+			'doc_lastname' => $this->input->post('lastname'),
+			'doc_moneySupport' => $this->input->post('moneySupport'),
+			'doc_amount' => $this->input->post('amount'),
+			'doc_publicationWhere' => $this->input->post('publicationWhere'),
+			'doc_researchName' => str_replace("\n", "<br>",$this->input->post('researchName')),
+			'doc_abstract' => str_replace("\n", "<br>",$this->input->post('abstract')),
+			'doc_outline' => $Outline['file_name'],
+			'doc_progress' => $Progress['file_name'],
+			'doc_filesuccess' => $Success['file_name'],
+			'dt_create' => $this->dt_now,
+			'ip_create' => $_SERVER['REMOTE_ADDR'],
+			);
+		echo "<pre>";
+		print_r($data);
 	}
 
 	public function deleteDoc()
@@ -110,6 +135,21 @@ class Document extends CI_Controller {
 			$files_uploaded = null;
 		}
 		return $files_uploaded;
+	}
+
+	public function blankPage($data)
+	{
+		// The location of the PDF file on the server.
+		$filename = "./assets/files_document/".$data;
+
+// Let the browser know that a PDF file is coming.
+		header("Content-type: application/pdf");
+		header("Content-Length: " . filesize($filename));
+
+// Send the file to the browser.
+		readfile($filename);
+		exit;
+
 	}
 
 }/* End Controller */

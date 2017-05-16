@@ -30,6 +30,45 @@ class Mdl_document extends CI_Model {
 		return $query;
 	}
 
+	public function getDocID($idDoc)
+	{
+		$sql = "SELECT
+		doc_id,
+		doc_name,
+		doc_lastname,
+		doc_moneySupport,
+		doc_amount,
+		doc_publicationWhere,
+		doc_researchName,
+		doc_abstract,
+		doc_outline,
+		doc_progress,
+		doc_filesuccess,
+		dt_create,
+		ip_create
+		FROM document
+		WHERE doc_id = '".$idDoc."' ";
+		$query = $this->db->query($sql)->result_array();
+		foreach ($query as $keyDoc => $rowDoc) {
+			$data = array(
+				'doc_id' => $rowDoc['doc_id'],
+				'doc_name' => $rowDoc['doc_name'],
+				'doc_lastname' => $rowDoc['doc_lastname'],
+				'doc_moneySupport' => $rowDoc['doc_moneySupport'],
+				'doc_amount' => $rowDoc['doc_amount'],
+				'doc_publicationWhere' => $rowDoc['doc_publicationWhere'],
+				'doc_researchName' => $rowDoc['doc_researchName'],
+				'doc_abstract' => $rowDoc['doc_abstract'],
+				'doc_outline' => $rowDoc['doc_outline'],
+				'doc_progress' => $rowDoc['doc_progress'],
+				'doc_filesuccess' => $rowDoc['doc_filesuccess'],
+				'dt_create' => $rowDoc['dt_create'],
+				'ip_create' => $rowDoc['ip_create'],
+				);
+		}
+		return $data;
+	}
+
 	public function insertDoc($data)
 	{
 		$this->db->insert('document',$data);

@@ -91,7 +91,8 @@
 
 	function fnupdate() {
 		$('.btn_update').click(function(){
-			alert("UPDATE"+$(this).data('update'));
+			load_page("<?php echo $url_update.'/'; ?>"+$(this).data('update'),"อัพเดทข้อมูล :: งานวิจัย ::","<?php echo base_url().$controller.'/saveUpdate';?>");
+			// alert("UPDATE"+$(this).data('update'));
 		});
 	}
 
