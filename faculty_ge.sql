@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2017 at 05:24 PM
+-- Generation Time: May 17, 2017 at 02:55 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `document` (
 
 INSERT INTO `document` (`doc_id`, `doc_name`, `doc_lastname`, `doc_moneySupport`, `doc_amount`, `doc_publicationWhere`, `doc_researchName`, `doc_abstract`, `doc_outline`, `doc_progress`, `doc_filesuccess`, `dt_create`, `ip_create`) VALUES
 (3, 'เต้', 'ไชยวัฒน์', 'ใคร', 1, 'โรงพิมพ์', 'ยังไม่ได้คิด', 'ยังไม่มี', '280417_141620.pdf', NULL, NULL, '2017-04-28 14:16:20', '::1'),
-(11, 'ไชยวัฒน์', 'ไชยวัฒน์', 'ไชยวัฒน์', 1, 'ไชยวัฒน์', 'เต้', 'เต้', '280417_150750.pdf', NULL, NULL, '2017-04-28 15:07:50', '::1'),
+(11, 'ไชยวัฒน์', 'ไชยวัฒน์', 'ไชยวัฒน์', 1, 'ไชยวัฒน์', 'เต้', 'testssss', '170517_144149.PDF', NULL, NULL, '2017-05-17 14:41:49', '::1'),
 (15, 'test', 'test', 'test', 1, 'test', 'test', 'test', '150517_162016.PDF', '150517_1620161.PDF', '150517_1620162.PDF', '2017-05-15 16:20:16', '::1');
 
 --

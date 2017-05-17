@@ -30,7 +30,7 @@ class Mdl_document extends CI_Model {
 		return $query;
 	}
 
-	public function getDocID($idDoc)
+	public function getDocID($docID)
 	{
 		$sql = "SELECT
 		doc_id,
@@ -47,7 +47,8 @@ class Mdl_document extends CI_Model {
 		dt_create,
 		ip_create
 		FROM document
-		WHERE doc_id = '".$idDoc."' ";
+		WHERE doc_id = '".$docID."' ";
+
 		$query = $this->db->query($sql)->result_array();
 		foreach ($query as $keyDoc => $rowDoc) {
 			$data = array(

@@ -251,9 +251,11 @@ class Template
 			<li>
 				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
 			</li>
+			<!--
 			<li>
 				<a href="'.base_url().'Document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
 			</li>
+			-->
 			<li>
 				<a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a>
 			</li>
@@ -266,7 +268,7 @@ class Template
 			<li>
 				<a href="http://www.mua.go.th/" target="_blank"><i class="fa fa-fw fa-book"></i> สกอ. </a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
 			</li>
 			<li>
@@ -290,6 +292,7 @@ class Template
 			<li>
 				<a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
 			</li>
+			-->
 		</ul>
 
 		';

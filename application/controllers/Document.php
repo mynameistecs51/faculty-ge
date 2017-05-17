@@ -86,7 +86,11 @@ class Document extends CI_Controller {
 
 	public function saveUpdate()
 	{
-		$Outline = ($_FILES['Outline'] != "")?$this->_upload_files('Outline'):'';
+		$docID = $this->input->post('doc_id');
+		// $Outline = $_FILES['Outline'];
+		// if($Outline !=""){$Outline = 	$this->_upload_files('Outline');$this->deleteFile($docID,"doc_outline");	echo "1";
+		// }else{	echo "2";	$Outline ="";		}
+		$Outline = ($_FILES['Outline'] != "")?$this->upFile($docID,'doc_outline','Outline'):'';
 		$Progress = ($_FILES['Progress'] != "")?$this->_upload_files('Progress'):'';
 		$Success = ($_FILES['Success'] != "")?$this->_upload_files('Success'):'';
 
@@ -104,8 +108,17 @@ class Document extends CI_Controller {
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			);
-		echo "<pre>";
-		print_r($data);
+		// echo "<pre>";
+		$this->db->where('doc_id',$docID);
+		$this->db->update('document',$data);
+		var_dump($Outline);
+	}
+
+	public function upFile($docID,$docField,$docFile)
+	{
+		$delFile = $this->deleteFile($docID,$docField);
+		$uploadFile = $this->_upload_files($docFile);
+		return $uploadFile;
 	}
 
 	public function deleteDoc()
@@ -113,6 +126,21 @@ class Document extends CI_Controller {
 		$del_data = $this->mdl_document->deleteDoc($this->input->post('del_id'));
 		// echo json_encode($del_data);
 	}
+
+	//delete select file
+	public function deleteFile($id,$field)
+	{
+		// $this->db->where('doc_id',$id);
+		$data = $this->db->query("SELECT ".$field." FROM document WHERE doc_id = '".$id."'")->result_array();  //getdocument
+		// echo "<pre>";
+
+		$del = ($data[0][$field] == "")?'':unlink('./assets/files_document/'.$data[0][$field]);
+
+		// foreach ($data as $key => $value) {
+		// 	unlink('./assets/files_document/'.$value[$field]);	//delete file
+		// }
+	}
+
 
 	/*
 	*function upload files *
@@ -137,16 +165,16 @@ class Document extends CI_Controller {
 		return $files_uploaded;
 	}
 
-	public function blankPage($data)
+	public function PDF($data)
 	{
 		// The location of the PDF file on the server.
 		$filename = "./assets/files_document/".$data;
 
-// Let the browser know that a PDF file is coming.
+		// Let the browser know that a PDF file is coming.
 		header("Content-type: application/pdf");
 		header("Content-Length: " . filesize($filename));
 
-// Send the file to the browser.
+		// Send the file to the browser.
 		readfile($filename);
 		exit;
 

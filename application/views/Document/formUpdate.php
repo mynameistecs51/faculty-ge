@@ -48,6 +48,8 @@
 			});
 		}
 	</script>
+
+	<input type="hidden" name="doc_id" value="<?php echo $dataDoc['doc_id']; ?>">
 	<div class="form-group col-sm-12">
 		<label for="name" class="col-sm-2 control-label">ชื่อนักวิจัย </label>
 		<div class="col-sm-4">
@@ -98,7 +100,7 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-12">
-		<label for="Outline" class="col-sm-2 control-label">เค้าโครง</label>
+		<label for="Outline" class="col-sm-2 control-label">อัพเดท เค้าโครง</label>
 		<?php	echo $outline = ($dataDoc['doc_outline'] == '')?'':'<span class="fileoutline pull-right col-sm-2" align="center" ><i class="fa fa-file-pdf-o fa-2x " aria-hidden="true" style="color:red;" title="เปิดไฟล์"></i>	<br>'.$dataDoc["doc_outline"].'</span>';?>
 		<div class="col-sm-8">
 			<input type="file" name="Outline" class="form-control" id="Outline" placeholder="Outline" aria-describedby="Outline" >
@@ -106,7 +108,7 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-12">
-		<label for="Progress" class="col-sm-2 control-label">3 บท(ความก้าวหน้า)</label>
+		<label for="Progress" class="col-sm-2 control-label">อัพเดท 3 บท(ความก้าวหน้า)</label>
 		<?php	echo $progress = ($dataDoc['doc_progress'] == '')?'':'<span class="fileprogress pull-right col-sm-2" align="center" ><i class="fa fa-file-pdf-o fa-2x " aria-hidden="true" style="color:red;" title="เปิดไฟล์"></i>	<br>'.$dataDoc["doc_progress"].'</span>';?>
 		<div class="col-sm-8">
 			<input type="file" class="form-control" id="Progress" name="Progress" placeholder="Progress">
@@ -114,7 +116,7 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-12">
-		<label for="Success" class="col-sm-2 control-label">5 บท(รูปเล่ม)</label>
+		<label for="Success" class="col-sm-2 control-label">อัพเดท 5 บท(รูปเล่ม)</label>
 		<?php	echo $filesuccess = ($dataDoc['doc_filesuccess'] == '')?'':'<span class="filesuccess pull-right col-sm-2" align="center" ><i class="fa fa-file-pdf-o fa-2x " aria-hidden="true" style="color:red;" title="เปิดไฟล์"></i>	<br>'.$dataDoc["doc_filesuccess"].'</span>';?>
 		<div class="col-sm-8">
 			<input type="file" class="form-control" id="Success" name="Success" placeholder="Success">
@@ -134,19 +136,19 @@
 
 	function openfileOutline(){
 		$('.fileoutline').click(function(){
-			window.open("<?php echo base_url('Document/blankPage/'.$dataDoc['doc_outline']); ?>",'_blank');
+			window.open("<?php echo base_url('Document/PDF/'.$dataDoc['doc_outline']); ?>",'_blank');
 		});
 	}
 
 	function openfileProgress() {
 		$('.fileprogress').click(function(){
-			window.open("<?php echo base_url('Document/blankPage/'.$dataDoc['doc_progress']); ?>",'_blank');
+			window.open("<?php echo base_url('Document/PDF/'.$dataDoc['doc_progress']); ?>",'_blank');
 		});
 	}
 
 	function openfileSuccess() {
 		$('.filesuccess').click(function(){
-			window.open("<?php echo base_url('Document/blankPage/'.$dataDoc['doc_filesuccess']); ?>",'_blank');
+			window.open("<?php echo base_url('Document/PDF/'.$dataDoc['doc_filesuccess']); ?>",'_blank');
 		});
 	}
 </script>
