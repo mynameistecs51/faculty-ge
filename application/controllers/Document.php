@@ -91,8 +91,8 @@ class Document extends CI_Controller {
 		// if($Outline !=""){$Outline = 	$this->_upload_files('Outline');$this->deleteFile($docID,"doc_outline");	echo "1";
 		// }else{	echo "2";	$Outline ="";		}
 		$Outline = ($_FILES['Outline'] != "")?$this->upFile($docID,'doc_outline','Outline'):'';
-		$Progress = ($_FILES['Progress'] != "")?$this->_upload_files('Progress'):'';
-		$Success = ($_FILES['Success'] != "")?$this->_upload_files('Success'):'';
+		$Progress = ($_FILES['Progress'] != "")?$this->upFile($docID,'doc_progress','Progress'):'';
+		$Success = ($_FILES['Success'] != "")?$this->upFile($docID,'doc_filesuccess','Success')'Success'):'';
 
 		$data = array(
 			'doc_name' => $this->input->post('name'),
