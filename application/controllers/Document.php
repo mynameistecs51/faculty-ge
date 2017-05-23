@@ -92,7 +92,7 @@ class Document extends CI_Controller {
 		// }else{	echo "2";	$Outline ="";		}
 		$Outline = ($_FILES['Outline'] != "")?$this->upFile($docID,'doc_outline','Outline'):'';
 		$Progress = ($_FILES['Progress'] != "")?$this->upFile($docID,'doc_progress','Progress'):'';
-		$Success = ($_FILES['Success'] != "")?$this->upFile($docID,'doc_filesuccess','Success')'Success'):'';
+		$Success = ($_FILES['Success'] != "")?$this->upFile($docID,'doc_filesuccess','Success'):'';
 
 		$data = array(
 			'doc_name' => $this->input->post('name'),
