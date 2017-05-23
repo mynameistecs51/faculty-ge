@@ -87,38 +87,12 @@ class Document extends CI_Controller {
 	public function saveUpdate()
 	{
 		$docID = $this->input->post('doc_id');
-		// $Outline = $_FILES['Outline'];
-		// if($Outline !=""){$Outline = 	$this->_upload_files('Outline');$this->deleteFile($docID,"doc_outline");	echo "1";
-		// }else{	echo "2";	$Outline ="";		}
-		$Outline = ($_FILES['Outline'] != "")?$this->upFile($docID,'doc_outline','Outline'):'';
-		$Progress = ($_FILES['Progress'] != "")?$this->upFile($docID,'doc_progress','Progress'):'';
-		$Success = ($_FILES['Success'] != "")?$this->upFile($docID,'doc_filesuccess','Success'):'';
 
-		$data = array(
-			'doc_name' => $this->input->post('name'),
-			'doc_lastname' => $this->input->post('lastname'),
-			'doc_moneySupport' => $this->input->post('moneySupport'),
-			'doc_amount' => $this->input->post('amount'),
-			'doc_publicationWhere' => $this->input->post('publicationWhere'),
-			'doc_researchName' => str_replace("\n", "<br>",$this->input->post('researchName')),
-			'doc_abstract' => str_replace("\n", "<br>",$this->input->post('abstract')),
-			'doc_outline' => $Outline['file_name'],
-			'doc_progress' => $Progress['file_name'],
-			'doc_filesuccess' => $Success['file_name'],
-			'dt_create' => $this->dt_now,
-			'ip_create' => $_SERVER['REMOTE_ADDR'],
-			);
-		// echo "<pre>";
-		$this->db->where('doc_id',$docID);
-		$this->db->update('document',$data);
-		var_dump($Outline);
-	}
+		$Outline = ( empty($_FILES['Outline']['size']))?'':$this->mdl_document->updateFileOutline($docID);
+		$Progress = (empty($_FILES['Progress']['size'] ))?'':$this->mdl_document->updateFileProgress($docID);
+		$Success = ( empty($_FILES['Success']['size'] ))?'':$this->mdl_document->updateFilesuccess($docID);
 
-	public function upFile($docID,$docField,$docFile)
-	{
-		$delFile = $this->deleteFile($docID,$docField);
-		$uploadFile = $this->_upload_files($docFile);
-		return $uploadFile;
+		// redirect('/Document/','refresh');
 	}
 
 	public function deleteDoc()
@@ -127,20 +101,15 @@ class Document extends CI_Controller {
 		// echo json_encode($del_data);
 	}
 
-	//delete select file
-	public function deleteFile($id,$field)
+	public function downloadFile( $docID)
 	{
-		// $this->db->where('doc_id',$id);
-		$data = $this->db->query("SELECT ".$field." FROM document WHERE doc_id = '".$id."'")->result_array();  //getdocument
-		// echo "<pre>";
+		$getFile = $this->mdl_document->getDocID($docID);
 
-		$del = ($data[0][$field] == "")?'':unlink('./assets/files_document/'.$data[0][$field]);
+		$fileOutline = ($getFile['doc_outline'] != '')?force_download('เค้าโครง.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_outline'])):'';
+		$fileProgress = ($getFile['doc_progress'] != '')?force_download('ความก้าวหน้า.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_progress'])):'';
+		$fileSuccess =  ($getFile['doc_filesuccess'] != '')?force_download('รูปเล่ม.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_filesuccess'])):'';
 
-		// foreach ($data as $key => $value) {
-		// 	unlink('./assets/files_document/'.$value[$field]);	//delete file
-		// }
 	}
-
 
 	/*
 	*function upload files *

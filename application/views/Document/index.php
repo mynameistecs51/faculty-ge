@@ -81,6 +81,7 @@
 		add();
 		fnupdate();
 		fndelete();
+		fndownload();
 	} );
 
 	function add(){
@@ -99,9 +100,11 @@
 	function fndelete() {
 		$('.btn_delete').click(function(){
 			// console.log($(this).data('delete'));
-			$.ajax({
-				url: '<?php echo base_url().$controller.'/deleteDoc' ?>',
-				type: 'POST',
+			var cfm = confirm("ยืนยันการ ลบ!");
+			if(cfm ){
+				$.ajax({
+					url: '<?php echo base_url().$controller.'/deleteDoc' ?>',
+					type: 'POST',
 				// dataType: 'json',
 				data: {'del_id': $(this).data('delete')},
 				success: function(rs)
@@ -114,6 +117,25 @@
 					window.location.reload();
 				}
 			});
+			}
+		});
+	}
+
+	function fndownload(){
+		$('.btn_download').click(function(){
+			window.open('<?php echo base_url()."$controller/downloadFile/";?>'+$(this).data('download'));
+			// $.ajax({
+			// 	url: '<?php //echo base_url().$controller."/downloadFile/";?>',
+			// 	type: 'POST',
+			// 	data: {'docID': $(this).data('download')},
+			// })
+			// .done(function(rs) {
+			// 	// alert("OK");
+			// 	console.log(rs);
+			// })
+			// .fail(function() {
+			// 	console.log("error");
+			// });
 		});
 	}
 
