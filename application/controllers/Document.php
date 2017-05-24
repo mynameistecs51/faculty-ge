@@ -103,13 +103,18 @@ class Document extends CI_Controller {
 
 	public function downloadFile( $docID)
 	{
+		$this->load->library('zip');
 		$getFile = $this->mdl_document->getDocID($docID);
 
-		$fileOutline = (empty($getFile['doc_outline']))?'':force_download('เค้าโครง.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_outline']));
-		$fileProgress = (empty($getFile['doc_progress']))?'':force_download('ความก้าวหน้า.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_progress']));
-		$fileSuccess =  (empty($getFile['doc_filesuccess']))?'':force_download('รูปเล่ม.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_filesuccess']));
+		$fileOutline = (empty($getFile['doc_outline']))?'':$this->zip->add_data('Outline.pdf',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_outline']));
+		$fileProgress = (empty($getFile['doc_progress']))?'':$this->zip->add_data('Progress.pdf',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_progress']));
+		$fileSuccess = (empty($getFile['doc_filesuccess']))?'':$this->zip->add_data('Success.pdf',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_filesuccess']));
+		echo '<meta http-equiv="Content-type" content="text/html; charset=UTF-8">';
+		echo $fileOutline;
+		echo $fileProgress;
+		echo $fileSuccess;
+		$this->zip->download($getFile['doc_researchName']);
 
-		$files = array();
 	}
 
 	/*
