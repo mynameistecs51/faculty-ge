@@ -105,10 +105,11 @@ class Document extends CI_Controller {
 	{
 		$getFile = $this->mdl_document->getDocID($docID);
 
-		$fileOutline = ($getFile['doc_outline'] != '')?force_download('เค้าโครง.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_outline'])):'';
-		$fileProgress = ($getFile['doc_progress'] != '')?force_download('ความก้าวหน้า.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_progress'])):'';
-		$fileSuccess =  ($getFile['doc_filesuccess'] != '')?force_download('รูปเล่ม.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_filesuccess'])):'';
+		$fileOutline = (empty($getFile['doc_outline']))?'':force_download('เค้าโครง.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_outline']));
+		$fileProgress = (empty($getFile['doc_progress']))?'':force_download('ความก้าวหน้า.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_progress']));
+		$fileSuccess =  (empty($getFile['doc_filesuccess']))?'':force_download('รูปเล่ม.PDF',file_get_contents(base_url().'assets/files_document/'.$getFile['doc_filesuccess']));
 
+		$files = array();
 	}
 
 	/*
