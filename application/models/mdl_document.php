@@ -89,6 +89,20 @@ class Mdl_document extends CI_Model {
 		return TRUE;
 	}
 
+	public function updateData($docID)
+	{
+		$data = array(
+			'doc_name' => $this->input->post('name'),
+			'doc_lastname' => $this->input->post('lastname'),
+			'doc_moneySupport' => $this->input->post('moneySupport'),
+			'doc_amount' => $this->input->post('amount'),
+			'doc_publicationWhere' => $this->input->post('publicationWhere'),
+			'doc_researchName' => str_replace("\n", "<br>",$this->input->post('researchName')),
+			'doc_abstract' => str_replace("\n", "<br>",$this->input->post('abstract')),
+			);
+		$this->db->where('doc_id',$docID);
+		$this->db->update('document',$data);
+	}
 	public function updateFileOutline($docID)
 	{
 		$Outline = (empty($_FILES['Outline']['size']))?'':$this->upFile($docID,'doc_outline','Outline');

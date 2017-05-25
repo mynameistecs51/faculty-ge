@@ -1,53 +1,6 @@
 <?php //echo $header; ?>
 <!-- <div class="container" > -->
 <div class="row"  >
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			add();
-
-			btn_delete();
-		});
-
-		function count_btnDelete() {
-			for (var i = 0; i < $('.plus').length ;i++){
-
-				console.log(i);
-			}
-		}
-
-		function add(num) {
-			$(".btn_plus").click(function(){
-				var html = "";
-				html+='<div id="rowAdd'+num+'">';
-				html+= '<div class="form-group col-sm-12">';
-				html+= '	<label for="name" class="col-sm-2 control-label">ชื่อนักวิจัยร่วม </label>';
-				html+= '	<div class="col-sm-4">';
-				html+= '		<input type="text" name="name" class="form-control " id="name" placeholder="ขยัน" autofocus="" required oninvalid="this.setCustomValidity('+"กรุณากรอกข้อมูล"+')" oninput="setCustomValidity('+""+')" >';
-				html+= '	</div>';
-				html+= '	<label for="lastname" class="col-sm-1 control-label">นามสกุล </label>';
-				html+= '	<div class="col-sm-4">';
-				html+= '		<input type="text" name="lastname" class="form-control " id="lastname" placeholder="ทำวิจัย" required  ">';
-				html+= '	</div>';
-				html+= '	<div class="col-sm-1">';
-				html+= '		<button type="button" class="btn btn-danger delete" id="delete'+num+'" title="เพิ่มนักวิจัย">';
-				html+= '			<i class="fa fa-minus"></i>';
-				html+= '		</button>';
-				html+= '	</div>';
-				html+= '</div>';
-				$('.show_add').append(html);
-			});
-			for(var i =0 ; i < $('.plus').length ; i++){
-				console.log(i);
-			}
-		}
-		function btn_delete() {
-			$('.delete').click(function(){
-				$(this).remove();
-			});
-		}
-	</script>
 	<div class="form-group col-sm-12">
 		<label for="name" class="col-sm-2 control-label">ชื่อนักวิจัย </label>
 		<div class="col-sm-4">
@@ -121,4 +74,36 @@
 
 </div>
 <!-- </div> -->
+<script type="text/javascript">
+
+	$(function(){
+		$(".btn_plus").click(function(){
+			var num = $('.rowAdd').length+1;
+			var html ='<div class="rowAdd" id="rowAdd'+num+'">';
+			html+= '<div class="form-group col-sm-12">';
+			html+= '	<label for="name" class="col-sm-2 control-label">ชื่อนักวิจัยร่วม </label>';
+			html+= '	<div class="col-sm-4">';
+			html+= '		<input type="text" name="name" class="form-control " id="name" placeholder="ขยัน" autofocus="" required oninvalid="this.setCustomValidity('+"กรุณากรอกข้อมูล"+')" oninput="setCustomValidity('+""+')" >';
+			html+= '	</div>';
+			html+= '	<label for="lastname" class="col-sm-1 control-label">นามสกุล </label>';
+			html+= '	<div class="col-sm-4">';
+			html+= '		<input type="text" name="lastname" class="form-control " id="lastname" placeholder="ทำวิจัย" required  ">';
+			html+= '	</div>';
+			html+= '	<div class="col-sm-1">';
+			html+= '		<button type="button" class="btn btn-danger delete" id="delete'+num+'" title="เพิ่มนักวิจัย">';
+			html+= '			<i class="fa fa-minus"></i>';
+			html+= '		</button>';
+			html+= '	</div>';
+			html+= '</div>';
+			$('.show_add').append(html);
+			btn_delete(num);
+		});
+	});
+
+	function btn_delete(num) {
+		$('#delete'+num).click(function(){
+			$('#rowAdd'+num).remove();
+		});
+	}
+</script>
 <?php //echo $footer; ?>

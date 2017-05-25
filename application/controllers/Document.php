@@ -88,11 +88,11 @@ class Document extends CI_Controller {
 	{
 		$docID = $this->input->post('doc_id');
 
-		$Outline = ( empty($_FILES['Outline']['size']))?'':$this->mdl_document->updateFileOutline($docID);
-		$Progress = (empty($_FILES['Progress']['size'] ))?'':$this->mdl_document->updateFileProgress($docID);
-		$Success = ( empty($_FILES['Success']['size'] ))?'':$this->mdl_document->updateFilesuccess($docID);
+		$Outline = ( empty($_FILES['Outline']['size']))?$this->mdl_document->updateData($docID):$this->mdl_document->updateFileOutline($docID);
+		$Progress = (empty($_FILES['Progress']['size']))?$this->mdl_document->updateData($docID):$this->mdl_document->updateFileProgress($docID);
+		$Success = ( empty($_FILES['Success']['size']))?$this->mdl_document->updateData($docID):$this->mdl_document->updateFilesuccess($docID);
 
-		// redirect('/Document/','refresh');
+		redirect('/Document/','refresh');
 	}
 
 	public function deleteDoc()
