@@ -52,7 +52,7 @@
 	for($i=0; $i < count($picture); $i++):
 		array_push($numpict,array('number'=>$i,'namePict'=>$picture[$i]));
 	?>
-	<div class="col-sm-6 col-md-3">
+	<div class="col-sm-6 col-md-3"  style="width:304px;height:236xp;">
 		<div class="show_images thumbnail">
 			<img  src="<?php echo base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
 			<!-- <button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal">

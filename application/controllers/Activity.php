@@ -120,7 +120,7 @@ class Activity extends CI_Controller {
 
 	public function saveEdit()
 	{
-		echo "<pre>";
+		// echo "<pre>";
 		$addPict = array();
 		$ac_id = $this->input->post('ac_id');
 		$title  = $this->input->post('input_title');
@@ -175,12 +175,14 @@ class Activity extends CI_Controller {
 	}
 
 	private function _upload_files($field){
-		$file_name =  date('d_m_y_H_i_s');
-		$config['upload_path'] ='./assets/files_upload/';
+		$file_name               = date('d_m_y_H_i_s');
+		$config['upload_path']   = './assets/files_upload/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg|';
-		$config['max_size']	= '0';
+		$config['max_size']	     = '0';
 		$config['remove_spaces'] = TRUE;
-		$config['file_name'] = $file_name;
+		$config['file_name']     = $file_name;
+		$config['image_width']     = 800;
+		$config['image_height']    = 600;
 
 		$this->load->library('upload');
 		$this->upload->initialize($config);

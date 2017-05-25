@@ -44,22 +44,24 @@
 		<div class="panel panel-info">
 			<div class="panel-heading"><?php echo $listActivity['ac_title']; ?></div>
 			<div class="panel-body">
-				<?php echo $listActivity['ac_detail']; ?>
-				<hr>
+				<div class="col-sm-12">
+					<?php echo $listActivity['ac_detail']; ?>
+					<hr>
 
-				<?php
-				$pic_name = explode(',',$listActivity['ac_pict']);
-				for($i=0;$i < count($pic_name) ; $i++){
-					$showPicture = ($pic_name[0] == "")?'no-image.jpg': $pic_name[$i];
-					echo '<div class="col-sm-6 col-md-3">';
-					echo '<div class="thumbnail">';
-					echo '<a class="fancybox" href="'.base_url().'assets/files_upload/'.$showPicture.'" data-fancybox-group="gallery" >';
-					echo '<img src="'.base_url().'assets/files_upload/'.$showPicture.'" alt="">';
-					echo '</a>';
-					echo '</div>';
-					echo '</div>';
-				}
-				?>
+					<?php
+					$pic_name = explode(',',$listActivity['ac_pict']);
+					for($i=0;$i < count($pic_name) ; $i++){
+						$showPicture = ($pic_name[0] == "")?'no-image.jpg': $pic_name[$i];
+						echo '<div class="col-sm-6 col-md-3"  style="width:304px;height:236xp;" > ';
+						echo '<div class="thumbnail" >';
+						echo '<a class="fancybox" href="'.base_url().'assets/files_upload/'.$showPicture.'" data-fancybox-group="gallery" >';
+						echo '<img class="img-responsive img-hover" src="'.base_url().'assets/files_upload/'.$showPicture.'" alt=""  > ';
+						echo '</a>';
+						echo '</div>';
+						echo '</div>';
+					}
+					?>
+				</div>
 			</div>
 		</div>
 
