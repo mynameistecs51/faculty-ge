@@ -14,7 +14,7 @@ class News extends CI_Controller {
 
 	public function index()
 	{
-		$TEXTTITLE = "<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i> ระบบประกาศข่าว";
+		$TEXTTITLE = "<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i> ระบบจัดการข่าว";
 		$PAGE = "/News/index";
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
@@ -27,6 +27,21 @@ class News extends CI_Controller {
 		$this->data['footer'] = $this->template->getFooter(base_url());
 		$this->data['datenow'] = $this->datenow;
 		$this->data['dt_now'] = $this->dt_now;
+		$this->data['controller'] = $this->ctl;
+		$this->data['url_addNews'] = base_url().$this->ctl.'/addNews/';
+	}
+
+	public function addNews()
+	{
+		$TEXTTITLE = "เพิ่มข่าวสาร";
+		$PAGE = "/News/addNews";
+		$this->mainpage($TEXTTITLE);
+		$this->load->view($PAGE,$this->data);
+	}
+
+	public function saveAdd()
+	{
+		print_r($_POST);
 	}
 
 }

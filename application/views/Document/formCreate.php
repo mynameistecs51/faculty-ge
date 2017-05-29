@@ -1,4 +1,4 @@
-<?php //echo $header; ?>
+
 <!-- <div class="container" > -->
 <div class="row"  >
 	<div class="form-group col-sm-12">
@@ -106,4 +106,4 @@
 		});
 	}
 </script>
-<?php //echo $footer; ?>
+

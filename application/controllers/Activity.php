@@ -68,9 +68,10 @@ class Activity extends CI_Controller {
 			);
 
 		$insert = $this->mdl_activity->insertdata($data);
-		$massage = "บันทึกข้อมูล เรียบร้อย !";
-		$url = "Activity";
-		$this->alert($massage,$url);
+		// $massage = "บันทึกข้อมูล เรียบร้อย !";
+		// $url = "Activity";
+		// $this->alert($massage,$url);
+		redirect($this->ctl,'refresh');
 
 	}
 
@@ -105,7 +106,7 @@ class Activity extends CI_Controller {
 			$listActivity = array(
 				'ac_id' => $rowAct['ac_id'],
 				'ac_title'  => $rowAct['ac_title'],
-				'ac_detail' => $rowAct['ac_detail'],
+				'ac_detail' => str_replace("<br>", "",$rowAct['ac_detail']),
 				'ac_pict'   => $rowAct['ac_pict'],
 				'dt_create' => $rowAct['dt_create'],
 				'ip_create' => $rowAct['ip_create']
@@ -127,17 +128,17 @@ class Activity extends CI_Controller {
 		$detail = $this->input->post('input_detail');
 		$pictureAll = $this->input->post('pictureAll');
 		//ถ้ามีการเพิ่มรูปภาพ
-		if($_FILES['images']){
+		if($_FILES['images']['size'] != ''){
 			$images= $this->_upload_files('images');
 			for($i=0; $i < count($images); $i++ ){
-				array_push($addPict,$images[$i]['file_name']);
+				 array_push($addPict,$images[$i]['file_name']);
 			}
-			array_push($addPict,$pictureAll);
+			 array_push($addPict,$pictureAll);
 		}
 		$data = array(
 			'ac_title'  => $title,
-			'ac_detail' => $detail,
-			'ac_pict'   => implode(',',$addPict),
+			'ac_detail' => str_replace("\n", "<br>",$detail),
+			'ac_pict'   => $datafile =(empty($_FILES['images']['size']))?$pictureAll:implode(',',$addPict),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
@@ -152,21 +153,6 @@ class Activity extends CI_Controller {
 		$numPict = $this->input->post('numPict');
 
 		$del_picture = $this->mdl_activity->delPicture($ac_id,$pictureName,$numPict);
-	}
-
-	public function showArray()
-	{
-		$num = array();
-		$a = array(1,'a',3,4,5);
-		for($i=0;$i < count($a); $i++){
-			array_push($num,array('number' => $i,'data'=>$a[$i]));
-		}
-		array_push($a,'d','c');
-		echo "<pre>";
-		echo implode(',',$a);
-		// unset($a[2]);
-		// print_r($a);
-
 	}
 
 	public function deleteActivity()

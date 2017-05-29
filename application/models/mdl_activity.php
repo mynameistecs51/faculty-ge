@@ -11,7 +11,10 @@ class Mdl_activity extends CI_Model {
 
 	public function getAll_activity()
 	{
-		$data  = $this->db->get('activity');
+		$this->db->select('ac_id,ac_title,ac_detail,ac_pict,dt_create,ip_create');
+		$this->db->order_by('ac_id','DESC');
+		$this->db->from('activity');
+		$data  = $this->db->get();
 		return $data->result_array();
 	}
 

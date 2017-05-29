@@ -47,17 +47,14 @@
 	</div>
 	<hr>
 	<?php
-	$picture = ($listActivity['ac_pict'] == '')?'no-image.jpg':explode(',',$listActivity['ac_pict']);
+	$picture = explode(',',$listActivity['ac_pict']);
 	$numpict = array();
 	for($i=0; $i < count($picture); $i++):
 		array_push($numpict,array('number'=>$i,'namePict'=>$picture[$i]));
 	?>
 	<div class="col-sm-6 col-md-3"  style="width:304px;height:236xp;">
 		<div class="show_images thumbnail">
-			<img  src="<?php echo base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
-			<!-- <button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal">
-				update
-			</button> -->
+			<img  src="<?php echo $show = (empty($picture[0]))? base_url().'assets/images/no-image.jpg':base_url().'assets/files_upload/'.$numpict[$i]['namePict'];?>" alt="" data-holder-rendered="true">
 			<button type="button" class ="delete btn btn-primary btn-sm" data-id="<?php echo $listActivity['ac_id']; ?>" data-pict="<?php echo $numpict[$i]['namePict']; ?>" data-numpict="<?php echo $numpict[$i]['number']; ?>">
 				<i class="fa fa-trash" aria-hidden="true"></i> delete
 			</button>

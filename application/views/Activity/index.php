@@ -82,21 +82,27 @@
 
 	function 	fndelete() {
 		$('.btn_delete').click(function(){
-			$.ajax({
-				url: '<?php echo base_url().$controller."/deleteActivity/";?>',
-				type: "post",
-				data: {'ac_id': $(this).val()},
-				success: function()
-				{
-					alert("ลบข้อมูลเสร็จเรียบร้อย.");
-					window.location.reload();
-				},
-				error:function(err){
-					alert("เกิดข้อผิดพลาดในการลบข้อมูล");
-					window.location.reload();
-				}
-			});
+			var chk =  confirm('ยืนยันการลบ ?');
+			if(chk == true){
+				$.ajax({
+					url: '<?php echo base_url().$controller."/deleteActivity/";?>',
+					type: "post",
+					data: {'ac_id': $(this).val()},
+					success: function()
+					{
+						// alert("ลบข้อมูลเสร็จเรียบร้อย.");
+						window.location.reload();
+					},
+					error:function(err){
+						alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+						window.location.reload();
+					}
+				});
+			}else{
+				return false;
+			}
 		});
+
 	}
 
 	function add(){
