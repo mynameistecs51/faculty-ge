@@ -3,11 +3,15 @@
 	<!-- news -->
 	<div class="col-sm-6 pull-left" >
 		<div class="col-sm-12 well" style="height: 420px;overflow-y: scroll;">
-			<p>	<h3> <i class="fa fa-newspaper-o"> ข่าวสาร</i></h3></p>
-			<div class="alert alert-info alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-			</div>
+			<p style="margin-top: -30px;padding: 0px;">	<h3> <i class="fa fa-newspaper-o"> ข่าวสาร</i></h3></p>
+			<?php foreach ($getNews as $keyNews => $rowNews): ?>
+				<div class="alert alert-info alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<!-- <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features! -->
+					<?php echo $rowNews['news_title']; ?>
+					<div class="pull-right"><?php echo $rowNews['dateNews']; ?></div>
+				</div>
+			<?php endforeach ?>
 		</div>
 	</div>
 	<!-- /.news -->
@@ -15,7 +19,7 @@
 	<!-- ทุน -->
 	<div class="col-sm-6 pull-right">
 		<div class="col-sm-12 well" style="height: 420px;overflow-y: scroll;">
-			<p>	<h3><i class="fa fa-money"> แหล่งทุน</i></h3></p>
+			<p style="margin-top: -30px;padding: 0px;">	<h3><i class="fa fa-money"> แหล่งทุน</i></h3></p>
 			<div class=" alert alert-info alert-dismissable">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!

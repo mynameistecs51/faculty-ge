@@ -7,13 +7,15 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('mdl_activity');
+		$this->load->model('mdl_news');
 	}
 
 	public function index()
 	{
 		$TEXTTITLE = "<i class=\"fa fa-fw fa-book\"></i>ทั่วไป";
 		$PAGE = 'index';
-		$this->data['getAll_activity'] = $this->getAll_activity();
+		$this->data['getAll_activity'] = $this->mdl_activity->getAll_activity(); //$this->getAll_activity();
+		$this->data['getNews'] = $this->mdl_news->getNews();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}

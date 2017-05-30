@@ -71,7 +71,7 @@ class Document extends CI_Controller {
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			);
-		$this->mdl_document->insertDoc($data);
+		$this->mdl_document->insertDoc($this->security->xss_clean($data));
 		redirect('Document','refresh');
 	}
 

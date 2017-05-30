@@ -67,7 +67,7 @@ class Activity extends CI_Controller {
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
 
-		$insert = $this->mdl_activity->insertdata($data);
+		$insert = $this->mdl_activity->insertdata($this->security->xss_clean($data));
 		// $massage = "บันทึกข้อมูล เรียบร้อย !";
 		// $url = "Activity";
 		// $this->alert($massage,$url);
@@ -131,9 +131,9 @@ class Activity extends CI_Controller {
 		if($_FILES['images']['size'] != ''){
 			$images= $this->_upload_files('images');
 			for($i=0; $i < count($images); $i++ ){
-				 array_push($addPict,$images[$i]['file_name']);
+				array_push($addPict,$images[$i]['file_name']);
 			}
-			 array_push($addPict,$pictureAll);
+			array_push($addPict,$pictureAll);
 		}
 		$data = array(
 			'ac_title'  => $title,
@@ -142,7 +142,7 @@ class Activity extends CI_Controller {
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
-		$this->mdl_activity->saveEdit($ac_id,$data);
+		$this->mdl_activity->saveEdit($ac_id,$this->security->xss_clean($data));
 		redirect($this->ctl.'/showActivity/'.$ac_id,'refresh');
 	}
 
@@ -167,9 +167,12 @@ class Activity extends CI_Controller {
 		$config['max_size']	     = '0';
 		$config['remove_spaces'] = TRUE;
 		$config['file_name']     = $file_name;
-		$config['image_width']     = 800;
-		$config['image_height']    = 600;
+		$config['width'] = 250;
+		$config['height'] = 250;
+		$config['overwrite'] = TRUE;
+		$resize['maintain_ratio'] = true;
 
+		// $this->load->library('upload');
 		$this->load->library('upload');
 		$this->upload->initialize($config);
 		$files = array();

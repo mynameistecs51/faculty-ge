@@ -6,6 +6,7 @@ class News extends CI_Controller {
 	{
 		parent::__construct();
 		$this->ctl = "News";
+		$this->load->model('mdl_news');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
 		$this->datenow = $now->format('d/m/').($now->format('Y')+543);
@@ -16,6 +17,7 @@ class News extends CI_Controller {
 	{
 		$TEXTTITLE = "<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i> ระบบจัดการข่าว";
 		$PAGE = "/News/index";
+		$this->data['getNews'] = $this->mdl_news->getNews();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 
@@ -41,7 +43,17 @@ class News extends CI_Controller {
 
 	public function saveAdd()
 	{
-		print_r($_POST);
+		$data = array(
+			'id_news' => '',
+			'news_title' => $this->input->post('title'),
+			'news_detail' => $this->input->post('detail'),
+			'dt_create' => $this->dt_now,
+			'ip_create' => $_SERVER['REMOTE_ADDR'],
+			'id_member' =>'1',
+			);
+		$insert = $this->mdl_news->saveAdd($this->security->xss_clean($data));
+		echo "<pre>";
+		print_r($insert);
 	}
 
 }

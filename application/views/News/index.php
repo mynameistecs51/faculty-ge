@@ -17,17 +17,19 @@
 		<table id="example" class="display" cellspacing="0" width="100%" >
 			<thead style="background-color:  #cccccc;">
 				<tr>
-					<th style="text-align:center;"  class="col-sm-2">ข่าวประชาสัมพันธ์</th>
-					<th style="text-align:center;" class="col-sm-3">วันที่</th>
+					<th style="text-align:center;"  class="col-sm-8">ข่าวประชาสัมพันธ์</th>
+					<th style="text-align:center;" class="col-sm-1">วันที่</th>
 					<th style="text-align:center;" class="col-sm-1">ลบ/แก้ไข</th>
 				</tr>
 			</thead>
 			<tbody>
+			<?php foreach ($getNews as $keyNews => $rowNews): ?>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><?php echo $rowNews['news_title']; ?></td>
+					<td class="text-center"><?php echo $rowNews['dateNews']; ?></td>
+					<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> ลบ</button></td>
 				</tr>
+			<?php endforeach ?>
 			</tbody>
 		</table>
 	</div>

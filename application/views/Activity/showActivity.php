@@ -44,7 +44,8 @@
 		<div class="panel panel-info">
 			<div class="panel-heading"><?php echo $listActivity['ac_title']; ?></div>
 			<div class="panel-body">
-				<div class="col-sm-12">
+				<div class="col-sm-12" style="text-align: justify;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<?php echo $listActivity['ac_detail']; ?>
 					<hr>
 
