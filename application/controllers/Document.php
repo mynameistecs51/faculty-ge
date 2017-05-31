@@ -29,8 +29,8 @@ class Document extends CI_Controller {
 		$this->data['footer'] = $this->template->getFooter(base_url());
 		$this->data['controller'] = $this->ctl;
 		$this->data["datenow"] =$this->datenow;
-		$this->data['url_add']    = base_url().$this->ctl.'/formCreate/';
-		$this->data['url_update']   = base_url().$this->ctl.'/formUpdate/';
+		$this->data['url_add']    = base_url().'index.php/'.$this->ctl.'/formCreate/';
+		$this->data['url_update']   = base_url().'index.php/'.$this->ctl.'/formUpdate/';
 	}
 
 	public function test()

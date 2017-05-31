@@ -10,11 +10,11 @@
 		<div class="col-sm-4">
 			<input type="text" name='lastname' class="form-control " id="lastname" placeholder="ทำวิจัย" required  oninvalid="this.setCustomValidity('กรุณากรอกข้อมูล ')" oninput="setCustomValidity('')">
 		</div>
-		<div class="col-sm-1">
+		<!-- <div class="col-sm-1">
 			<button type="button" class="btn btn-warning btn_plus" id="plus0" title="เพิ่มนักวิจัย">
 				<i class="fa fa-plus"></i>
 			</button>
-		</div>
+		</div> -->
 	</div>
 	<div class="show_add">
 		<!-- show data button plus click -->

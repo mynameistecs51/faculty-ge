@@ -88,19 +88,19 @@
 
 	function openfileOutline(){
 		$('.fileoutline').click(function(){
-			window.open("<?php echo base_url('Document/PDF/'.$dataDoc['doc_outline']); ?>",'_blank');
+			window.open("<?php echo base_url('index.php/Document/PDF/'.$dataDoc['doc_outline']); ?>",'_blank');
 		});
 	}
 
 	function openfileProgress() {
 		$('.fileprogress').click(function(){
-			window.open("<?php echo base_url('Document/PDF/'.$dataDoc['doc_progress']); ?>",'_blank');
+			window.open("<?php echo base_url('index.php/Document/PDF/'.$dataDoc['doc_progress']); ?>",'_blank');
 		});
 	}
 
 	function openfileSuccess() {
 		$('.filesuccess').click(function(){
-			window.open("<?php echo base_url('Document/PDF/'.$dataDoc['doc_filesuccess']); ?>",'_blank');
+			window.open("<?php echo base_url('index.php/Document/PDF/'.$dataDoc['doc_filesuccess']); ?>",'_blank');
 		});
 	}
 

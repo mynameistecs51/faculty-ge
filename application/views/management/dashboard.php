@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<a href="#">
+<!-- <a href="#">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #F6E3CE;">
 			<i class="fa fa fa-file-text fa-5x"></i>
@@ -8,7 +8,7 @@
 			</div>
 		</div>
 	</div>
-</a>
+</a> -->
 
 <!-- อัพโหลด วิจัย -->
 <a href="Document">
@@ -23,7 +23,7 @@
 </a>
 
 <!--  -->
-<a href="#">
+<!-- <a href="#">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #D0F5A9;">
 			<i class="fa fa fa-file-pdf-o fa-5x"></i>
@@ -32,10 +32,10 @@
 			</div>
 		</div>
 	</div>
-</a>
+</a> -->
 
 <!--  -->
-<a href="#">
+<!-- <a href="#">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #F4FA58;">
 			<i class="fa fa fa-file fa-5x"></i>
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 	</div>
-</a>
+</a> -->
 
 <!--  -->
 <a href="Activity">
@@ -74,7 +74,7 @@
 <a href="#">
 	<div class="col-sm-4 col-md-3">
 		<div class="thumbnail text-center " style="background-color: #F6D8CE;">
-			<!-- <i class="fa fa fa-bullhorn fa-5x"> </i>--><i class="fa fa-money fa-5x" aria-hidden="true"></i>
+			<i class="fa fa-money fa-5x" aria-hidden="true"></i>
 			<div class="caption">
 				<p>ประกาศ<br> แหล่งทุน</p>
 			</div>

@@ -26,12 +26,11 @@ class Dashboard extends CI_Controller {
 		$this->data['footer'] = $this->template->getFooter(base_url());
 	}
 
-	public function getAll_activity()
+	public function test()
 	{
-		$this->data  = $this->mdl_activity->getAll_activity();
-		return $this->data;
+		echo exec('hostname')."<br>";
+		echo  exec('whoami');
 	}
-
 }
 
 /* End of file Ctl_dashboard.php */
