@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->ctl = 'Dashboard';
 		$this->load->model('mdl_activity');
 		$this->load->model('mdl_news');
 	}
@@ -24,6 +25,7 @@ class Dashboard extends CI_Controller {
 	{
 		$this->data['header'] = $this->template->getHeader(base_url(),$TEXTTITLE);
 		$this->data['footer'] = $this->template->getFooter(base_url());
+		$this->data['controller'] = 'index.php/'.$this->ctl;
 	}
 
 	public function test()

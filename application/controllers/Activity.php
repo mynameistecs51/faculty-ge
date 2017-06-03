@@ -27,7 +27,7 @@ class Activity extends CI_Controller {
 	{
 		$this->data['header']     = $this->template->getHeader(base_url(),$TEXTTITLE);
 		$this->data['footer']     = $this->template->getFooter(base_url());
-		$this->data['controller'] = $this->ctl;
+		$this->data['controller'] = 'index.php/'.$this->ctl;
 		$this->data['url_add']    = base_url().'index.php/'.$this->ctl.'/add/';
 		$this->data['url_edit']   = base_url().'index.php/'.$this->ctl.'/edit/';
 	}

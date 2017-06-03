@@ -177,8 +177,7 @@ class Template
 									<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 								</li>
 								<li>
-									<!-- <a href="'.base_url().'management"><i class="fa fa-fw fa-gear"></i> Settings</a>-->
-									'.anchor('management', 'Setting', 'class="fa fa-fw fa-gear"').'
+									<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
 								</li>
 								<li class="divider"></li>
 								<li>
@@ -246,63 +245,54 @@ class Template
 		return '
 		<ul class="nav navbar-nav side-nav ">
 			<li >
-				<!-- <a href="'.base_url().'Dashboard" ><i class="fa fa-fw fa-dashboard"></i> หน้าแรก</a>-->
-				'.anchor('/', ' หน้าแรก', 'class="fa fa-fw fa-dashboard col-sm-3" style="left:0px;margin-left:0px;float-left:0px;"').'
+				<a href="'.base_url().'" ><i class="fa fa-fw fa-dashboard"></i> หน้าแรก</a>
 			</li>
 			<li>
-				<!-- <a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a> -->
-				'.anchor('#', ' ประกาศทุน', 'class="fa fa-fw fa-bullhorn"').'
+				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
 			</li>
-			<!--
+			<!--<li>
+			<a href="'.base_url().'Document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
+		</li>-->
+		<li>
+			<!-- <a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a> -->		</li>
 			<li>
-				<a href="'.base_url().'Document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
-			</li>
-			-->
-			<li>
-				<!-- <a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a> -->
-				'.anchor('#', ' งบประมาณ', 'class="fa fa-fw fa-money"').'
+				<a href="http://rdi.udru.ac.th/" target="_blank"><i class="fa fa-fw fa-money"></i> สถาบันวิจัย มรภ.อุดรธานี</a>
 			</li>
 			<li>
-				<!-- <a href="http://rdi.udru.ac.th/" target="_blank"><i class="fa fa-fw fa-money"></i> สถาบันวิจัย มรภ.อุดรธานี</a> -->
-				'.anchor('http://rdi.udru.ac.th/', ' สถาบันวิจัย มรภ.อุดรธานี', 'class="fa fa-fw fa-money" target="_blank"').'
+				<a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WPgqDNryjIU" target="_blank"><i class="fa fa-fw fa-book"></i> วช. </a>
 			</li>
 			<li>
-				<!-- <a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WPgqDNryjIU" target="_blank"><i class="fa fa-fw fa-book"></i> วช. </a> -->
-				'.anchor('http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WPgqDNryjIU', ' วช.','class="fa fa-fw fa-book" target="_blank" ').'
-			</li>
-			<li>
-				<!-- <a href="http://www.mua.go.th/" target="_blank"><i class="fa fa-fw fa-book"></i> สกอ. </a> -->
-				'.anchor('http://www.mua.go.th/', ' สกอ. ', 'class="fa fa-fw fa-book" target="_blank"').'
+				<a href="http://www.mua.go.th/" target="_blank"><i class="fa fa-fw fa-book"></i> สกอ. </a>
 			</li>
 			<!-- <li>
-				<a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-			</li>
-			<li>
-				<a href="#"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-			</li>
-			<li class="divider"> </li>
-			<li>
-				<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-				<ul id="demo" class="collapse">
-					<li>
-						<a href="#">Dropdown Item</a>
-					</li>
-					<li>
-						<a href="#">Dropdown Item</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-			</li>
-			<li>
-				<a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-			</li>
-			-->
-		</ul>
+			<a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+		</li>
+		<li>
+			<a href="#"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+		</li>
+		<li class="divider"> </li>
+		<li>
+			<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+			<ul id="demo" class="collapse">
+				<li>
+					<a href="#">Dropdown Item</a>
+				</li>
+				<li>
+					<a href="#">Dropdown Item</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+		</li>
+		<li>
+			<a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+		</li>
+	-->
+</ul>
 
-		';
-	}
+';
+}
 }
 
 /* End of file template.php */

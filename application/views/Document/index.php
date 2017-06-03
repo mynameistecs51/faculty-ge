@@ -86,13 +86,13 @@
 
 	function add(){
 		$('#add').click(function(){
-			load_page("<?php echo $url_add; ?>","เพิ่มข้อมูล :: งานวิจัย ::","<?php echo base_url().'index.php/'.$controller.'/createDoc/';?>");
+			load_page("<?php echo $url_add; ?>","เพิ่มข้อมูล :: งานวิจัย ::","<?php echo base_url().$controller.'/createDoc/';?>");
 		});
 	}
 
 	function fnupdate() {
 		$('.btn_update').click(function(){
-			load_page("<?php echo $url_update.'/'; ?>"+$(this).data('update'),"อัพเดทข้อมูล :: งานวิจัย ::","<?php echo base_url().'index.php/'.$controller.'/saveUpdate';?>");
+			load_page("<?php echo $url_update.'/'; ?>"+$(this).data('update'),"อัพเดทข้อมูล :: งานวิจัย ::","<?php echo base_url().$controller.'/saveUpdate';?>");
 			// alert("UPDATE"+$(this).data('update'));
 		});
 	}
@@ -103,13 +103,13 @@
 			var cfm = confirm("ยืนยันการ ลบ!");
 			if(cfm ){
 				$.ajax({
-					url: '<?php echo base_url().'index.php/'.$controller.'/deleteDoc' ?>',
+					url: '<?php echo base_url().$controller.'/deleteDoc' ?>',
 					type: 'POST',
 				// dataType: 'json',
 				data: {'del_id': $(this).data('delete')},
 				success: function(rs)
 				{
-					alert("ลบข้อมูลเสร็จเรียบร้อย.");
+					// alert("ลบข้อมูลเสร็จเรียบร้อย.");
 					window.location.reload();
 				},
 				error:function(err){

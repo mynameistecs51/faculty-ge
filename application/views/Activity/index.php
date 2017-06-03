@@ -36,7 +36,7 @@
 						<td style="text-align:center;">
 							<?php echo date("d-M-Y",strtotime($activity['dt_create'])); ?>
 						</td>
-						<td style="text-align:center;">
+						<td style="text-align:center;" class="col-sm-2">
 							<button class="btn btn-warning btn_edit" value="<?php echo $activity['ac_id']; ?>" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>แก้ไข</button>
 							<button class="btn btn-danger btn_delete" value="<?php echo $activity['ac_id']; ?>" title="Delete"><i class="fa fa-bitbucket" aria-hidden="true"></i>ลบ</button>
 						</td>
