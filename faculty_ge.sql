@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2017 at 06:07 PM
+-- Generation Time: Jun 12, 2017 at 03:45 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -88,18 +88,16 @@ CREATE TABLE IF NOT EXISTS `news` (
   `dt_create` datetime NOT NULL,
   `ip_create` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `id_member` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id_news`, `news_title`, `news_detail`, `dt_create`, `ip_create`, `id_member`) VALUES
-(1, 't', '[removed]aler("OK");[removed]\r\n', '2017-05-30 15:08:19', '::1', 1),
-(2, 'test', 'test\r\nasdfasdf', '2017-05-30 16:01:32', '::1', 1),
-(3, 'ts', '[removed]aler("OK");[removed]\r\n', '2017-05-30 15:08:19', '::1', 1),
 (4, 'testsss', 'test\r\nasdfasdf', '2017-05-30 16:01:32', '::1', 1),
-(5, 'testsss', 'test\r\nasdfasdf   sssasdf', '2017-05-30 16:01:32', '::1', 1);
+(5, 'testsss', 'test\r\nasdfasdf   sssasdf', '2017-05-30 16:01:32', '::1', 1),
+(6, 'tsssttttssssaaaa', 'tsss\r\nssss', '2017-06-12 15:30:45', '::1', 1);
 
 --
 -- Indexes for dumped tables
@@ -141,7 +139,7 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

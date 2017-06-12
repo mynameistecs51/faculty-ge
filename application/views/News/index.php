@@ -19,17 +19,21 @@
 				<tr>
 					<th style="text-align:center;"  class="col-sm-8">ข่าวประชาสัมพันธ์</th>
 					<th style="text-align:center;" class="col-sm-1">วันที่</th>
-					<th style="text-align:center;" class="col-sm-1">ลบ/แก้ไข</th>
+					<th style="text-align:center;" class="col-sm-2 text-center">ลบ/แก้ไข</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($getNews as $keyNews => $rowNews): ?>
-				<tr>
-					<td><?php echo $rowNews['news_title']; ?></td>
-					<td class="text-center"><?php echo $rowNews['dateNews']; ?></td>
-					<td><button class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> ลบ</button></td>
-				</tr>
-			<?php endforeach ?>
+				<?php foreach ($getNews as $keyNews => $rowNews): ?>
+					<tr>
+						<td><?php echo $rowNews['news_title']; ?></td>
+						<td class="text-center"><?php echo $rowNews['dateNews']; ?></td>
+						<td class='text-center'>
+							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-trash"></i> ลบ</button>
+							&nbsp;
+							<button class="btn btn-danger btn-xs btn_edit" data-editid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
+						</td>
+					</tr>
+				<?php endforeach ?>
 			</tbody>
 		</table>
 	</div>
@@ -51,23 +55,24 @@
 			},
 			"lengthMenu": [ 25,50, 100, "All"],
 			scrollX: true,//2
+			scrollY:true,
 			responsive: true,
 		});
 
 		add();
-		// fnupdate();
+		fnupdate();
 		fndelete();
 	} );
 
 	function add(){
 		$('#add').click(function(){
-			load_page("<?php echo $url_addNews; ?>","เพิ่มข้อมูล :: งานวิจัย ::","<?php echo base_url().$controller.'/saveAdd/';?>");
+			load_page("<?php echo $url_addNews; ?>","เพิ่มข้อมูล :: ข่าวสาร ::","<?php echo base_url().$controller.'/saveAdd/';?>");
 		});
 	}
 
 	function fnupdate() {
-		$('.btn_update').click(function(){
-			load_page("#"+$(this).data('update'),"อัพเดทข้อมูล :: งานวิจัย ::","#");
+		$('.btn_edit').click(function(){
+			load_page("<?php echo base_url().'index.php/News/editNews/';?>"+$(this).data('editid'),"อัพเดทข้อมูล :: ข้อมูลข่าวสาร ::","<?php echo $saveEdit; ?>");
 			// alert("UPDATE"+$(this).data('update'));
 		});
 	}
@@ -78,17 +83,17 @@
 			var cfm = confirm("ยืนยันการ ลบ!");
 			if(cfm ){
 				$.ajax({
-					url: '<?php echo base_url().$controller.'/deleteDoc' ?>',
+					url: '<?php echo $url_deleteNews;?>',
 					type: 'POST',
 				// dataType: 'json',
-				data: {'del_id': $(this).data('delete')},
+				data: {'id_news': $(this).data('delid')},
 				success: function(rs)
 				{
-					alert("ลบข้อมูลเสร็จเรียบร้อย.");
+					// alert("ลบข้อมูลเสร็จเรียบร้อย.");
 					window.location.reload();
 				},
 				error:function(err){
-					alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+					alert("เกิดข้อผิดพลาดในการลบข้อมูล" +err);
 					window.location.reload();
 				}
 			});

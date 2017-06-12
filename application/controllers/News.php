@@ -20,7 +20,15 @@ class News extends CI_Controller {
 		$this->data['getNews'] = $this->mdl_news->getNews();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
+	}
 
+	public function readNews($idNews)
+	{
+		$this->data['dataNews'] = $this->mdl_news->getNewsID($idNews);
+		$TEXTTITLE = "<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i> ".$this->data['dataNews'][0]['news_title'];
+		$PAGE = "/News/readNews";
+		$this->mainpage($TEXTTITLE);
+		$this->load->view($PAGE,$this->data);
 	}
 
 	public function mainpage($TEXTTITLE)
@@ -30,7 +38,10 @@ class News extends CI_Controller {
 		$this->data['datenow'] = $this->datenow;
 		$this->data['dt_now'] = $this->dt_now;
 		$this->data['controller'] = $this->ctl;
-		$this->data['url_addNews'] = base_url().$this->ctl.'/addNews/';
+		$this->data['url_addNews'] = base_url().'index.php/'.$this->ctl.'/addNews/';
+		$this->data['url_deleteNews'] = base_url().'index.php/'.$this->ctl.'/deleteNews/';
+		$this->data['saveEdit'] = base_url().'index.php/'.$this->ctl.'/saveEdit/';
+
 	}
 
 	public function addNews()
@@ -46,14 +57,47 @@ class News extends CI_Controller {
 		$data = array(
 			'id_news' => '',
 			'news_title' => $this->input->post('title'),
-			'news_detail' => $this->input->post('detail'),
+			'news_detail' => str_replace("\n", "<br>",$this->input->post('detail')),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			'id_member' =>'1',
 			);
 		$insert = $this->mdl_news->saveAdd($this->security->xss_clean($data));
-		echo "<pre>";
-		print_r($insert);
+		// echo "<pre>";
+		// print_r($insert);
+		redirect('News/index','refresh');
+	}
+
+	public function deleteNews()
+	{
+		$idNews = $this->input->post('id_news');
+		$this->db->where('id_news', $idNews);
+		$del = $this->db->delete('news');
+
+		redirect('News/index/','refresh');
+	}
+
+	public function editNews($editid)
+	{
+		$TEXTTITLE = "แก้ไข ข่าวสาร";
+		$PAGE = "/News/editNews";
+		$this->data['news_detail'] = $this->mdl_news->getNewsID($editid);
+		$this->mainpage($TEXTTITLE);
+		$this->load->view($PAGE,$this->data);
+	}
+
+	public function saveEdit()
+	{
+		$idNews = $this->input->post('id_news');
+		$data = array(
+			'news_title' => $this->security->xss_clean($this->input->post('title')),
+			'news_detail' =>  str_replace("\n", "<br>",$this->input->post('detail')),
+			'dt_create' => $this->dt_now,
+			'ip_create' => $_SERVER['REMOTE_ADDR'],
+			'id_member' =>'1',
+			);
+		$this->mdl_news->saveEdit($idNews,$this->security->xss_clean($data));
+		redirect('News/index','refresh');
 	}
 
 }

@@ -67,11 +67,16 @@ class Template
 					}).parent().addClass(\'active\');
 				});
 			</script>
+			<style type="text/css">
+				body{
+					background:#E6E6E6;
+				}
+			</style>
 		</head>
 
 		<body style ="height:100%;">
 
-			<div id="wrapper" >
+			 <div id="wrapper" >
 
 				<!-- Navigation -->
 				<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -83,7 +88,7 @@ class Template
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="'.base_url().'">สำนักวิชาศึกษาทั่วไป <br> มหาวิทยาลัยราชภัฏอุดรธานี</a>
+						<a class="navbar-brand" href="'.base_url().'">สำนักวิชาศึกษาทั่วไป  มหาวิทยาลัยราชภัฏอุดรธานี</a>
 					</div>
 					<!-- Top Menu Items -->
 					<ul class="nav navbar-right top-nav">
@@ -199,7 +204,7 @@ class Template
 
 						<!-- Page Heading -->
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-sm-12">
 								<h1 class="page-header">
 									'. $TEXTTITLE.'
 								</h1>
