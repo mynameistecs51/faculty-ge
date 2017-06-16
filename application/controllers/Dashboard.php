@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$TEXTTITLE = "<i class=\"fa fa-fw fa-book\"></i>ทั่วไป";
+		$TEXTTITLE = "<i class=\"glyphicon glyphicon-hand-right\"></i>  ทั่วไป";
 		$PAGE = 'index';
 		$this->data['getAll_activity'] = $this->mdl_activity->getAll_activity(); //$this->getAll_activity();
 		$this->data['getNews'] = $this->mdl_news->getNews();

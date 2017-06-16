@@ -31,7 +31,7 @@
 <div class="col-sm-6 ">
 	<div class="col-sm-12 well" style="height: 420px;overflow-y: scroll;">
 		<p style="margin-top: -30px;padding: 0px;">	<h3><i class="fa fa-money"> แหล่งทุน</i></h3></p>
-		<div class=" alert alert-info alert-dismissable">
+		<div class=" alert alert-warning alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
 		</div>

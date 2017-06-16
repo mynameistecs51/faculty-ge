@@ -10,11 +10,12 @@ class Template
 		$this->ci =& get_instance();
 	}
 
+
 	public function getHeader($base_url,$TEXTTITLE)
 	{
 		return '
 		<!DOCTYPE html>
-		<html lang="en">
+		<html>
 		<head>
 
 			<meta charset="utf-8">
@@ -23,281 +24,142 @@ class Template
 			<meta name="description" content="">
 			<meta name="author" content="">
 
-			<title>สำนักวิชาศึกษาทั่วไป</title>
+			<title> สำนักวิชาศึกษาทั่วไป</title>
 
 			<!-- Bootstrap Core CSS -->
-			<link href="'.$base_url.'assets/css/bootstrap.min.css" rel="stylesheet">
-
-			<!-- Custom CSS -->
-			<link href="'.$base_url.'assets/css/sb-admin.css" rel="stylesheet">
-
-			<!-- Morris Charts CSS -->
-			<link href="'.$base_url.'assets/css/plugins/morris.css" rel="stylesheet">
-
-			<!-- Custom Fonts -->
-			<link href="'.$base_url.'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-			<!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
-			<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-			<![endif]-->
-
-			<!-- jQuery -->
-			<script src="'.$base_url.'assets/js/jquery.js"></script>
+			<link href="'.$base_url.'assets/css/bootstrap.css" rel="stylesheet">
+			<!-- <link href="'.$base_url.'assets/css/bootstrap.min.css" rel="stylesheet">-->
 
 			<!-- Bootstrap DataTable CSS -->
 			<link href="'.$base_url.'assets/dataTable/css/jquery.dataTables.min.css" rel="stylesheet">
 			<!-- ./ End css -->
+
+			<!-- Jquery UI -->
+			<link href="'.$base_url.'assets/css/jquery-ui.min.css" rel="stylesheet">
+
+			<!-- Custom Fonts -->
+			<link href="'.$base_url.'assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+			<script src="'.$base_url.'assets/js/jquery.min.js"></script>
+			<style >
+				@font-face {
+					font-family: TH_Charmonman;
+					src: url("'.$base_url.'assets/fonts/TH Charmonman.ttf");
+				}
+
+			#brandner{
+				font-family: TH_Charmonman;
+				font-size: 30px;
+				padding-left:30px;
+				font-weight: bold;
+				color:white;
+			}
+			title{
+				font-family: TH_Charmonman;
+			}
+			body {
+				background:#fff;
+				border : 1px solid #D9DEE4;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<div class="col-sm-12"  >
+			<div class="row">
+				<nav class="navbar bg-primary " >
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" id="brandner"> สำนักวิชาศึกษาทั่วไป</a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" >
+							'.$this->menu().'
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+			</div>
+			<!-- show body -->
+			<div class="row   style="background-color:none;padding: 20px;">
+
+				<div class="content col-sm-3" >  <!--   menu left -->
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-home" aria-hidden="true"></i> เมนู</div>
+						<div class="panel-body ">
+							<div>'.anchor("/", "<h4><i class=\"glyphicon glyphicon-hand-right\"></i> หน้าแรก</h4>").'</div>
+							<div>'.anchor("/", "<h4><i class=\"glyphicon glyphicon-hand-right\"></i> ข่าวสาร</h4>").'</div>
+							<div>'.anchor("/", "<h4><i class=\"glyphicon glyphicon-hand-right\"></i> แหล่งทุน</h4>").'</div>
+							<div>'.anchor("/", "<h4><i class=\"glyphicon glyphicon-hand-right\"></i> สถาบันวิจัย มรภ.อุดรธานี</h4>").'</div>
+							<div>'.anchor("http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU", "<h4><i class=\"glyphicon glyphicon-hand-right\"></i> วช.</h4>",'target="_blank"').'</div>
+							<div>'.anchor("http://www.mua.go.th/ohec/", "<h4><i class=\"glyphicon glyphicon-hand-right\"></i> สกอ.</h4>",'target="_blank"').'</div>
+						</div>
+					</div>
+				</div> <!-- ./end content menu left -->
+
+				<!-- show body -->
+				<div class="content col-sm-9" >
+
+					<div class="row" >
+						<div class="col-sm-12" >
+							<h1 class="page-header" style="margin-top:0px;">
+								'. $TEXTTITLE.'
+							</h1>
+						</div>
+					</div>
+					<!-- /.row -->
+					';
+				}
+
+				public function getFooter($base_url)
+				{
+					return '
+				</div> <!-- /. end content body -->
+			</div>	<!-- end /. row -->
+			<!-- Bootstrap Core JS -->
+			<script src="'.$base_url.'assets/js/jquery.js"></script>
+			<script src="'.$base_url.'assets/js/bootstrap.min.js"></script>
+
+			<!-- Juqery UI -->
+			<!-- <script src="'.$base_url.'assets/js/jquery-ui.min.js"></script> -->
+
 			<!-- Bootstrap DataTable JS -->
 			<script src="'.$base_url.'assets/dataTable/js/jquery.dataTables.min.js"></script>
 			<!-- ./ End Js dataTable -->
 
-			<script type="text/javascript">
-				$( document ).ready(function() {
-					var url = window.location;
-               // Will only work if string in href matches with location
-					$(\'.side-nav a[href="\'+ url +\'"]\').parent().addClass(\'active\');
-					$(\'.thispages\').html($(\'.side-nav a[href="\'+ url +\'"]\').html());
-
-              // Will also work for relative and absolute hrefs
-					$(\'.side-nav a\').filter(function() {
-						return this.href == url;
-					}).parent().addClass(\'active\');
-				});
-			</script>
-			<style type="text/css">
-				body{
-					background:#E6E6E6;
-				}
-			</style>
-		</head>
-
-		<body style ="height:100%;">
-
-			 <div id="wrapper" >
-
-				<!-- Navigation -->
-				<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="'.base_url().'">สำนักวิชาศึกษาทั่วไป  มหาวิทยาลัยราชภัฏอุดรธานี</a>
-					</div>
-					<!-- Top Menu Items -->
-					<ul class="nav navbar-right top-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-							<ul class="dropdown-menu message-dropdown">
-								<li class="message-preview">
-									<a href="#">
-										<div class="media">
-											<span class="pull-left">
-												<img class="media-object" src="http://placehold.it/50x50" alt="">
-											</span>
-											<div class="media-body">
-												<h5 class="media-heading"><strong>John Smith</strong>
-												</h5>
-												<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-												<p>Lorem ipsum dolor sit amet, consectetur...</p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="message-preview">
-									<a href="#">
-										<div class="media">
-											<span class="pull-left">
-												<img class="media-object" src="http://placehold.it/50x50" alt="">
-											</span>
-											<div class="media-body">
-												<h5 class="media-heading"><strong>John Smith</strong>
-												</h5>
-												<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-												<p>Lorem ipsum dolor sit amet, consectetur...</p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="message-preview">
-									<a href="#">
-										<div class="media">
-											<span class="pull-left">
-												<img class="media-object" src="http://placehold.it/50x50" alt="">
-											</span>
-											<div class="media-body">
-												<h5 class="media-heading"><strong>John Smith</strong>
-												</h5>
-												<p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-												<p>Lorem ipsum dolor sit amet, consectetur...</p>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li class="message-footer">
-									<a href="#">Read All New Messages</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-							<ul class="dropdown-menu alert-dropdown">
-								<li>
-									<a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-								</li>
-								<li>
-									<a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-								</li>
-								<li>
-									<a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-								</li>
-								<li>
-									<a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-								</li>
-								<li>
-									<a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-								</li>
-								<li>
-									<a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="#">View All</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-								</li>
-								<li>
-									<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-					<div class="collapse navbar-collapse navbar-ex1-collapse ">
-						'.$this->menu().'
-					</div>
-					<!-- /.navbar-collapse -->
-				</nav>
-
-				<div id="page-wrapper" >
-
-					<div class="container-fluid" >
-
-						<!-- Page Heading -->
-						<div class="row">
-							<div class="col-sm-12">
-								<h1 class="page-header">
-									'. $TEXTTITLE.'
-								</h1>
-							</div>
-						</div>
-						<!-- /.row -->
-						';
-					}
-					public function getFooter($base_url)
-					{
-						return '
-						<!-- Footer -->
-						<footer style="clear: both;bottom:0px;right:0px;" >
-							<div class="row">
-								<div class="col-lg-12" >
-									<p class="pull-right" >Copyright &copy; Webdeveloper By Mr.Chaiwat Homsang</p>
-								</div>
-							</div>
-							<!-- /.row -->
-						</footer>
-						<!-- /. end footer -->
-
-					</div>
-					<!-- /.container-fluid -->
-
-				</div>
-				<!-- /#page-wrapper -->
-
-			</div>
-			<!-- /#wrapper -->
-
-			<!-- Bootstrap Core JavaScript -->
-			<script src="'.$base_url.'assets/js/bootstrap.min.js"></script>
 		</body>
-
 		</html>
-
 		';
 	}
 
 	public function menu()
 	{
 		return '
-		<ul class="nav navbar-nav side-nav ">
-			<li >
-				<a href="'.base_url().'" ><i class="fa fa-fw fa-dashboard"></i> หน้าแรก</a>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#"  style="color:#000;font-weight:bold;"> หน้าแรก</a></li>
+			<li><a href="#"  style="color:#000;font-weight:bold;"> ข่าวสาร</a></li>
+			<li><a href="#"  style="color:#000;font-weight:bold;"> แหล่งทุน</a></li>
+			<li><a href="#"  style="color:#000;font-weight:bold;"> สถาบันวิจัย มรภ.อุดรธานี</a></li>
+			<li><a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU"  style="color:#000;font-weight:bold;" target="_blank"> วช.</a></li>
+			<li><a href="http://www.mua.go.th/ohec/"  style="color:#000;font-weight:bold;" target="_blank"> สกอ.</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;font-weight:bold;"><i class="fa fa-user"></i> SETTING <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
+					</li>
+				</ul>
 			</li>
-			<li>
-				<a href="#"><i class="fa fa-fw fa-bullhorn"></i> ประกาศทุน</a>
-			</li>
-			<!--<li>
-			<a href="'.base_url().'Document"><i class="fa fa-fw fa-folder"></i> จัดเก็บเอกสาร</a>
-		</li>-->
-		<li>
-			<!-- <a href="#"><i class="fa fa-fw fa-money"></i> งบประมาณ</a> -->		</li>
-			<li>
-				<a href="http://rdi.udru.ac.th/" target="_blank"><i class="fa fa-fw fa-money"></i> สถาบันวิจัย มรภ.อุดรธานี</a>
-			</li>
-			<li>
-				<a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WPgqDNryjIU" target="_blank"><i class="fa fa-fw fa-book"></i> วช. </a>
-			</li>
-			<li>
-				<a href="http://www.mua.go.th/" target="_blank"><i class="fa fa-fw fa-book"></i> สกอ. </a>
-			</li>
-			<!-- <li>
-			<a href="#"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-		</li>
-		<li>
-			<a href="#"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-		</li>
-		<li class="divider"> </li>
-		<li>
-			<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-			<ul id="demo" class="collapse">
-				<li>
-					<a href="#">Dropdown Item</a>
-				</li>
-				<li>
-					<a href="#">Dropdown Item</a>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-		</li>
-		<li>
-			<a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-		</li>
-	-->
-</ul>
-
-';
-}
+		</ul>
+		';
+	}
 }
 
 /* End of file template.php */

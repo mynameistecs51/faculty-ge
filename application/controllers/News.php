@@ -57,7 +57,7 @@ class News extends CI_Controller {
 		$data = array(
 			'id_news' => '',
 			'news_title' => $this->input->post('title'),
-			'news_detail' => str_replace("\n", "<br>",$this->input->post('detail')),
+			'news_detail' => str_replace(array("\n",'&nbsp;'),array("<br>",'&nbsp;'),$this->input->post('detail')),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			'id_member' =>'1',
