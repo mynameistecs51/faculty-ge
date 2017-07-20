@@ -49,29 +49,47 @@ class Activity extends CI_Controller {
 
 	public function saveadd()
 	{
-		$name_picture = '';
-
-		if($_FILES['images']){
+		$addPict = array();
+		$title  = $this->input->post('input_title');
+		$detail = $this->input->post('input_detail');
+		//ถ้ามีการเพิ่มรูปภาพ
+		if($_FILES['images']['size'] != ''){
 			$images= $this->_upload_files('images');
-			foreach ($images as $key => $value) {
-				$name_picture .=$value['file_name'].",";
+			for($i=0; $i < count($images); $i++ ){
+				array_push($addPict,$images[$i]['file_name']);
 			}
 		}
-
 		$data = array(
-			'ac_id'     => '',
-			'ac_title'  => $this->input->post('input_title'),
-			'ac_detail' =>	str_replace("\n", "<br>",$this->input->post('input_detail')),
-			'ac_pict'   => substr($name_picture,0,-1),
+			'ac_title'  => $title,
+			'ac_detail' => str_replace("\n", "<br>",$detail),
+			'ac_pict'   => implode(',',$addPict),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR']
 			);
 
+	// if($_FILES['images']['size'] != ''){
+	// 		$images= $this->_upload_files('images');
+	// 		foreach ($images as $key => $value) {
+	// 			$name_picture .=$value['file_name'].",";
+	// 		}
+	// 	}
+	// 	// echo "<pre>";
+	// 	// print_r($_FILES['images']);
+
+	// 	$data = array(
+	// 		'ac_id'     => '',
+	// 		'ac_title'  => $this->input->post('input_title'),
+	// 		'ac_detail' =>	str_replace("\n", "<br>",$this->input->post('input_detail')),
+	// 		'ac_pict'   => substr($name_picture,0,-1),
+	// 		'dt_create' => $this->dt_now,
+	// 		'ip_create' => $_SERVER['REMOTE_ADDR']
+	// 		);
+
 		$insert = $this->mdl_activity->insertdata($this->security->xss_clean($data));
-		// $massage = "บันทึกข้อมูล เรียบร้อย !";
-		// $url = "Activity";
-		// $this->alert($massage,$url);
-		redirect($this->ctl,'refresh');
+	// 	// $massage = "บันทึกข้อมูล เรียบร้อย !";
+	// 	// $url = "Activity";
+	// 	// $this->alert($massage,$url);
+		// redirect($this->ctl,'refresh');
 
 	}
 
@@ -161,7 +179,7 @@ class Activity extends CI_Controller {
 	}
 
 	private function _upload_files($field){
-		$file_name               = date('d_m_y_H_i_s');
+		$file_name               = date('dmyH_i_s');
 		$config['upload_path']   = './assets/files_upload/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg|';
 		$config['max_size']	     = '0';
@@ -183,15 +201,18 @@ class Activity extends CI_Controller {
 			$files_uploaded = array();
 			for ($i=0; $i < count($files); $i++) {
 				$_FILES[$field] = $files[$i];
-				if ($this->upload->do_upload($field)){
+				if ($this->upload->do_upload($files[$i])){
 					$files_uploaded[$i] = $this->upload->data();
+
 				}
 				else{
 					$files_uploaded[$i] = null;
 				}
 
 			}
-			return $files_uploaded;
+			echo "<pre>";
+			print_r( $files_uploaded);
+			// return $files_uploaded;
 		}
 
 		public function alert($massage, $url)
