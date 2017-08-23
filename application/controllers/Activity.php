@@ -58,9 +58,9 @@ class Activity extends CI_Controller
 			$images = $this->_upload_files('images');
 			for ($i = 0; $i < count($images); $i++) {
 				array_push($addPict, $images[$i]);
-			// echo "<pre>";
-			// print_r($images[$i]);
 			}
+			echo "<pre>";
+			print_r($images);
 		}
 
 		$data = array(
@@ -71,7 +71,7 @@ class Activity extends CI_Controller
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			);
 
-		// $insert = $this->mdl_activity->insertdata($this->security->xss_clean($data));
+		$insert = $this->mdl_activity->insertdata($this->security->xss_clean($data));
 
 		// redirect($this->ctl,'refresh');
 
@@ -166,10 +166,9 @@ class Activity extends CI_Controller
 	{
 		$file_name               = date('dmy_His_');
 		$config['upload_path']   = 'assets/files_upload/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg|JPG';
+		$config['allowed_types']        = 'gif|jpg|png';
 		$config['max_size']      = '0';
 		$config['remove_spaces'] = true;
-		$config['file_name']     = $file_name;
 		$configi['width']  = 75;
 		$configi['height'] = 50;
 		$config['overwrite']      = true;
@@ -181,6 +180,7 @@ class Activity extends CI_Controller
 		$cpt = count($_FILES[$field]['name']);
 		for($i=0; $i<$cpt; $i++)
 		{
+		$config['file_name']     = $file_name.$i;
 			$_FILES[$field]['name']= $files[$field]['name'][$i];
 			$_FILES[$field]['type']= $files[$field]['type'][$i];
 			$_FILES[$field]['tmp_name']= $files[$field]['tmp_name'][$i];
@@ -189,11 +189,13 @@ class Activity extends CI_Controller
 
 			$this->upload->initialize($config);
 			if($this->upload->do_upload($field)){
-				chmod($config['upload_path'],0777);
-				$config['file_name']     = $file_name.$i.substr($files['images']['name'][$i],-4);
+				//chmod($config['upload_path'],0777);
+				$config['file_name'] = $file_name.$i.$this->upload->data('file_ext');
+				// $config['file_name']     = $file_name.$i.substr($files['images']['name'][$i],-4);
 				array_push($fileName,$config['file_name']);
-
 				$this->upload->data();
+				echo "<pre>";
+				print_r($this->upload->data());
 			}else{
 				$massage =  $this->upload->display_errors();
 			}
