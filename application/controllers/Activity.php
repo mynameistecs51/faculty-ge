@@ -59,8 +59,8 @@ class Activity extends CI_Controller
 			for ($i = 0; $i < count($images); $i++) {
 				array_push($addPict, $images[$i]);
 			}
-			echo "<pre>";
-			print_r($images);
+			// echo "<pre>";
+			// print_r($images);
 		}
 
 		$data = array(
@@ -73,7 +73,7 @@ class Activity extends CI_Controller
 
 		$insert = $this->mdl_activity->insertdata($this->security->xss_clean($data));
 
-		// redirect($this->ctl,'refresh');
+		redirect($this->ctl,'refresh');
 
 	}
 
@@ -194,8 +194,8 @@ class Activity extends CI_Controller
 				// $config['file_name']     = $file_name.$i.substr($files['images']['name'][$i],-4);
 				array_push($fileName,$config['file_name']);
 				$this->upload->data();
-				echo "<pre>";
-				print_r($this->upload->data());
+				// echo "<pre>";
+				// print_r($this->upload->data());
 			}else{
 				$massage =  $this->upload->display_errors();
 			}
