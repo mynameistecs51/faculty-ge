@@ -133,7 +133,7 @@ class Activity extends CI_Controller
 		if ($_FILES['images']['size'] != '') {
 			$images = $this->_upload_files('images');
 			for ($i = 0; $i < count($images); $i++) {
-				array_push($addPict, $images[$i]['file_name']);
+				array_push($addPict, $images[$i]);
 			}
 			array_push($addPict, $pictureAll);
 		}
