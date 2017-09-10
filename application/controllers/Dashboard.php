@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller {
 		$this->ctl = 'Dashboard';
 		$this->load->model('mdl_activity');
 		$this->load->model('mdl_news');
+		$this->load->model('mdl_fund');
 	}
 
 	public function index()
@@ -17,6 +18,7 @@ class Dashboard extends CI_Controller {
 		$PAGE = 'index';
 		$this->data['getAll_activity'] = $this->mdl_activity->getAll_activity(); //$this->getAll_activity();
 		$this->data['getNews'] = $this->mdl_news->getNews();
+		$this->data['getFund'] = $this->mdl_fund->getFund();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}

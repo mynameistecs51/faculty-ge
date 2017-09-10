@@ -10,27 +10,31 @@
 <div class="row">
 	<!-- add activity -->
 	<div class="col-sm-12">
-		<button type="button" id="add" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มข่าว</button>
+		<button type="button" id="add" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแหล่งทุน</button>
 	</div>
 	<div class="col-sm-12"><br></div>
 	<div class="col-sm-12">
 		<table id="example" class="display" cellspacing="0" width="100%" >
 			<thead style="background-color:  #cccccc;">
 				<tr>
-					<th style="text-align:center;"  class="col-sm-8">ข่าวประชาสัมพันธ์</th>
+					<th style="text-align:center;" class="col-sm-2">รายละเอียด</th>
+					<th style="text-align:center;" class="col-sm-4">รายละเอียด</th>
+					<th style="text-align:center;" class="col-sm-2">ที่มา</th>
 					<th style="text-align:center;" class="col-sm-1">วันที่</th>
 					<th style="text-align:center;" class="col-sm-2 text-center">ลบ/แก้ไข</th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($getNews as $keyNews => $rowNews): ?>
+			<?php foreach ($getFund as $rowFund): ?>
 					<tr>
-						<td><?php echo $rowNews['news_title']; ?></td>
-						<td class="text-center"><?php echo $rowNews['dateNews']; ?></td>
+						<td><?php echo $rowFund['fund_title']; ?></td>
+						<td class="text-center"><?php echo $rowFund['fund_detail']; ?></td>
+						<td class="text-center"><?php echo $rowFund['fund_source']; ?></td>
+						<td class="text-center"><?php echo date_format(date_create($rowFund['dt_update']), 'd/m/Y'); ?></td>
 						<td class='text-center'>
-							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-trash"></i> ลบ</button>
+							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowFund['id_fund']; ?>"><i class="fa fa-trash"></i> ลบ</button>
 							&nbsp;
-							<button class="btn btn-danger btn-xs btn_edit" data-editid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
+							<button class="btn btn-warning btn-xs btn_edit" data-editid="<?php echo $rowFund['id_fund']; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
 						</td>
 					</tr>
 				<?php endforeach ?>
@@ -60,19 +64,19 @@
 		});
 
 		add();
-		fnupdate();
-		fndelete();
+		// fnupdate();
+		// fndelete();
 	} );
 
 	function add(){
 		$('#add').click(function(){
-			load_page("<?php echo $url_addNews; ?>","เพิ่มข้อมูล :: ข่าวสาร ::","<?php echo base_url().'index.php/'.$controller.'/saveAdd/';?>");
+			load_page("<?php echo $url_addFund; ?>","เพิ่มข้อมูล :: ข่าวสาร ::","<?php echo base_url().'index.php/'.$controller.'/saveAdd/';?>");
 		});
 	}
 
 	function fnupdate() {
 		$('.btn_edit').click(function(){
-			load_page("<?php echo base_url().'index.php/'.$controller.'/editNews/';?>"+$(this).data('editid'),"อัพเดทข้อมูล :: ข้อมูลข่าวสาร ::","<?php echo $saveEdit; ?>");
+			load_page("<?php echo base_url().'index.php/'.$controller.'/editFund/';?>","อัพเดทข้อมูล :: ข้อมูลข่าวสาร ::","<?php echo $saveEdit; ?>");
 			// alert("UPDATE"+$(this).data('update'));
 		});
 	}
@@ -83,7 +87,7 @@
 			var cfm = confirm("ยืนยันการ ลบ!");
 			if(cfm ){
 				$.ajax({
-					url: '<?php echo $url_deleteNews;?>',
+					url: '<?php echo $url_deleteFund;?>',
 					type: 'POST',
 				// dataType: 'json',
 				data: {'id_news': $(this).data('delid')},

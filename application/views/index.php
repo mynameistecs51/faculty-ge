@@ -31,10 +31,16 @@
 <div class="col-sm-6 ">
 	<div class="col-sm-12 well" style="height: 420px;overflow-y: scroll;">
 		<p style="margin-top: -30px;padding: 0px;">	<h3><i class="fa fa-money"> แหล่งทุน</i></h3></p>
-		<div class=" alert alert-warning alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
-		</div>
+		<?php foreach ($getFund as $rowFund): ?>
+			<a href="<?php echo base_url().'index.php/Fund/readFund/'.$rowFund['id_fund'];?>">
+				<div class=" alert alert-warning alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<?php echo $rowFund['fund_title']; ?>
+					<div class="pull-right"><?php echo date_format(date_create($rowFund['dt_update']), 'd/m/Y'); ?></div>
+					<!-- <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features! -->
+				</div>
+			</a>
+		<?php endforeach ?>
 	</div>
 </div>
 <!-- /.ทุน -->
@@ -48,7 +54,7 @@
 			<div class="col-sm-6 col-md-3">
 				<a href= "<?php echo base_url().'index.php/Activity/showActivity/'.$activity['ac_id']; ?>">
 					<div class="thumbnail">
-					<!-- height: 200px; width: 100%; display: block; -->
+						<!-- height: 200px; width: 100%; display: block; -->
 						<img  style="background-size: 120px 80px;" src="<?php echo base_url().'assets/files_upload/'.$pic_name[0];?>" alt="" data-holder-rendered="true">
 						<h5 class="pull-left"><?php echo count($pic_name)." รูป"; ?></h5><h5 class="pull-right"><?php echo date('d/m/'.(date('Y')+543),strtotime($activity['dt_create'])); ?></h5>
 						<div class="caption">

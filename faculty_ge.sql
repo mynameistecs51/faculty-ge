@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 30, 2017 at 10:54 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: localhost
+-- Generation Time: Sep 10, 2017 at 07:09 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -73,11 +75,23 @@ CREATE TABLE `document` (
 --
 
 CREATE TABLE `fund` (
-  `if_fund` int(11) NOT NULL,
+  `id_fund` int(11) NOT NULL,
   `fund_title` text COLLATE utf8_unicode_ci NOT NULL,
-  `fund_detial` text COLLATE utf8_unicode_ci NOT NULL,
-  `id_create` int(11) NOT NULL
+  `fund_source` text COLLATE utf8_unicode_ci NOT NULL,
+  `fund_detail` text COLLATE utf8_unicode_ci NOT NULL,
+  `id_member` int(11) NOT NULL,
+  `ip_create` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `dt_create` datetime NOT NULL,
+  `dt_update` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `fund`
+--
+
+INSERT INTO `fund` (`id_fund`, `fund_title`, `fund_source`, `fund_detail`, `id_member`, `ip_create`, `dt_create`, `dt_update`) VALUES
+(1, 'test scource', 'source', 'test source', 1, '::1', '2017-09-10 23:05:12', '2017-09-10 23:05:12'),
+(2, 'test2', 'test2', 'test2', 1, '::1', '2017-09-10 23:06:18', '2017-09-10 23:06:18');
 
 -- --------------------------------------------------------
 
@@ -93,6 +107,13 @@ CREATE TABLE `news` (
   `ip_create` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `id_member` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id_news`, `news_title`, `news_detail`, `dt_create`, `ip_create`, `id_member`) VALUES
+(4, 'test', 'test    test', '2017-09-10 21:39:11', '::1', 1);
 
 --
 -- Indexes for dumped tables
@@ -114,7 +135,7 @@ ALTER TABLE `document`
 -- Indexes for table `fund`
 --
 ALTER TABLE `fund`
-  ADD PRIMARY KEY (`if_fund`);
+  ADD PRIMARY KEY (`id_fund`);
 
 --
 -- Indexes for table `news`
@@ -140,12 +161,13 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT for table `fund`
 --
 ALTER TABLE `fund`
-  MODIFY `if_fund` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fund` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -12,8 +12,7 @@
 		<div class="form-group col-sm-12">
 			<label for="detail" class="col-sm-2 control-label">รายละเอียด</label>
 			<div class="col-sm-10">
-				<textarea name="detail" class="form-control" rows="15">		<?php echo  str_replace(array("<br>"," "),array('', "&nbsp;"),$rowNews['news_detail']); ?>
-				</textarea>
+				<textarea name="detail" class="form-control" rows="15"><?php echo  str_replace(array("<br>"," "),array('', "&nbsp;"),$rowNews['news_detail']); ?></textarea>
 			</div>
 		</div>
 
