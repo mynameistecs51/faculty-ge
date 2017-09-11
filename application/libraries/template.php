@@ -143,14 +143,14 @@ class Template
 	{
 		return '
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"  style="color:#000;font-weight:bold;"> หน้าแรก</a></li>
-			<li><a href="#"  style="color:#000;font-weight:bold;"> ข่าวสาร</a></li>
-			<li><a href="#"  style="color:#000;font-weight:bold;"> แหล่งทุน</a></li>
-			<li><a href="#"  style="color:#000;font-weight:bold;"> สถาบันวิจัย มรภ.อุดรธานี</a></li>
-			<li><a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU"  style="color:#000;font-weight:bold;" target="_blank"> วช.</a></li>
-			<li><a href="http://www.mua.go.th/ohec/"  style="color:#000;font-weight:bold;" target="_blank"> สกอ.</a></li>
+			<li><a href="dashboard"  style="color:#000;"> หน้าแรก</a></li>
+			<li><a href="#"  style="color:#000;"> ข่าวสาร</a></li>
+			<li><a href="#"  style="color:#000;"> แหล่งทุน</a></li>
+			<li><a href="#"  style="color:#000;"> สถาบันวิจัย มรภ.อุดรธานี</a></li>
+			<li><a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU"  style="color:#000;" target="_blank"> วช.</a></li>
+			<li><a href="http://www.mua.go.th/ohec/"  style="color:#000;" target="_blank"> สกอ.</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;font-weight:bold;"><i class="fa fa-user"></i> SETTING <b class="caret"></b></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"><i class="fa fa-user"></i> SETTING <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li>
 						<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
