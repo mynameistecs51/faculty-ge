@@ -82,7 +82,7 @@ class Template
 
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" >
-							'.$this->menu().'
+							'.$this->menu($base_url).'
 						</div><!-- /.navbar-collapse -->
 					</div><!-- /.container-fluid -->
 				</nav>
@@ -139,25 +139,68 @@ class Template
 		';
 	}
 
-	public function menu()
+	public function menu($base_url)
 	{
 		return '
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="dashboard"  style="color:#000;"> หน้าแรก</a></li>
+			<li ><a href="'.$base_url.'index.php/dashboard"  style="color:#000;"> หน้าแรก</a></li>
 			<li><a href="#"  style="color:#000;"> ข่าวสาร</a></li>
 			<li><a href="#"  style="color:#000;"> แหล่งทุน</a></li>
 			<li><a href="#"  style="color:#000;"> สถาบันวิจัย มรภ.อุดรธานี</a></li>
 			<li><a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU"  style="color:#000;" target="_blank"> วช.</a></li>
 			<li><a href="http://www.mua.go.th/ohec/"  style="color:#000;" target="_blank"> สกอ.</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"><i class="fa fa-user"></i> SETTING <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"> SETTING <b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li class="col-sm-12" >
 						<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
 					</li>
 				</ul>
 			</li>
+			<li > <a class="btn "  style="color:#000;" data-toggle="modal" data-target="#myModal">Sign In</a>'.$this->loginForm().'</li>
 		</ul>
+
+		';
+	}
+
+	public function loginForm()
+	{
+		echo '
+
+		<!-- Modal Login-->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"> Login เพื่อเข้าสู่ระบบ</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-sm-12">
+							<img src="'.base_url().'/assets/images/user.png" class="img-circle col-sm-7 col-sm-offset-2" >
+						</div>
+						<form method="post">
+							<div class="form-group">
+								<label for="username">Username :</label>
+								<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+							</div>
+							<div class="form-group">
+								<label for="password">Password :</label>
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+							</div>
+							<button type="reset" class="btn btn-warning">Cancel</button>
+							<button type="submit" class="btn btn-success">Login</button>
+						</form>
+
+					</div>
+					<div class="modal-footer ">
+						<p class="help-block ">register </p>
+					</div>
+				</div>
+
+			</div>
+		</div>
 		';
 	}
 }
