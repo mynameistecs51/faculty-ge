@@ -17,7 +17,7 @@ class Fund extends CI_Controller {
 	public function index()
 	{
 		$TEXTTITLE = "<i class=\"fa fa-money\" aria-hidden=\"true\"></i> ระบบจัดการแหล่งทุน";
-		$PAGE = "/Fund/index";
+		$PAGE = "/fund/index";
 		$this->data['getFund'] = $this->mdl_fund->getFund();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
