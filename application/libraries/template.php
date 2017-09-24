@@ -169,7 +169,7 @@ function loginForm()
 
 		<!-- Modal Login-->
 		<div id="myModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog modal-md">
 				<!-- Modal content-->
 				<div class="modal-content">
 
@@ -181,30 +181,57 @@ function loginForm()
 					  </ul>
 
 					  <!-- Tab panes -->
-					  <div class="tab-content">
+					  <div class="tab-content ">
 					    <div role="tabpanel" class="tab-pane active" id="Login">
-								<div class="col-sm-12">
-									<img src="'.base_url().'/assets/images/user.png" class="img-circle col-sm-7 col-sm-offset-2" >
+								<div class="col-sm-6">
+									<img src="'.base_url().'/assets/images/user.png" class=" col-sm-9 text-center" >
 								</div>
-
-								'.form_open('#').'
-									<div class="form-group">
+								'.form_open('account/login' ).'
+									<div class="form-group col-sm-6">
 										<label for="username">Username :</label>
 										<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 									</div>
-									<div class="form-group">
+									<div class="form-group col-sm-6">
 										<label for="password">Password :</label>
 										<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 									</div>
-									<div class="orm-group text-right">
+									<div class="orm-group   text-center">
 										<button type="reset" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 										<button type="submit" class="btn btn-success">Login</button>
 									</div>
 								'.form_close().'
-
-
 					    </div> <!-- / end login \-->
+
 					    <div role="tabpanel" class="tab-pane" id="Register">
+
+								'.form_open('account/addUser',"class='row-fluid'").'
+									<div class="form-group ">
+										<label for="username">Username :</label>
+										<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+									</div>
+									<div class="form-group ">
+										<label for="password">Password :</label>
+										<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+									</div>
+									<div class="form-group ">
+										<label for="mail">E-mail :</label>
+										<input type="email" class="form-control" id="mail" name="mail" placeholder="Email@myemail.com">
+									</div>
+									<div class="row">
+										<div class="form-group col-sm-6">
+											<label for="name">name :</label>
+											<input type="text" class="form-control" id="name" name="name" placeholder="">
+										</div>
+										<div class="form-group col-sm-6">
+											<label for="lastname">lastname :</label>
+											<input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
+										</div>
+									</div>
+									<div class="orm-group text-right">
+										<button type="reset" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+										<button type="submit" class="btn btn-success">Save</button>
+									</div>
+								'.form_close().'
 
 					    </div> <!-- / End  Register \ -->
 
