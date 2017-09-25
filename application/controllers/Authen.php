@@ -69,7 +69,7 @@ class Authen extends CI_Controller {
 		$userEmail = $this->session->unset_userdata("userEmail");
 		$userStatus = $this->session->unset_userdata("userStatus");
 		session_destroy();
-		redirect('dashboard/','refresh');
+		redirect('authen','refresh');
 	}
 
 }
