@@ -60,7 +60,7 @@ class Template
 		font-family: TH_Charmonman;
 	}
 	body {
-		background:#fff;
+		background:#efefef;
 		border : 1px solid #D9DEE4;
 	}
 	</style>
