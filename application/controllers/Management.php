@@ -6,7 +6,9 @@ class Management extends CI_Controller {
 	{
 		parent::__construct();
 
-
+		if ($this->session->userdata('userStatus') != 'admin') {
+			redirect('authen','refresh');
+		}
 	}
 
 	public function index()

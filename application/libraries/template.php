@@ -8,6 +8,8 @@ class Template
 	public function __construct()
 	{
 		$this->ci =& get_instance();
+		// $userID = $this->ci->session->userdata('userID');
+		// $userStatus = $this->ci->session->userdata('userStatus');
 	}
 
 
@@ -141,7 +143,7 @@ public function getFooter($base_url)
 
 public function menu($base_url)
 {
-	return '
+	$html = '
 	<ul class="nav navbar-nav navbar-right">
 	<li ><a href="'.$base_url.'index.php/dashboard"  style="color:#000;"> หน้าแรก</a></li>
 	<li><a href="#"  style="color:#000;"> ข่าวสาร</a></li>
@@ -149,98 +151,119 @@ public function menu($base_url)
 	<li><a href="#"  style="color:#000;"> สถาบันวิจัย มรภ.อุดรธานี</a></li>
 	<li><a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU"  style="color:#000;" target="_blank"> วช.</a></li>
 	<li><a href="http://www.mua.go.th/ohec/"  style="color:#000;" target="_blank"> สกอ.</a></li>
-	<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"> SETTING <b class="caret"></b></a>
-	<ul class="dropdown-menu ">
-	<li class="col-sm-12" >
-	<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
-	</li>
-	</ul>
-	</li>
-	<li > <a class="btn "  style="color:#000;" data-toggle="modal" data-target="#myModal">Sign In</a>'.$this->loginForm().'</li>
-	</ul>
-
 	';
+	if($this->ci->session->userdata('userStatus') == 'admin'){
+		$html .= '
+		<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"> SETTING <b class="caret"></b></a>
+		<ul class="dropdown-menu ">
+		<li class="col-sm-12" >
+		<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
+		</li>
+		</ul>
+		</li>
+		';
+	}
+
+	if($this->ci->session->userdata('userID') != ''):
+		$html .= '
+		<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"> <i class="fa fa-user " aria-hidden="true"></i> '.$this->ci->session->userdata('username').' <b class="caret"></b></a>
+		<ul class="dropdown-menu ">
+		<li class="col-sm-12" >
+		<a href="'.base_url().'authen/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a>
+		</li>
+		</ul>
+		</li>
+		';
+	else:
+		$html .= '
+		<li > <a class="btn "  style="color:#000;" data-toggle="modal" data-target="#myModal">Sign In</a>'.$this->loginForm().'</li>
+		</ul>
+		';
+	endif;
+
+	return $html;
 }
 
 function loginForm()
 {
 	echo '
 
-		<!-- Modal Login-->
-		<div id="myModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-md">
-				<!-- Modal content-->
-				<div class="modal-content">
+	<!-- Modal Login-->
+	<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog modal-md">
+	<!-- Modal content-->
+	<div class="modal-content">
 
-					<div class="modal-body">
-					<!-- Nav tabs -->
-					  <ul class="nav nav-tabs" role="tablist">
-					    <li role="presentation" class="active"><a href="#Login" aria-controls="Login" role="tab" data-toggle="tab">Login</a></li>
-					    <li role="presentation"><a href="#Register" aria-controls="Register" role="tab" data-toggle="tab">Register</a></li>
-					  </ul>
+	<div class="modal-body">
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#SignIn" aria-controls="SignIn" role="tab" data-toggle="tab">SignIn</a></li>
+	<li role="presentation"><a href="#SignUp" aria-controls="SignUp" role="tab" data-toggle="tab">SignUp</a></li>
+	</ul>
 
-					  <!-- Tab panes -->
-					  <div class="tab-content ">
-					    <div role="tabpanel" class="tab-pane active" id="Login">
-								<div class="col-sm-6">
-									<img src="'.base_url().'/assets/images/user.png" class=" col-sm-9 text-center" >
-								</div>
-								'.form_open('account/login' ).'
-									<div class="form-group col-sm-6">
-										<label for="username">Username :</label>
-										<input type="text" class="form-control" id="username" name="username" placeholder="Username">
-									</div>
-									<div class="form-group col-sm-6">
-										<label for="password">Password :</label>
-										<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-									</div>
-									<div class="orm-group   text-center">
-										<button type="reset" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-success">Login</button>
-									</div>
-								'.form_close().'
-					    </div> <!-- / end login \-->
-
-					    <div role="tabpanel" class="tab-pane" id="Register">
-
-								'.form_open('account/addUser',"class='row-fluid'").'
-									<div class="form-group ">
-										<label for="username">Username :</label>
-										<input type="text" class="form-control" id="username" name="username" placeholder="Username">
-									</div>
-									<div class="form-group ">
-										<label for="password">Password :</label>
-										<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-									</div>
-									<div class="form-group ">
-										<label for="mail">E-mail :</label>
-										<input type="email" class="form-control" id="mail" name="mail" placeholder="Email@myemail.com">
-									</div>
-									<div class="row">
-										<div class="form-group col-sm-6">
-											<label for="name">name :</label>
-											<input type="text" class="form-control" id="name" name="name" placeholder="">
-										</div>
-										<div class="form-group col-sm-6">
-											<label for="lastname">lastname :</label>
-											<input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
-										</div>
-									</div>
-									<div class="orm-group text-right">
-										<button type="reset" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-success">Save</button>
-									</div>
-								'.form_close().'
-
-					    </div> <!-- / End  Register \ -->
-
-					  </div>
-				</div>
-			</div>
-		</div>
+	<!-- Tab panes -->
+	<div class="tab-content ">
+	<div role="tabpanel" class="tab-pane active" id="SignIn">
+	<div class="col-sm-6">
+	<img src="'.base_url().'/assets/images/user.png" class=" col-sm-9 text-center" >
 	</div>
-				';
+	'.form_open('authen/checkLogin' ).'
+	<div class="form-group col-sm-6">
+	<label for="username">Username :</label>
+	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+	</div>
+	<div class="form-group col-sm-6">
+	<label for="password">Password :</label>
+	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+	</div>
+	<div class="orm-group   text-center">
+	<button type="reset" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+	<button type="submit" class="btn btn-success">Login</button>
+	</div>
+	'.form_close().'
+	</div> <!-- / end login \-->
+
+	<div role="tabpanel" class="tab-pane" id="SignUp">
+
+	'.form_open('account/Register',"class='row-fluid'").'
+	<div class="form-group ">
+	<label for="username">Username :</label>
+	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+	</div>
+	<div class="form-group ">
+	<label for="password">Password :</label>
+	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+	</div>
+	<div class="form-group ">
+	<label for="email">E-mail :</label>
+	<input type="email" class="form-control" id="email" name="email" placeholder="Email@myemail.com">
+	</div>
+	<div class="row">
+	<div class="form-group col-sm-6">
+	<label for="name">Name :</label>
+	<input type="text" class="form-control" id="name" name="name" placeholder="">
+	</div>
+	<div class="form-group col-sm-6">
+	<label for="lastname">Lastname :</label>
+	<input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
+	</div>
+	</div>
+	<div class="orm-group text-right">
+	<button type="reset" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+	<button type="submit" class="btn btn-success">Save</button>
+	</div>
+	'.form_close().'
+
+	</div> <!-- / End  Register \ -->
+
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	';
 
 }
 

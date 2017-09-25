@@ -60,7 +60,7 @@ class News extends CI_Controller {
 			'news_detail' => str_replace(array("\n",'&nbsp;'),array("<br>",'&nbsp;'),$this->input->post('detail')),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
-			'id_member' =>'1',
+			'id_member' => $this->session->userdata('userID'),
 			);
 		$insert = $this->mdl_news->saveAdd($this->security->xss_clean($data));
 		// echo "<pre>";
@@ -94,7 +94,7 @@ class News extends CI_Controller {
 			'news_detail' =>  str_replace("\n", "<br>",$this->input->post('detail')),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
-			'id_member' =>'1',
+			'id_member' => $this->session->userdata('userID'),
 			);
 		$this->mdl_news->saveEdit($idNews,$this->security->xss_clean($data));
 		redirect('News/index','refresh');

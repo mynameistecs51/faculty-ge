@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2017 at 10:50 AM
+-- Generation Time: Sep 25, 2017 at 11:05 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -19,6 +19,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `faculty_ge`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+CREATE TABLE `account` (
+  `account_id` int(11) NOT NULL,
+  `account_name` char(200) COLLATE utf8_unicode_ci NOT NULL,
+  `account_lastname` char(200) COLLATE utf8_unicode_ci NOT NULL,
+  `account_user` char(100) COLLATE utf8_unicode_ci NOT NULL,
+  `account_pass` char(50) COLLATE utf8_unicode_ci NOT NULL,
+  `account_status` enum('user','admin') COLLATE utf8_unicode_ci NOT NULL,
+  `account_email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `dt_create` datetime NOT NULL,
+  `dt_update` datetime NOT NULL,
+  `ip_create` char(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`account_id`, `account_name`, `account_lastname`, `account_user`, `account_pass`, `account_status`, `account_email`, `dt_create`, `dt_update`, `ip_create`) VALUES
+(1, 'test', 'test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'admin', 'admin@myhost.com', '2017-09-25 11:16:25', '2017-09-25 11:16:25', '::1'),
+(2, 'te', 'te', 'te', '569ef72642be0fadd711d6a468d68ee1', 'user', '', '2017-09-25 12:20:23', '2017-09-25 12:20:23', '::1');
 
 -- --------------------------------------------------------
 
@@ -118,6 +145,12 @@ INSERT INTO `news` (`id_news`, `news_title`, `news_detail`, `dt_create`, `ip_cre
 --
 
 --
+-- Indexes for table `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`account_id`);
+
+--
 -- Indexes for table `activity`
 --
 ALTER TABLE `activity`
@@ -145,6 +178,11 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `account`
+--
+ALTER TABLE `account`
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `activity`
 --

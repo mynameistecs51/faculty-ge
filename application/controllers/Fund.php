@@ -52,7 +52,7 @@ class Fund extends CI_Controller {
 			'fund_source' => $this->input->post('source'),
 			'fund_detail' => str_replace(array("\n",'&nbsp;'),array("<br>",'&nbsp;'),$this->input->post('detail')),
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
-			'id_member' =>'1',
+			'id_member' => $this->session->userdata('userID'),
 			'dt_create' => $this->dt_now,
 			'dt_update' => $this->dt_now,
 			);
