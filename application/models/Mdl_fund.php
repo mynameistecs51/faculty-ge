@@ -27,6 +27,26 @@ class Mdl_fund extends CI_Model {
 		return $dataFund;
 	}
 
+	public function getFundID($fundID)
+	{
+		$sql = "
+		SELECT
+		id_fund,
+		fund_title,
+		fund_source,
+		fund_detail,
+		id_member,
+		dt_update
+		FROM
+		fund
+		WHERE
+		id_fund = '".$fundID."'
+		ORDER BY id_fund DESC
+		";
+		$dataFund = $this->db->query($sql);
+		return $dataFund->result_array();
+	}
+
 	public function saveAdd($data)
 	{
 		$this->db->insert('fund',$this->security->xss_clean($data));

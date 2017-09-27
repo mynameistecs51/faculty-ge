@@ -55,12 +55,19 @@ class Fund extends CI_Controller {
 			'id_member' => $this->session->userdata('userID'),
 			'dt_create' => $this->dt_now,
 			'dt_update' => $this->dt_now,
-			);
+		);
 
 		$insert = $this->mdl_fund->saveAdd($data);
 	}
 
-
+	public function readFund($fundID)
+	{
+		$this->data['fundData'] = $this->mdl_fund->getFundID($fundID);
+		$TEXTTITLE = "<i class=\"fa fa-newspaper-o\" aria-hidden=\"true\"></i> ".$this->data['fundData'][0]['fund_title'];
+		$PAGE = "/fund/readFund";
+		$this->mainpage($TEXTTITLE);
+		$this->load->view($PAGE,$this->data);
+	}
 
 }
 

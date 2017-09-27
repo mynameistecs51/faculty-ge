@@ -17,7 +17,7 @@ class Activity extends CI_Controller
 
 	public function index()
 	{
-		$TEXTTITLE                     = '<i class="fa fa-link" aria-hidden="true"></i> กิจกรรม';
+		$TEXTTITLE             = '<i class="fa fa-link" aria-hidden="true"></i> กิจกรรม';
 		$PAGE                          = 'index';
 		$this->data['getAll_activity'] = $this->getAll_activity();
 		$this->mainpage($TEXTTITLE);
@@ -69,7 +69,7 @@ class Activity extends CI_Controller
 			'ac_pict'   => implode(',', $addPict),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
-			);
+		);
 
 		$insert = $this->mdl_activity->insertdata($this->security->xss_clean($data));
 
@@ -80,7 +80,7 @@ class Activity extends CI_Controller
 	public function showActivity($numAct)
 	{
         //ถ้ายังไม่ login ให้กลับไป index ถ้า login แล้วให้ ไปหน้า  /Activity/index
-		$TEXTTITLE    = anchor('Activity', 'กลับ', 'class="fa fa-hand-o-left" aria-hidden="true"');
+		$TEXTTITLE    = anchor('dashboard', 'กลับ', 'class="fa fa-hand-o-left" aria-hidden="true"');
 		$PAGENAME     = 'showActivity';
 		$listActivity = array();
 		$showAct      = $this->mdl_activity->getId_activity($numAct);
@@ -91,7 +91,7 @@ class Activity extends CI_Controller
 				'ac_pict'   => $rowAct['ac_pict'],
 				'dt_create' => $rowAct['dt_create'],
 				'ip_create' => $rowAct['ip_create'],
-				);
+			);
 		}
 		$this->data['listActivity'] = $listActivity;
 		$this->mainpage($TEXTTITLE);
@@ -112,7 +112,7 @@ class Activity extends CI_Controller
 				'ac_pict'   => $rowAct['ac_pict'],
 				'dt_create' => $rowAct['dt_create'],
 				'ip_create' => $rowAct['ip_create'],
-				);
+			);
 		}
 		$this->data['ac_id']        = $id;
 		$this->data['controller']   = $this->ctl;
@@ -143,7 +143,7 @@ class Activity extends CI_Controller
 			'ac_pict'   => $datafile = (empty($_FILES['images']['size'])) ? $pictureAll : implode(',', $addPict),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
-			);
+		);
 		$this->mdl_activity->saveEdit($ac_id, $this->security->xss_clean($data));
 		redirect($this->ctl . '/showActivity/' . $ac_id, 'refresh');
 	}
@@ -166,8 +166,8 @@ class Activity extends CI_Controller
 	{
 		$file_name               = date('dmy_His_');
 		$config['upload_path']   = 'assets/files_upload/';
-		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']      = '0';
+		$config['allowed_types']        = 'gif|jpg|png|GIF|JPG|PNG';
+		$config['max_size']      =0;
 		$config['remove_spaces'] = true;
 		$configi['width']  = 75;
 		$configi['height'] = 50;
@@ -180,7 +180,7 @@ class Activity extends CI_Controller
 		$cpt = count($_FILES[$field]['name']);
 		for($i=0; $i<$cpt; $i++)
 		{
-		$config['file_name']     = $file_name.$i;
+			$config['file_name']     = $file_name.$i;
 			$_FILES[$field]['name']= $files[$field]['name'][$i];
 			$_FILES[$field]['type']= $files[$field]['type'][$i];
 			$_FILES[$field]['tmp_name']= $files[$field]['tmp_name'][$i];
@@ -207,8 +207,8 @@ class Activity extends CI_Controller
 	{
 		echo "<meta charset='UTF-8'>
 		<SCRIPT LANGUAGE='JavaScript'>
-			window.alert('$massage')
-			window.location.href='" . site_url($url) . "';
+		window.alert('$massage')
+		window.location.href='" . site_url($url) . "';
 		</SCRIPT>";
 	}
 }
