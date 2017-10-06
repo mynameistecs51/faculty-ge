@@ -7,18 +7,18 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->ctl = 'Dashboard';
-		$this->load->model('mdl_activity');
-		$this->load->model('mdl_news');
-		$this->load->model('mdl_fund');
+		$this->load->model('Mdl_activity');
+		$this->load->model('Mdl_news');
+		$this->load->model('Mdl_fund');
 	}
 
 	public function index()
 	{
 		$TEXTTITLE = "<i class=\"glyphicon glyphicon-hand-right\"></i>  ทั่วไป";
 		$PAGE = 'index';
-		$this->data['getAll_activity'] = $this->mdl_activity->getAll_activity(); //$this->getAll_activity();
-		$this->data['getNews'] = $this->mdl_news->getNews();
-		$this->data['getFund'] = $this->mdl_fund->getFund();
+		$this->data['getAll_activity'] = $this->Mdl_activity->getAll_activity(); //$this->getAll_activity();
+		$this->data['getNews'] = $this->Mdl_news->getNews();
+		$this->data['getFund'] = $this->Mdl_fund->getFund();
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}
