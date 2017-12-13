@@ -204,8 +204,7 @@ public function menu($base_url)
 
 function loginForm()
 {
-	echo '
-
+	$html = '
 	<!-- Modal Login-->
 	<div id="myModal" class="modal fade" role="dialog">
 	<div class="modal-dialog modal-md">
@@ -227,11 +226,11 @@ function loginForm()
 	</div>
 	'.form_open('authen/checkLogin' ).'
 	<div class="form-group col-sm-6">
-	<label for="username">Username :</label>
+	<label for="username" style="color:#000;">Username :</label>
 	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 	</div>
 	<div class="form-group col-sm-6">
-	<label for="password">Password :</label>
+	<label for="password" style="color:#000;">Password :</label>
 	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 	</div>
 	<div class="orm-group   text-center">
@@ -245,24 +244,24 @@ function loginForm()
 
 	'.form_open('account/Register',"class='row-fluid'").'
 	<div class="form-group ">
-	<label for="username">Username :</label>
+	<label for="username" style="color:#000;">Username :</label>
 	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 	</div>
 	<div class="form-group ">
-	<label for="password">Password :</label>
+	<label for="password" style="color:#000;">Password :</label>
 	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 	</div>
 	<div class="form-group ">
-	<label for="email">E-mail :</label>
+	<label for="email" style="color:#000;">E-mail :</label>
 	<input type="email" class="form-control" id="email" name="email" placeholder="Email@myemail.com">
 	</div>
 	<div class="row">
 	<div class="form-group col-sm-6">
-	<label for="name">Name :</label>
+	<label for="name" style="color:#000;">Name :</label>
 	<input type="text" class="form-control" id="name" name="name" placeholder="">
 	</div>
 	<div class="form-group col-sm-6">
-	<label for="lastname">Lastname :</label>
+	<label for="lastname" style="color:#000;">Lastname :</label>
 	<input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
 	</div>
 	</div>
@@ -281,6 +280,7 @@ function loginForm()
 	</div>
 	';
 
+	return $html;
 }
 
 

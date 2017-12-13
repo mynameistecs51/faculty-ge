@@ -14,10 +14,10 @@ class Account extends CI_Controller {
 		$this->ip_client = $_SERVER['REMOTE_ADDR'];
 	}
 
-	public function index()
-	{
+	// public function index()
+	// {
 
-	}
+	// }
 
 	public function login($value='')
 	{
