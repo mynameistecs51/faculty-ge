@@ -14,7 +14,7 @@ class Management extends CI_Controller {
 	public function index()
 	{
 		$TEXTTITLE = "<i class=\"fa fa-cog \"></i> ระบบจัดการ";
-		$PAGE = 'management/dashboard';
+		$PAGE = 'Management/dashboard';
 		$this->mainpage($TEXTTITLE);
 		$this->load->view($PAGE,$this->data);
 	}

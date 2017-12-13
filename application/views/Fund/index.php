@@ -64,8 +64,8 @@
 		});
 
 		add();
-		// fnupdate();
-		// fndelete();
+		fnupdate();
+		fndelete();
 	} );
 
 	function add(){
@@ -76,7 +76,7 @@
 
 	function fnupdate() {
 		$('.btn_edit').click(function(){
-			load_page("<?php echo base_url().'index.php/'.$controller.'/editFund/';?>","อัพเดทข้อมูล :: ข้อมูลข่าวสาร ::","<?php echo $saveEdit; ?>");
+			load_page("<?php echo $url_editFund;?>"+$(this).data('editid'),"อัพเดทข้อมูล :: ข้อมูลข่าวสาร ::","<?php echo $saveEdit; ?>");
 			// alert("UPDATE"+$(this).data('update'));
 		});
 	}
@@ -90,7 +90,7 @@
 					url: '<?php echo $url_deleteFund;?>',
 					type: 'POST',
 				// dataType: 'json',
-				data: {'id_news': $(this).data('delid')},
+				data: {'id_fund': $(this).data('delid')},
 				success: function(rs)
 				{
 					// alert("ลบข้อมูลเสร็จเรียบร้อย.");

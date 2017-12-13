@@ -52,6 +52,18 @@ class Mdl_fund extends CI_Model {
 		$this->db->insert('fund',$this->security->xss_clean($data));
 	}
 
+	function saveEdit($idfund,$data)
+	{
+		$this->db->where('id_fund',$idfund);
+		$this->db->update('fund',$data);
+	}
+
+	function DelFund($data)
+	{
+		$this->db->where('id_fund', $data);
+		$del = $this->db->delete('fund');
+	}
+
 }
 
 /* End of file Mdl_fund.php */

@@ -145,21 +145,37 @@ public function menu($base_url)
 {
 	$html = '
 	<ul class="nav navbar-nav navbar-right">
+	<!--
 	<li ><a href="'.$base_url.'index.php/dashboard"  style="color:#000;"> หน้าแรก</a></li>
 	<li><a href="#"  style="color:#000;"> ข่าวสาร</a></li>
 	<li><a href="#"  style="color:#000;"> แหล่งทุน</a></li>
 	<li><a href="#"  style="color:#000;"> สถาบันวิจัย มรภ.อุดรธานี</a></li>
 	<li><a href="http://www.nrct.go.th/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%81.aspx#.WUH8YpDyjIU"  style="color:#000;" target="_blank"> วช.</a></li>
 	<li><a href="http://www.mua.go.th/ohec/"  style="color:#000;" target="_blank"> สกอ.</a></li>
+	-->
 	';
 	if($this->ci->session->userdata('userStatus') == 'admin'){
 		$html .= '
 		<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"> SETTING <b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#000;"><i class="fa fa-fw fa-gear" aria-hidden="true"></i> SETTING <b class="caret"></b></a>
 		<ul class="dropdown-menu ">
-		<li class="col-sm-12" >
-		<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear"></i> Settings</a>
+		<li>
+			<a href="'.base_url().'index.php/Document"><i class="fa fa-fw fa-book" aria-hidden="true"></i> อัพโหลดงานวิจัย</a>
 		</li>
+		<li>
+			<a href="'.base_url().'index.php/Activity"><i class="fa fa-fw fa-image" aria-hidden="true"></i> อัพโหลดกิจกรรม</a>
+		</li>
+		<li>
+			<a href="'.base_url().'index.php/News"><i class="fa fa-newspaper-o" aria-hidden="true"></i> อัพโหลดข่าว</a>
+		</li>
+		<li>
+			<a href="'.base_url().'index.php/Fund"><i class="fa fa-fw fa-money" aria-hidden="true"></i> อัพโหลดแหล่งทุน</a>
+		</li>
+		<!--
+		<li class="col-sm-12" >
+		<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear" aria-hidden="true"></i> Settings</a>
+		</li>
+		-->
 		</ul>
 		</li>
 		';

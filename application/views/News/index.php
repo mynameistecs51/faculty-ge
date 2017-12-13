@@ -30,7 +30,7 @@
 						<td class='text-center'>
 							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-trash"></i> ลบ</button>
 							&nbsp;
-							<button class="btn btn-danger btn-xs btn_edit" data-editid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
+							<button class="btn btn-warning btn-xs btn_edit" data-editid="<?php echo $rowNews['id_news']; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
 						</td>
 					</tr>
 				<?php endforeach ?>
