@@ -17,7 +17,7 @@
 		<table id="example" class="display" cellspacing="0" width="100%" >
 			<thead style="background-color:  #cccccc;">
 				<tr>
-					<th style="text-align:center;" class="col-sm-2">รายละเอียด</th>
+					<th style="text-align:center;" class="col-sm-2">หัวข้อ</th>
 					<th style="text-align:center;" class="col-sm-4">รายละเอียด</th>
 					<th style="text-align:center;" class="col-sm-2">ที่มา</th>
 					<th style="text-align:center;" class="col-sm-1">วันที่</th>
@@ -27,9 +27,9 @@
 			<tbody>
 			<?php foreach ($getFund as $rowFund): ?>
 					<tr>
-						<td><?php echo $rowFund['fund_title']; ?></td>
-						<td class="text-center"><?php echo $rowFund['fund_detail']; ?></td>
-						<td class="text-center"><?php echo $rowFund['fund_source']; ?></td>
+						<td><?php echo substr($rowFund['fund_title'],0,100).'...'; ?></td>
+						<td class="text-center"><?php echo substr($rowFund['fund_detail'],0,100).'...'; ?></td>
+						<td class="text-center"><?php echo substr($rowFund['fund_source'],0,50).'...'; ?></td>
 						<td class="text-center"><?php echo date_format(date_create($rowFund['dt_update']), 'd/m/Y'); ?></td>
 						<td class='text-center'>
 							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowFund['id_fund']; ?>"><i class="fa fa-trash"></i> ลบ</button>

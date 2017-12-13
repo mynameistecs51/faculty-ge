@@ -73,13 +73,13 @@ class Template
 	<div class="container-fluid">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
-	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
 	<span class="sr-only">Toggle navigation</span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
+	<span class="icon-bar" style="background-color:#fff;"></span>
+	<span class="icon-bar" style="background-color:#fff;"></span>
+	<span class="icon-bar" style="background-color:#fff;"></span>
 	</button>
-	<a class="navbar-brand" id="brandner"> สำนักวิชาศึกษาทั่วไป</a>
+	<a class="navbar-brand" id="brandner" style="padding-top:20px;"> สำนักวิชาศึกษาทั่วไป</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
@@ -194,7 +194,7 @@ public function menu($base_url)
 		';
 	else:
 		$html .= '
-		<li > <a class="btn "  style="color:#000;" data-toggle="modal" data-target="#myModal">Sign In</a>'.$this->loginForm().'</li>
+		<li > <a class="btn "  style="color:#000;font-weight:bold;" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-sign-in" aria-hidden="true"></i> Sign In</a>'.$this->loginForm().'</li>
 		</ul>
 		';
 	endif;
@@ -226,11 +226,11 @@ function loginForm()
 	</div>
 	'.form_open('authen/checkLogin' ).'
 	<div class="form-group col-sm-6">
-	<label for="username" style="color:#000;">Username :</label>
+	<label for="username" style="color:#222;">Username :</label>
 	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 	</div>
 	<div class="form-group col-sm-6">
-	<label for="password" style="color:#000;">Password :</label>
+	<label for="password" style="color:#222;">Password :</label>
 	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 	</div>
 	<div class="orm-group   text-center">
@@ -244,24 +244,24 @@ function loginForm()
 
 	'.form_open('account/Register',"class='row-fluid'").'
 	<div class="form-group ">
-	<label for="username" style="color:#000;">Username :</label>
+	<label for="username" style="color:#222;">Username :</label>
 	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 	</div>
 	<div class="form-group ">
-	<label for="password" style="color:#000;">Password :</label>
+	<label for="password" style="color:#222;">Password :</label>
 	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 	</div>
 	<div class="form-group ">
-	<label for="email" style="color:#000;">E-mail :</label>
+	<label for="email" style="color:#222;">E-mail :</label>
 	<input type="email" class="form-control" id="email" name="email" placeholder="Email@myemail.com">
 	</div>
 	<div class="row">
 	<div class="form-group col-sm-6">
-	<label for="name" style="color:#000;">Name :</label>
+	<label for="name" style="color:#222;">Name :</label>
 	<input type="text" class="form-control" id="name" name="name" placeholder="">
 	</div>
 	<div class="form-group col-sm-6">
-	<label for="lastname" style="color:#000;">Lastname :</label>
+	<label for="lastname" style="color:#222;">Lastname :</label>
 	<input type="text" class="form-control" id="lastname" name="lastname" placeholder="">
 	</div>
 	</div>
