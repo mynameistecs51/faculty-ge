@@ -171,6 +171,9 @@ public function menu($base_url)
 		<li>
 			<a href="'.base_url().'index.php/Fund"><i class="fa fa-fw fa-money" aria-hidden="true"></i> อัพโหลดแหล่งทุน</a>
 		</li>
+		<li>
+			<a href="'.base_url().'index.php/Link"><i class="fa fa-fw fa-link" aria-hidden="true"></i> อัพโหลดลิงค์</a>
+		</li>
 		<!--
 		<li class="col-sm-12" >
 		<a href="'.base_url().'index.php/management"><i class="fa fa-fw fa-gear" aria-hidden="true"></i> Settings</a>
