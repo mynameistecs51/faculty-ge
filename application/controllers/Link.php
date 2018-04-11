@@ -30,12 +30,63 @@ class Link extends CI_Controller {
 		$this->data['datenow'] = $this->datenow;
 		$this->data['dt_now'] = $this->dt_now;
 		$this->data['controller'] = $this->ctl;
-		// $this->data['url_addFund'] = base_url().'index.php/'.$this->ctl.'/addFund/';
+		$this->data['url_addLink'] = base_url().'index.php/'.$this->ctl.'/addLink/';
 		// $this->data['url_deleteFund'] = base_url().'index.php/'.$this->ctl.'/deleteFund/';
-		// $this->data['url_editFund'] = base_url().'index.php/'.$this->ctl.'/editfund/';
-		// $this->data['saveEdit'] = base_url().'index.php/'.$this->ctl.'/saveEdit/';
+		$this->data['url_editLink'] = base_url().'index.php/'.$this->ctl.'/editLink/';
+		$this->data['saveEdit'] = base_url().'index.php/'.$this->ctl.'/saveEdit/';
 
 	}
+
+
+	public function addLink()
+	{
+		$TEXTTITLE = "เพิ่มลิงค์ภายนอก";
+		$PAGE = "/Link/addLink";
+		$this->mainpage($TEXTTITLE);
+		$this->load->view($PAGE,$this->data);
+	}
+
+	public function saveAdd()
+	{
+		$data = array(
+			'link_name' => $this->input->post('linkName'),
+			'link_url' => $this->input->post('linkUrl'),
+			'ip_create' => $_SERVER['REMOTE_ADDR'],
+			'dt_create' => $this->dt_now,
+		);
+
+		$insert = $this->mdl_link->saveAdd($data);
+	}
+
+	public function editLink($editid)
+	{
+		$TEXTTITLE = "แก้ไข Link ภายนอก";
+		$PAGE = "/Link/editLink";
+		$this->data['rowLink'] = $this->mdl_link->getLinkID($editid);
+		$this->data['linkDetail'] = array();
+		foreach ($this->data['rowLink'] as $rowLink) {
+			$this->data['linkDetail'] = array(
+				'link_id' => $rowLink->link_id,
+				'link_name' => $rowLink->link_name,
+				'link_url' => $rowLink->link_url,
+			);
+	}
+	$this->mainpage($TEXTTITLE);
+	$this->load->view($PAGE,$this->data);
+}
+
+public function saveEdit()
+{
+	$idFund = $this->input->post('id_fund');
+	$data = array(
+		'link_name' => $this->input->post('linkName'),
+		'link_url' => $this->input->post('linkUrl'),
+		'ip_create' => $_SERVER['REMOTE_ADDR'],
+		'dt_create' => $this->dt_now,
+	);
+	$this->mdl_link->saveEdit($idFund,$this->security->xss_clean($data));
+	redirect('Fund/index','refresh');
+}
 
 }
 

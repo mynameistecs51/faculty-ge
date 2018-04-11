@@ -10,31 +10,29 @@
 <div class="row">
 	<!-- add activity -->
 	<div class="col-sm-12">
-		<button type="button" id="add" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i> เพิ่มแหล่งทุน</button>
+		<button type="button" id="add" class="btn btn-primary" ><i class="fa fa-plus" aria-hidden="true"></i> เพิ่ม Link</button>
 	</div>
 	<div class="col-sm-12"><br></div>
 	<div class="col-sm-12">
 		<table id="example" class="display" cellspacing="0" width="100%" >
 			<thead style="background-color:  #cccccc;">
 				<tr>
-					<th style="text-align:center;" class="col-sm-2">หัวข้อ</th>
-					<th style="text-align:center;" class="col-sm-4">รายละเอียด</th>
-					<th style="text-align:center;" class="col-sm-2">ที่มา</th>
-					<th style="text-align:center;" class="col-sm-1">วันที่</th>
-					<th style="text-align:center;" class="col-sm-2 text-center">ลบ/แก้ไข</th>
+					<th style="text-align:center;" class="col-sm-2">Link_name</th>
+					<th style="text-align:center;" class="col-sm-4">Link_url</th>
+					<th style="text-align:center;" class="col-sm-1">Date</th>
+					<th style="text-align:center;" class="col-sm-2 text-center">Manage</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($getFund as $rowFund): ?>
+			<?php foreach ($getLink as $rowLink): ?>
 					<tr>
-						<td><?php echo substr($rowFund['fund_title'],0,100).'...'; ?></td>
-						<td class="text-center"><?php echo substr($rowFund['fund_detail'],0,100).'...'; ?></td>
-						<td class="text-center"><?php echo substr($rowFund['fund_source'],0,50).'...'; ?></td>
-						<td class="text-center"><?php echo date_format(date_create($rowFund['dt_update']), 'd/m/Y'); ?></td>
+						<td><?php echo $rowLink->link_name; ?></td>
+						<td class="text-center"><?php echo $rowLink->link_url; ?></td>
+						<td class="text-center"><?php echo date_format(date_create($rowLink->dt_create), 'd/m/Y'); ?></td>
 						<td class='text-center'>
-							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowFund['id_fund']; ?>"><i class="fa fa-trash"></i> ลบ</button>
+							<button class="btn btn-danger btn-xs btn_delete" data-delid="<?php echo $rowLink->link_id; ?>"><i class="fa fa-trash"></i> ลบ</button>
 							&nbsp;
-							<button class="btn btn-warning btn-xs btn_edit" data-editid="<?php echo $rowFund['id_fund']; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
+							<button class="btn btn-warning btn-xs btn_edit" data-editid="<?php echo $rowLink->link_id; ?>"><i class="fa fa-edit"></i> แก้ไข</button>
 						</td>
 					</tr>
 				<?php endforeach ?>
@@ -63,45 +61,21 @@
 			responsive: true,
 		});
 
-		// add();
-		// fnupdate();
+		add();
+		linkUpdate();
 		// fndelete();
 	} );
 
 	function add(){
 		$('#add').click(function(){
-			load_page("<?php echo $url_addFund; ?>","เพิ่มข้อมูล :: ข่าวสาร ::","<?php echo base_url().'index.php/'.$controller.'/saveAdd/';?>");
+			load_page("<?php echo $url_addLink; ?>","เพิ่ม Link :: Link ภายนอก ::","<?php echo base_url().'index.php/'.$controller.'/saveAdd/';?>");
 		});
 	}
 
-	function fnupdate() {
+
+	function linkUpdate() {
 		$('.btn_edit').click(function(){
-			load_page("<?php echo $url_editFund;?>"+$(this).data('editid'),"อัพเดทข้อมูล :: ข้อมูลข่าวสาร ::","<?php echo $saveEdit; ?>");
-			// alert("UPDATE"+$(this).data('update'));
-		});
-	}
-
-	function fndelete() {
-		$('.btn_delete').click(function(){
-			// console.log($(this).data('delete'));
-			var cfm = confirm("ยืนยันการ ลบ!");
-			if(cfm ){
-				$.ajax({
-					url: '<?php echo $url_deleteFund;?>',
-					type: 'POST',
-				// dataType: 'json',
-				data: {'id_fund': $(this).data('delid')},
-				success: function(rs)
-				{
-					// alert("ลบข้อมูลเสร็จเรียบร้อย.");
-					window.location.reload();
-				},
-				error:function(err){
-					alert("เกิดข้อผิดพลาดในการลบข้อมูล" +err);
-					window.location.reload();
-				}
-			});
-			}
+			load_page("<?php echo $url_editLink;?>"+$(this).data('editid'),"อัพเดท :: ข้อมูลลิงค์::","<?php echo $saveEdit; ?>");
 		});
 	}
 

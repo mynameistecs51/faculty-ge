@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 25, 2017 at 11:05 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: localhost
+-- Generation Time: Apr 11, 2018 at 11:38 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -44,7 +46,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_name`, `account_lastname`, `account_user`, `account_pass`, `account_status`, `account_email`, `dt_create`, `dt_update`, `ip_create`) VALUES
-(1, 'test', 'test', 'test', '098f6bcd4621d373cade4e832627b4f6', 'admin', 'admin@myhost.com', '2017-09-25 11:16:25', '2017-09-25 11:16:25', '::1'),
+(1, 'test', 'test', 'test', '81dc9bdb52d04dc20036dbd8313ed055', 'admin', 'admin@myhost.com', '2017-09-25 11:16:25', '2017-09-25 11:16:25', '::1'),
 (2, 'te', 'te', 'te', '569ef72642be0fadd711d6a468d68ee1', 'user', '', '2017-09-25 12:20:23', '2017-09-25 12:20:23', '::1');
 
 -- --------------------------------------------------------
@@ -115,8 +117,29 @@ CREATE TABLE `fund` (
 --
 
 INSERT INTO `fund` (`id_fund`, `fund_title`, `fund_source`, `fund_detail`, `id_member`, `ip_create`, `dt_create`, `dt_update`) VALUES
-(1, 'test scource', 'source', 'test source', 1, '::1', '2017-09-10 23:05:12', '2017-09-10 23:05:12'),
+(1, 'test scource', 'source', 'test source', 1, '::1', '2018-04-11 10:18:43', '2017-09-10 23:05:12'),
 (2, 'test2', 'test2', 'test2', 1, '::1', '2017-09-10 23:06:18', '2017-09-10 23:06:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `link`
+--
+
+CREATE TABLE `link` (
+  `link_id` int(11) NOT NULL,
+  `link_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `link_url` text COLLATE utf8_unicode_ci NOT NULL,
+  `dt_create` datetime NOT NULL,
+  `ip_create` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `link`
+--
+
+INSERT INTO `link` (`link_id`, `link_name`, `link_url`, `dt_create`, `ip_create`) VALUES
+(1, 'สถาบันวิจัย', 'http://rdi.udru.ac.th/', '2018-04-11 15:53:23', '::1');
 
 -- --------------------------------------------------------
 
@@ -138,7 +161,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id_news`, `news_title`, `news_detail`, `dt_create`, `ip_create`, `id_member`) VALUES
-(4, 'test', 'test    test', '2017-09-10 21:39:11', '::1', 1);
+(4, 'test', 'test    test\r<br>test', '2018-01-03 11:55:50', '::1', 1);
 
 --
 -- Indexes for dumped tables
@@ -169,6 +192,12 @@ ALTER TABLE `fund`
   ADD PRIMARY KEY (`id_fund`);
 
 --
+-- Indexes for table `link`
+--
+ALTER TABLE `link`
+  ADD PRIMARY KEY (`link_id`);
+
+--
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
@@ -183,26 +212,38 @@ ALTER TABLE `news`
 --
 ALTER TABLE `account`
   MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
   MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
 --
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
   MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `fund`
 --
 ALTER TABLE `fund`
   MODIFY `id_fund` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `link`
+--
+ALTER TABLE `link`
+  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
