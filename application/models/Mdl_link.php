@@ -48,8 +48,14 @@ class Mdl_link extends CI_Model {
 	function saveEdit($idLink,$data)
 	{
 		$this->db->where('link_id',$idLink);
-		$this->db->update('link',$data);
+		$this->db->update('link',$this->security->xss_clean($data));
 	}
+
+  public function DelLink($data)
+  {
+    $this->db->where('link_id', $data);
+    $del = $this->db->delete('link');
+  }
 
 
 }

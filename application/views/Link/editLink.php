@@ -1,3 +1,4 @@
+<input type="hidden" name="link_id" value="<?php echo $linkDetail['link_id']; ?>">
 <div class="row"  >
 	<div class="form-group col-sm-12">
 		<label for="linkName" class="col-sm-2 control-label"> Link Name </label>

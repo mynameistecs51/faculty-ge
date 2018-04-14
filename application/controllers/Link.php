@@ -31,7 +31,7 @@ class Link extends CI_Controller {
 		$this->data['dt_now'] = $this->dt_now;
 		$this->data['controller'] = $this->ctl;
 		$this->data['url_addLink'] = base_url().'index.php/'.$this->ctl.'/addLink/';
-		// $this->data['url_deleteFund'] = base_url().'index.php/'.$this->ctl.'/deleteFund/';
+		$this->data['url_deleteLink'] = base_url().'index.php/'.$this->ctl.'/deleteLink/';
 		$this->data['url_editLink'] = base_url().'index.php/'.$this->ctl.'/editLink/';
 		$this->data['saveEdit'] = base_url().'index.php/'.$this->ctl.'/saveEdit/';
 
@@ -53,40 +53,52 @@ class Link extends CI_Controller {
 			'link_url' => $this->input->post('linkUrl'),
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			'dt_create' => $this->dt_now,
-		);
+      'create_by' => $this->session->userdata('userID'),
+
+    );
 
 		$insert = $this->mdl_link->saveAdd($data);
-	}
+    redirect($this->ctl,'refresh');
+  }
 
-	public function editLink($editid)
-	{
-		$TEXTTITLE = "แก้ไข Link ภายนอก";
-		$PAGE = "/Link/editLink";
-		$this->data['rowLink'] = $this->mdl_link->getLinkID($editid);
-		$this->data['linkDetail'] = array();
-		foreach ($this->data['rowLink'] as $rowLink) {
-			$this->data['linkDetail'] = array(
-				'link_id' => $rowLink->link_id,
-				'link_name' => $rowLink->link_name,
-				'link_url' => $rowLink->link_url,
-			);
-	}
-	$this->mainpage($TEXTTITLE);
-	$this->load->view($PAGE,$this->data);
-}
+  public function editLink($editid)
+  {
+    $TEXTTITLE = "แก้ไข Link ภายนอก";
+    $PAGE = "/Link/editLink";
+    $this->data['rowLink'] = $this->mdl_link->getLinkID($editid);
+    $this->data['linkDetail'] = array();
+    foreach ($this->data['rowLink'] as $rowLink) {
+     $this->data['linkDetail'] = array(
+      'link_id' => $rowLink->link_id,
+      'link_name' => $rowLink->link_name,
+      'link_url' => $rowLink->link_url,
+    );
+   }
+   $this->mainpage($TEXTTITLE);
+   $this->load->view($PAGE,$this->data);
+ }
 
-public function saveEdit()
-{
-	$idFund = $this->input->post('id_fund');
-	$data = array(
-		'link_name' => $this->input->post('linkName'),
-		'link_url' => $this->input->post('linkUrl'),
-		'ip_create' => $_SERVER['REMOTE_ADDR'],
-		'dt_create' => $this->dt_now,
-	);
-	$this->mdl_link->saveEdit($idFund,$this->security->xss_clean($data));
-	redirect('Fund/index','refresh');
-}
+ public function saveEdit()
+ {
+   $link_id = $this->input->post('link_id');
+   $data = array(
+    'link_name' => $this->input->post('linkName'),
+    'link_url' => $this->input->post('linkUrl'),
+    'ip_create' => $_SERVER['REMOTE_ADDR'],
+    'dt_create' => $this->dt_now,
+    'create_by' => $this->session->userdata('userID'),
+  );
+   $this->mdl_link->saveEdit($link_id,$data);
+   redirect($this->ctl,'refresh');
+ }
+
+ public function deleteLink()
+ {
+   $link_id = $this->input->post('link_id');
+   $del_link = $this->mdl_link->DelLink($link_id);
+
+   redirect($this->ctl,'refresh');
+ }
 
 }
 
