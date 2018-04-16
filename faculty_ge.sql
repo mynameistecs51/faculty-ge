@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2018 at 10:55 AM
+-- Generation Time: Apr 16, 2018 at 09:59 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -134,6 +134,15 @@ CREATE TABLE `link` (
   `ip_create` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `create_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `link`
+--
+
+INSERT INTO `link` (`link_id`, `link_name`, `link_url`, `dt_create`, `ip_create`, `create_by`) VALUES
+(1, 'สถาบันวิจัย มรภ.อุดรธานี', 'http://rdi.udru.ac.th/', '2018-04-16 21:21:26', '::1', 1),
+(2, 'สถาบันวิจัยแห่งชาติ', 'http://www.nrct.go.th/', '2018-04-16 21:54:07', '::1', 1),
+(3, 'สำนักงานคณะกรรมการการอุดรศึกษา', 'http://www.mua.go.th/', '2018-04-16 21:57:18', '::1', 1);
 
 -- --------------------------------------------------------
 
