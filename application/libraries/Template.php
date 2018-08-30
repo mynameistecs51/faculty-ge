@@ -108,10 +108,10 @@ body {
 </div> <!-- ./end content menu left -->
 
 <!-- show body -->
-<div class="content col-sm-9" >
+<div class="content col-sm-9" style="background-color: #fff;padding-top:20px;" >
 
-<div class="row" >
-<div class="col-sm-12" >
+<div class="row">
+<div class="col-sm-12">
 <h1 class="page-header" style="margin-top:0px;">
 '. $TEXTTITLE.'
 </h1>

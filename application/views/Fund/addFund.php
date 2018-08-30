@@ -13,6 +13,12 @@
 			<input type="text" name='source' class="form-control " id="source" placeholder="แหล่งที่มาของทุน">
 		</div>
 	</div>
+	<!-- <div class="form-group col-sm-12">
+		<label for="filefund" class="col-sm-2 control-label">ไฟล์อัพโหลด</label>
+		<div class="col-sm-10">
+			<input type="file" class="form-control-file" id="exampleFormControlFile1">
+		</div>
+	</div> -->
 	<div class="form-group col-sm-12">
 		<label for="detail" class="col-sm-2 control-label">รายละเอียด</label>
 		<div class="col-sm-10">
