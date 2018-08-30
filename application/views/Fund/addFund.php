@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-12">
-		<label for="source" class="col-sm-2 control-label">ที่มาของทุน</label>
+		<label for="source" class="col-sm-2 control-label">ที่มาของทุน(URL)</label>
 		<div class="col-sm-10">
 			<input type="text" name='source' class="form-control " id="source" placeholder="แหล่งที่มาของทุน">
 		</div>
