@@ -58,7 +58,7 @@ class Fund extends CI_Controller {
 
 		}
 
- 		$data = array(
+		$data = array(
 			'id_fund' => '',
 			'fund_title' => $this->input->post('title'),
 			'fund_source' => $this->input->post('source'),
@@ -95,6 +95,7 @@ class Fund extends CI_Controller {
 				'fund_id' => $rowFund['id_fund'],
 				'fund_title' => $rowFund['fund_title'],
 				'fund_source' => $rowFund['fund_source'],
+				'fund_file' => $rowFund['fund_file'],
 				'fund_detail' => $rowFund['fund_detail']
 			);
 		}
@@ -163,6 +164,15 @@ class Fund extends CI_Controller {
 			}
 		}
 		return $fileName  ;
+	}
+
+	public function delEditpict()
+	{
+		$fund_id       = $this->input->post('fund_id');
+		$pictureName = $this->input->post('pictureName');
+		$numPict     = $this->input->post('numPict');
+
+		$del_picture = $this->mdl_fund->delPicture($fund_id, $pictureName, $numPict);
 	}
 
 

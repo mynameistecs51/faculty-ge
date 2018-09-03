@@ -65,6 +65,33 @@ class Mdl_fund extends CI_Model {
 		$del = $this->db->delete('fund');
 	}
 
+
+	public function getId_fund($id)
+	{
+		$this->db->where('id_fund',$id);
+		$data  = $this->db->get('fund');
+		return $data->result_array();
+	}
+
+	public function delPicture($id_fund,$pictureName,$numPict)
+	{
+		$query_ac = $this->getId_fund($id_fund);
+
+		foreach ($query_ac as $rowACT) {
+			$pic_newsEX = explode(',', $rowACT['fund_file']);
+			@unlink('./assets/files_fund/'.$pictureName);
+			unset($pic_newsEX[$numPict]);
+
+			$update_arrPic = implode(',', $pic_newsEX);
+
+			$this->db->where('id_fund',$id_fund);
+			$this->db->update('fund',array('id_fund'=>$update_arrPic));
+		}
+		return TRUE;
+	}
+
+
+
 }
 
 /* End of file Mdl_fund.php */
