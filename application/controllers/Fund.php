@@ -47,18 +47,32 @@ class Fund extends CI_Controller {
 
 	public function saveAdd()
 	{
-		$data = array(
+
+	//ถ้ามีการเพิ่มรูปภาพ
+		$addPict = array();
+		if ( $_FILES['images']['size'] != "") {
+			$images = $this->_upload_files('images');
+			for ($i = 0; $i < count($images); $i++) {
+				array_push($addPict, $images[$i]);
+			}
+
+		}
+
+ 		$data = array(
 			'id_fund' => '',
 			'fund_title' => $this->input->post('title'),
 			'fund_source' => $this->input->post('source'),
 			'fund_detail' => str_replace(array("\n",'&nbsp;'),array("<br>",'&nbsp;'),$this->input->post('detail')),
+			'fund_file' => implode(',', $addPict),
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			'id_member' => $this->session->userdata('userID'),
 			'dt_create' => $this->dt_now,
 			'dt_update' => $this->dt_now,
 		);
 
+
 		$insert = $this->mdl_fund->saveAdd($data);
+		redirect('dashboard','refresh');
 	}
 
 	public function readFund($fundID)
@@ -110,6 +124,47 @@ class Fund extends CI_Controller {
 
 		redirect('Fund/index/','refresh');
 	}
+
+	/*
+	*function upload files *
+	 */
+	private function _upload_files($field )
+	{
+		$file_name               = date('dmy_His_');
+		$config['upload_path']   = 'assets/files_fund/';
+		$config['allowed_types'] = 'gif|jpg|png|GIF|JPG|PNG';
+		$config['max_size']      = 0;
+		$config['remove_spaces'] = true;
+		$configi['width']  = 75;
+		$configi['height'] = 50;
+		$config['overwrite']      = true;
+		$resize['maintain_ratio'] = true;
+
+		$this->load->library('upload');
+		$files = $_FILES;
+		$fileName = array();
+		$cpt = count($_FILES[$field]['name']);
+		for($i=0; $i < $cpt; $i++)
+		{
+			$config['file_name']     = $file_name.$i;
+			$_FILES[$field]['name']= $files[$field]['name'][$i];
+			$_FILES[$field]['type']= $files[$field]['type'][$i];
+			$_FILES[$field]['tmp_name']= $files[$field]['tmp_name'][$i];
+			$_FILES[$field]['error']= $files[$field]['error'][$i];
+			$_FILES[$field]['size']= $files[$field]['size'][$i];
+
+			$this->upload->initialize($config);
+			if($this->upload->do_upload($field)){
+				$config['file_name'] = $file_name.$i.$this->upload->data('file_ext');
+				array_push($fileName,$config['file_name']);
+				$this->upload->data();
+			}else{
+				$massage =  $this->upload->display_errors();
+			}
+		}
+		return $fileName  ;
+	}
+
 
 }
 

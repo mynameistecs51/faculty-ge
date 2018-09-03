@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2018 at 09:59 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: Sep 03, 2018 at 11:19 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `faculty_ge`
+-- Database: `ge_research`
 --
 
 -- --------------------------------------------------------
@@ -106,6 +106,7 @@ CREATE TABLE `fund` (
   `fund_title` text COLLATE utf8_unicode_ci NOT NULL,
   `fund_source` text COLLATE utf8_unicode_ci NOT NULL,
   `fund_detail` text COLLATE utf8_unicode_ci NOT NULL,
+  `fund_file` text COLLATE utf8_unicode_ci NOT NULL,
   `id_member` int(11) NOT NULL,
   `ip_create` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `dt_create` datetime NOT NULL,
@@ -116,9 +117,10 @@ CREATE TABLE `fund` (
 -- Dumping data for table `fund`
 --
 
-INSERT INTO `fund` (`id_fund`, `fund_title`, `fund_source`, `fund_detail`, `id_member`, `ip_create`, `dt_create`, `dt_update`) VALUES
-(1, 'test scource', 'source', 'test source', 1, '::1', '2017-09-10 23:05:12', '2017-09-10 23:05:12'),
-(2, 'test2', 'test2', 'test2', 1, '::1', '2017-09-10 23:06:18', '2017-09-10 23:06:18');
+INSERT INTO `fund` (`id_fund`, `fund_title`, `fund_source`, `fund_detail`, `fund_file`, `id_member`, `ip_create`, `dt_create`, `dt_update`) VALUES
+(1, 'test scource', 'source', 'test source', '', 1, '::1', '2017-09-10 23:05:12', '2017-09-10 23:05:12'),
+(2, 'test2', 'test2', 'test2', '', 1, '::1', '2017-09-10 23:06:18', '2017-09-10 23:06:18'),
+(7, 'test picture', 'google.com', 'มองบวก ช่างกล้า', '030918_071321_0.jpg,030918_071321_1.jpg', 1, '172.82.8.145', '2018-09-03 12:13:21', '2018-09-03 12:13:21');
 
 -- --------------------------------------------------------
 
@@ -215,31 +217,37 @@ ALTER TABLE `news`
 --
 ALTER TABLE `account`
   MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
   MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
 --
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
   MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `fund`
 --
 ALTER TABLE `fund`
-  MODIFY `id_fund` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_fund` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `link`
 --
 ALTER TABLE `link`
   MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;COMMIT;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

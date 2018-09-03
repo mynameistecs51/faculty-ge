@@ -35,6 +35,7 @@ class Mdl_fund extends CI_Model {
 		fund_title,
 		fund_source,
 		fund_detail,
+		fund_file,
 		id_member,
 		dt_update
 		FROM
