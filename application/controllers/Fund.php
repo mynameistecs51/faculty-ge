@@ -120,7 +120,7 @@ class Fund extends CI_Controller {
 		$data = array(
 			'fund_title' => $this->security->xss_clean($this->input->post('title')),
 			'fund_source' => $this->security->xss_clean($this->input->post('source')),
-			'fund_detail' =>  str_replace("<br>", "", $this->input->post('detail')),
+			'fund_detail' =>  str_replace(array(" ","\r\n", "<br>"), array("&nbsp;", "<br>", "<br>"), $this->input->post('detail')),
 			'fund_file'   => $datafile = (empty($_FILES['images']['size'])) ? $pictureAll : substr(implode(',', $addPict),0,-1),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],

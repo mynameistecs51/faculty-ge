@@ -39,9 +39,9 @@
 		</div>
 	</div>
 	<div class="form-group col-sm-12">
-		<label for="detail" class="col-sm-2 control-label">รายละเอียด</label>
+		<label for="detail" class="col-sm-2 control-label">รายละเอียด นะ</label>
 		<div class="col-sm-10">
-			<textarea name="detail" class="form-control" rows="15"><?php echo $rowFund['fund_detail'];?></textarea>
+			<textarea name="detail" class="form-control" rows="15"><?php echo str_replace(array(" ","\r\n",'<br>'),array("&nbsp;","\r\n","\r\n"),$rowFund['fund_detail']); ?></textarea>
 		</div>
 	</div>
 	<div class="form-group col-sm-12">
