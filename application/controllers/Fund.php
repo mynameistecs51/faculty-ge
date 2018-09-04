@@ -105,11 +105,23 @@ class Fund extends CI_Controller {
 
 	public function saveEdit()
 	{
-		$idFund = $this->input->post('id_fund');
+		$idFund = $this->input->post('fund_id');
+		$pictureAll = $this->input->post('pictureAll');
+		$addPict    = array();
+
+		if ($_FILES['images']['size'] != '') {
+			$images = $this->_upload_files('images');
+			for ($i = 0; $i < count($images); $i++) {
+				array_push($addPict, $images[$i]);
+			}
+			array_push($addPict, $pictureAll);
+		}
+
 		$data = array(
 			'fund_title' => $this->security->xss_clean($this->input->post('title')),
 			'fund_source' => $this->security->xss_clean($this->input->post('source')),
 			'fund_detail' =>  str_replace("<br>", "", $this->input->post('detail')),
+			'fund_file'   => $datafile = (empty($_FILES['images']['size'])) ? $pictureAll : implode(',', $addPict),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 			'id_member' => $this->session->userdata('userID'),

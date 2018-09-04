@@ -61,7 +61,6 @@
 				</div>
 			</div>
 			<input type="hidden" name="pictureAll" value="<?php echo $rowFund['fund_file'] ;?>">
-			<input type="hidden" name="fund_id" value="<?php echo $rowFund['fund_id']; ?>">
 		<?php endfor;?>
 	</div>
 </div>

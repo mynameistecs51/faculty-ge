@@ -85,7 +85,7 @@ class Mdl_fund extends CI_Model {
 			$update_arrPic = implode(',', $pic_newsEX);
 
 			$this->db->where('id_fund',$id_fund);
-			$this->db->update('fund',array('id_fund'=>$update_arrPic));
+			$this->db->update('fund',array('fund_file'=>$update_arrPic));
 		}
 		return TRUE;
 	}
