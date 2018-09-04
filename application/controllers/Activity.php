@@ -140,7 +140,7 @@ class Activity extends CI_Controller
 		$data = array(
 			'ac_title'  => $title,
 			'ac_detail' => str_replace("\n", "<br>", $detail),
-			'ac_pict'   => $datafile = (empty($_FILES['images']['size'])) ? $pictureAll : substr(implode(',', $addPict),0,-1),
+			'ac_pict'   => $datafile = (empty($_FILES['images']['size'])) ? $pictureAll : implode(',', $addPict),
 			'dt_create' => $this->dt_now,
 			'ip_create' => $_SERVER['REMOTE_ADDR'],
 		);
