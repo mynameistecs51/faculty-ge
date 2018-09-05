@@ -68,19 +68,27 @@ body {
 </head>
 <body>
 <!-- Navigation -->
+
 <div class="col-sm-12"  >
 <div class="row">
-<nav class="navbar bg-primary " >
+<nav class="navbar" >
 <div class="container-fluid">
+
+<div class="row" >
+	<img src="'.base_url("assets/images/headerGE.png").'" alt="" >
+</div>
+
 <!-- Brand and toggle get grouped for better mobile display -->
-<div class="navbar-header">
+<div class="navbar-header ">
+
 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
 <span class="sr-only">Toggle navigation</span>
 <span class="icon-bar" style="background-color:#fff;"></span>
 <span class="icon-bar" style="background-color:#fff;"></span>
 <span class="icon-bar" style="background-color:#fff;"></span>
 </button>
-<a class="navbar-brand" id="brandner" style="padding-top:20px;"> สำนักวิชาศึกษาทั่วไป</a>
+
+<!-- <a class="navbar-brand" id="brandner" style="padding-top:20px;"> สำนักวิชาศึกษาทั่วไป</a> -->
 </div>
 
 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -91,7 +99,7 @@ body {
 </nav>
 </div>
 <!-- show body -->
-<div class="row   style="background-color:none;padding: 20px;">
+<div class="row" style="background-color:none;padding-top: 10px;margin-top:-30px;">
 
 <div class="content col-sm-3" >  <!--   menu left -->
 <div class="panel panel-primary">
@@ -108,7 +116,7 @@ body {
 </div> <!-- ./end content menu left -->
 
 <!-- show body -->
-<div class="content col-sm-9" style="background-color: #fff;padding-top:20px;" >
+<div class="content col-sm-9" style="background-color: #fff;padding-top:10px;" >
 
 <div class="row">
 <div class="col-sm-12">
