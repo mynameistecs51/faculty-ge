@@ -199,7 +199,7 @@ public function menu($base_url)
   <a href="#" class="dropdown-toggle" data-toggle="dropdown"  style="color:#000;"> <i class="fa fa-user " aria-hidden="true"></i> '.$this->ci->session->userdata('username').' <b class="caret"></b></a>
   <ul class="dropdown-menu ">
   <li class="col-sm-12" >
-  <a href="'.base_url().'authen/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a>
+  <a href="'.base_url().'index.php/authen/logout"><i class="fa fa-fw fa-sign-out"></i> Logout</a>
   </li>
   </ul>
   </li>
@@ -305,48 +305,6 @@ function loginForm()
 	return $html;
 }
 
-
-	/*public function loginForm()
-	{
-		echo '
-
-		<!-- Modal Login-->
-		<div id="myModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title"> Login เพื่อเข้าสู่ระบบ</h4>
-					</div>
-					<div class="modal-body">
-						<div class="col-sm-12">
-							<img src="'.base_url().'/assets/images/user.png" class="img-circle col-sm-7 col-sm-offset-2" >
-						</div>
-						<form method="post">
-							<div class="form-group">
-								<label for="username">Username :</label>
-								<input type="text" class="form-control" id="username" name="username" placeholder="Username">
-							</div>
-							<div class="form-group">
-								<label for="password">Password :</label>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-							</div>
-							<button type="reset" class="btn btn-warning">Cancel</button>
-							<button type="submit" class="btn btn-success">Login</button>
-						</form>
-
-					</div>
-					<div class="modal-footer ">
-						<p class="help-block ">register </p>
-					</div>
-				</div>
-
-			</div>
-		</div>
-		';
-	}
-	*/
 }
 
 /* End of file template.php */

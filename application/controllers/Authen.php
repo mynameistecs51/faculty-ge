@@ -10,6 +10,9 @@ class Authen extends CI_Controller {
 		$this->load->model('Mdl_authen','authen');
 		$this->ip_address = $this->input->ip_address();
 		$this->userID = $this->session->userdata('userID');
+		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
+		$this->dt_now = $now->format('Y-m-d H:i:s');
+		$this->datenow = $now->format('d/m/').($now->format('Y')+543);
 	}
 
 	public function index()
@@ -19,6 +22,16 @@ class Authen extends CI_Controller {
 		}else{
 			redirect('dashboard','refresh');
 		}
+	}
+
+	public function mainpage($TEXTTITLE)
+	{
+		$this->data['header'] = $this->template->getHeader(base_url(),$TEXTTITLE);
+		$this->data['footer'] = $this->template->getFooter(base_url());
+		$this->data['datenow'] = $this->datenow;
+		$this->data['dt_now'] = $this->dt_now;
+		$this->data['controller'] = $this->ctl;
+
 	}
 
 	public function checkLogin()
@@ -51,12 +64,15 @@ class Authen extends CI_Controller {
 
 	public function login($error='')
 	{
+		$TEXTTITLE = "Login";
+		$PAGE = "/Login";
 		if($this->session->userdata('userID')==""){
-			$this->data['viewName']="Login";
+			// $this->data['viewName']="Login";
 			$this->data['userID']=$this->userID;
 			$this->data['ctl'] = $this->ctl;
 			$this->data['error'] = ($error == 'fail') ? 'Username Password not found ! ' : '';
-			$this->load->view($this->data['viewName'],$this->data);
+			$this->mainpage($TEXTTITLE);
+			$this->load->view($PAGE,$this->data);
 		}else{
 			redirect('authen/','refresh');
 		}
