@@ -74,7 +74,7 @@ body {
 <nav class="navbar" >
 <div class="container-fluid">
 
-<div class="row" >
+<div class="row-fluid" >
 	<img src="'.base_url("assets/images/headerGE.png").'" alt="" >
 </div>
 
